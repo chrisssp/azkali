@@ -18,7 +18,7 @@ export function SplashScreenView() {
       // Simulate initial asset loading while the pulse animation plays
       await new Promise<void>((resolve) => setTimeout(resolve, 2500));
 
-      router.replace('/(auth)/login');
+      router.replace('/welcome');
     }
 
     prepare();
