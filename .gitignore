@@ -1,0 +1,48 @@
+# IDEs y Editores
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+
+# Node.js (Express, React, NestJS, Astro)
+node_modules/
+npm-debug.log*
+yarn-error.log*
+.env
+.env.local
+dist/
+build/
+
+# Java (Spring Boot, Maven, Gradle)
+target/
+*.class
+.gradle/
+build/
+bin/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.venv/
+env/
+
+# Expo / React Native (apps/mobile)
+.expo/
+apps/mobile/web-build/
+apps/mobile/dist/
+
+# Next.js (apps/landing)
+.next/
+out/
+apps/landing/build/
+
+# iOS/Android nativos (por si ejecutas prebuild en Expo)
+apps/mobile/ios/
+apps/mobile/android/
+
+# Archivos de entorno específicos del SO
+.DS_Store
+Thumbs.db

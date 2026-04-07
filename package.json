@@ -1,0 +1,25 @@
+{
+	"name": "azkalli",
+	"private": true,
+	"devDependencies": {
+		"@biomejs/biome": "^1.9.4",
+		"husky": "^9.1.7",
+		"lint-staged": "^15.5.2"
+	},
+	"lint-staged": {
+		"{apps,services/core-api}/**/*.{ts,tsx,js,jsx,json}": [
+			"npx @biomejs/biome check --write --no-errors-on-unformatted"
+		],
+		"services/ai-engine/**/*.py": ["ruff check --fix", "ruff format"],
+		"*.md": ["prettier --write"]
+	},
+	"scripts": {
+		"prepare": "husky",
+		"preinstall": "npx only-allow pnpm"
+	},
+	"engines": {
+		"npm": "please-use-pnpm",
+		"yarn": "please-use-pnpm",
+		"pnpm": ">=9.0.0"
+	}
+}
