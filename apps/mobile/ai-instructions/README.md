@@ -1,4 +1,4 @@
-# 🤖 AI instructions directory
+# AI instructions directory
 
 ## Propósito
 
@@ -21,7 +21,7 @@ Al proporcionar estos documentos, los agentes pueden:
 - Reducir la necesidad de correcciones manuales
 - Mantener consistencia en el código generado
 
-## 📄 Documentos disponibles
+## Documentos disponibles
 
 ### `gluestack-ui-guide.md`
 
@@ -37,7 +37,7 @@ Guía completa sobre cómo utilizar Gluestack UI como biblioteca de componentes 
 
 **Usar cuando**: Necesites generar UI, componentes visuales, o pantallas
 
-## 🎯 Cómo usar esta carpeta
+## Cómo usar esta carpeta
 
 ### Para desarrolladores humanos
 
@@ -61,7 +61,7 @@ Cuando recibas una tarea relacionada con UI en este proyecto:
 3. **Utiliza los ejemplos** como referencia
 4. **Respeta las restricciones** mencionadas
 
-## 📚 Estructura futura
+## Estructura futura
 
 A medida que el proyecto crezca, esta carpeta puede incluir:
 
@@ -78,7 +78,7 @@ ai-instructions/
 └── deployment-procedures.md          # 🔜 Próximamente
 ```
 
-## 🔄 Mantenimiento
+## Mantenimiento
 
 ### Actualización de documentos
 
@@ -101,7 +101,7 @@ _Versión: X.X_
 _Mantenido por: [Equipo/Persona]_
 ```
 
-## 💡 Mejores prácticas
+## Mejores prácticas
 
 ### Al crear nuevos documentos
 
@@ -118,7 +118,7 @@ _Mantenido por: [Equipo/Persona]_
 3. **Notifica al equipo**: Comunica actualizaciones importantes
 4. **Valida ejemplos**: Asegúrate que el código de ejemplo funcione
 
-## 🚀 Contribuciones
+## Contribuciones
 
 Si identificas:
 
@@ -132,7 +132,7 @@ Si identificas:
 1. Crea un issue en el repositorio
 2. O envía un PR con el documento/cambio propuesto
 
-## 🤝 Integración con el workflow
+## Integración con el workflow
 
 Esta carpeta complementa:
 
