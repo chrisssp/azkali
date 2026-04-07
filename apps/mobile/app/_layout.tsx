@@ -9,17 +9,7 @@ SplashScreen.preventAutoHideAsync().catch(console.warn);
 export default function RootLayout() {
   return (
     <GluestackUIProvider mode="light">
-      <Stack
-        initialRouteName="splash"
-        screenOptions={{
-          headerShown: false,
-        }}
-      >
-        <Stack.Screen name="splash" />
-        <Stack.Screen name="welcome" />
-        <Stack.Screen name="(auth)" />
-        <Stack.Screen name="(tabs)" />
-      </Stack>
+      <Stack screenOptions={{ headerShown: false }} />
     </GluestackUIProvider>
   );
 }
