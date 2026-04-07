@@ -52,6 +52,7 @@ La solución fue desarrollada como propuesta para el Talent Hackathon 2026 (Trac
 El núcleo de fricción cognitiva del sistema.
 
 **Flujo:**
+
 1. Usuario intenta compra impulsiva (ej. tenis $2,799 MXN)
 2. Intercepta antes del checkout → Módulo "Vamos a atar cabos"
 3. IA genera 3 preguntas reflexivas personalizadas (micro-chat)
@@ -62,10 +63,12 @@ El núcleo de fricción cognitiva del sistema.
    - **Proceder**: El capital se redirige al ahorro si supera tentación
 
 **Persistencia:**
+
 - PostgreSQL: historial de compras analizadas, impulsos congelados, metas automáticas
 - Frontend: Zustand local store para estado real-time
 
 **Responsables (Hackathon):**
+
 - Backend: Erick (FastAPI + lógica matemática) + Misrael (endpoints "Tu Nevera")
 - Frontend: Jorge (React Native) + Alejandro (maquetación)
 
@@ -76,6 +79,7 @@ El núcleo de fricción cognitiva del sistema.
 Retención mediante presión social positiva.
 
 **Flujo individual:**
+
 1. Usuario crea "Reto Personal" con meta (ej. $5,000 MXN para viaje)
 2. IA asigna misiones diarias de micro-ahorro (ej. "¡Ahorra $50 MXN hoy!")
 3. Racha visual de fuego (streak) se mantiene o se rompe
@@ -83,6 +87,7 @@ Retención mediante presión social positiva.
 5. Notificaciones conductuales si se rompe racha
 
 **Flujo grupal:**
+
 1. Usuario invita amigos a "Reto Grupal" (ej. viaje compartido)
 2. Bóveda compartida transparente y social
 3. Leaderboard colaborativo basado en **días de disciplina** (no montos = equitativo)
@@ -91,10 +96,12 @@ Retención mediante presión social positiva.
 5. Meta alcanzada: Puente directo a producto formal de Banco Azteca
 
 **Persistencia:**
+
 - PostgreSQL: metas compartidas, leaderboards, rachas, notificaciones
 - Frontend: Zustand para progreso en tiempo real + animaciones
 
 **Responsables:**
+
 - Backend: Erick (Supabase + lógica de rachas)
 - Frontend: Jorge + Alejandro (dashboard colaborativo)
 
@@ -105,6 +112,7 @@ Retención mediante presión social positiva.
 Motor de fidelización mediante tokens.
 
 **Flujo:**
+
 1. Usuario mantiene rachas o consolida fondos en "La Nevera"
 2. IA emite **"Tokens de Resiliencia"** (descuento ficticio para MVP)
 3. Acceso a Marketplace exclusivo de la app
@@ -114,15 +122,18 @@ Motor de fidelización mediante tokens.
    - Descuentos retail (Elektra, Italika, Totalplay)
 
 **MVP (Hackathon 72h):**
+
 - **Lógica de emisión**: Determinística (X tokens por X días de racha)
 - **Visualización**: Marketplace UI con precios en tokens
 - **Canje**: Simulado/mockup para demostración en vivo
 - **Post-MVP**: Integración real con wallet de Grupo Salinas
 
 **Persistencia:**
+
 - PostgreSQL: balance de tokens, historial de canje, validaciones
 
 **Responsables:**
+
 - Backend: Misrael (lógica de emisión)
 - Frontend: Alejandro (Marketplace UI)
 
@@ -133,6 +144,7 @@ Motor de fidelización mediante tokens.
 Copiloto empático y objetivo. Guía todo el journey del usuario.
 
 **Responsabilidades:**
+
 - Respuestas reflexivas al análisis de compras (micro-chat)
 - Mensajes motivacionales en rachas
 - Notificaciones conductuales ("¿Retomamos tu racha?")
@@ -140,11 +152,13 @@ Copiloto empático y objetivo. Guía todo el journey del usuario.
 - Explicaciones de conceptos financieros en lenguaje Z
 
 **Implementación MVP:**
+
 - **Fallback determinístico**: Árbol de decisiones lógico (cero latencia en demostración)
 - **LLM-ready**: Arquitectura preparada para integrar OpenAI/Claude post-hackathon
 - **JSON Mode**: Salidas estructuradas para consumo determinista del frontend
 
 **Responsables:**
+
 - Backend: Erick (System Prompts + integración LLM)
 - Contingencia: Misrael (árbol de decisiones estático)
 
@@ -159,16 +173,19 @@ Copiloto empático y objetivo. Guía todo el journey del usuario.
 Sustitución del estado de cuenta tradicional.
 
 **Visión:**
+
 - Lienzo de grafos (React Flow): Deudas vs. ahorro como nodos conectados
 - Slider temporal: Mueve el tiempo hacia adelante → visualiza crecimiento interés compuesto
 - Impacto visual matemático: "En 12 meses: $2,799 → $4,200 (50% interés)"
 
 **MVP Frontend (Simulado):**
+
 - Mockup visual de la máquina del tiempo (sin cálculos reales en Supabase)
 - Demostración del concepto con datos estatales
 - Arquitectura backend ready para escalar post-hackathon
 
 **Post-MVP (Real):**
+
 - Cálculos de interés compuesto integrados
 - Predicciones basadas en histórico del usuario
 
@@ -179,17 +196,20 @@ Sustitución del estado de cuenta tradicional.
 Conversión de disciplina en acceso crediticio formal.
 
 **Visión:**
+
 - Meses de disciplina en "La Nevera" → Generan un **"Score de Confianza"**
 - Usuarios "invisibles" (como Abigail) desbloquean primer microcrédito de Grupo Salinas
 - Alternativa: Producto formal de Banco Azteca (cuenta, inversión, tarjeta)
 
 **MVP (Simulado):**
+
 - Backend: Lógica de cálculo del Score de Confianza (basada en rachas + monto ahorrado)
 - Frontend: UI que muestra progreso hacia "Score Desbloqueado"
 - Botón ficticio: "Solicitar microcrédito" (redirige a formulario mockup)
 - Demostración de concepto: "Abigail completó 60 días, Score = 850, Microcrédito aprobado"
 
 **Post-MVP (Real):**
+
 - Integración real con scoring de Banco Azteca
 - APIs de solicitud de crédito
 - Validación con CNBV/Buró de Crédito
@@ -209,70 +229,10 @@ Conversión de disciplina en acceso crediticio formal.
 
 ---
 
-## arquitectura de datos (simplificada)
-
-### Entidades principales (PostgreSQL)
-
-```
-usuarios
-├── id (UUID, PK)
-├── email (unique, auth supabase)
-├── perfil (mateo | abigail | otro)
-├── liquidez_actual (decimal)
-├── ingreso_mensual (decimal)
-├── gastos_fijos (decimal)
-├── score_confianza (0-1000, futuro)
-├── balance_tokens (decimal)
-└── created_at, updated_at
-
-compras_analizadas
-├── id (UUID, PK)
-├── usuario_id (FK)
-├── monto (decimal)
-├── categoria (string)
-├── veredicto_ia (json: {impulsividad_%, razon, recomendacion})
-├── congelada (boolean)
-├── en_nevera_hasta (timestamp)
-└── created_at
-
-rachas
-├── id (UUID, PK)
-├── usuario_id (FK)
-├── dias_consecutivos (int)
-├── meta_id (FK, optional)
-├── roto_en (timestamp, null si activa)
-└── updated_at
-
-metas_ahorro
-├── id (UUID, PK)
-├── usuario_id (FK)
-├── titulo (string)
-├── monto_meta (decimal)
-├── monto_acumulado (decimal)
-├── fecha_limite (date)
-├── tipo (personal | grupal)
-├── grupal_miembros (array de UUIDs si grupal)
-└── updated_at
-
-tokens_resiliencia
-├── id (UUID, PK)
-├── usuario_id (FK)
-├── cantidad (decimal)
-├── razon_emision (racha | nevera | hito_grupal)
-├── canjeado (boolean)
-└── created_at
-
-notificaciones
-├── id (UUID, PK)
-├── usuario_id (FK)
-├── tipo (racha_rota | hito_alcanzado | micro_ahorro | motivacion)
-├── leida (boolean)
-└── created_at
-```
-
 ### Row Level Security (RLS)
 
 Cada usuario ve **solo su propia información**:
+
 - Políticas de SELECT: `auth.uid() = usuario_id`
 - Políticas de UPDATE: `auth.uid() = usuario_id`
 - Políticas de DELETE: `auth.uid() = usuario_id`
@@ -284,17 +244,20 @@ Cada usuario ve **solo su propia información**:
 ### qué implementar en el mvp
 
 ✅ **Prioridad alta:**
+
 - La Nevera (interceptar compras, congelar, sugerir ahorro)
 - Rachas (individuales + grupales, leaderboard simple)
 - Microinteracciones de Kali (respuestas reflexivas, notificaciones)
 - Recompensas básicas (emisión + visualización mockup)
 
 ✅ **Prioridad media:**
+
 - Dashboard de progreso personal
 - Invitación a retos grupales
 - Animaciones de "fuego" al mantener racha
 
 ⚠️ **Prioridad baja (solo si hay tiempo):**
+
 - Integraciones con LLM reales (fallback a árbol determinístico)
 - Cálculos complejos de interés compuesto
 - Exportación de reportes
@@ -302,6 +265,7 @@ Cada usuario ve **solo su propia información**:
 ### qué simular o dejar para post-mvp
 
 ❌ **No implementar en 72h:**
+
 - Máquina del tiempo (solo concepto/mockup visual)
 - Score de Confianza real (lógica existe, validación ficticia)
 - APIs de Banco Azteca reales
@@ -309,6 +273,7 @@ Cada usuario ve **solo su propia información**:
 - LLMs dinámicos (usar árbol de decisiones como contingencia)
 
 💡 **Filosofía:**
+
 - MVP demuestra viabilidad tecnológica del motor de fricción cognitiva
 - Arquitectura está lista para plug-and-play post-MVP
 - No simular datos que generen false positives en métricas

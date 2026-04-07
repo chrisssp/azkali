@@ -76,6 +76,7 @@ El landing de Azkali cumple múltiples roles en la estrategia post-hackathon:
 El núcleo de fricción cognitiva del sistema.
 
 **Flujo en app mobile:**
+
 1. Usuario intenta compra impulsiva (ej. tenis $2,799 MXN)
 2. Intercepta antes del checkout → Módulo "Vamos a atar cabos"
 3. IA genera 3 preguntas reflexivas personalizadas (micro-chat)
@@ -86,6 +87,7 @@ El núcleo de fricción cognitiva del sistema.
    - **Proceder**: El capital se redirige al ahorro si supera tentación
 
 **Representación en landing:**
+
 - Mockups interactivos (video o carousel animado)
 - Explicación del impacto psicológico
 - CTA: "Prueba el análisis en la app"
@@ -97,12 +99,14 @@ El núcleo de fricción cognitiva del sistema.
 Retención mediante presión social positiva.
 
 **Flujo en app mobile:**
+
 - Retos personales o grupales con metas de ahorro
 - Leaderboard basado en disciplina (días), no dinero
 - Notificaciones motivacionales
 - Insignias y medallas por hitos
 
 **Representación en landing:**
+
 - Explica el poder de la comunidad en educación financiera
 - Mockup de leaderboard colaborativo
 - Historia de caso: "Abigail y sus amigas ahorraron para viaje"
@@ -114,11 +118,13 @@ Retención mediante presión social positiva.
 Motor de fidelización mediante tokens.
 
 **Flujo en app mobile:**
+
 - Mantener rachas = Tokens de Resiliencia
 - Canje en Marketplace (café, descuentos, streaming)
 - Mockup para MVP (canje real post-hackathon)
 
 **Representación en landing:**
+
 - Explica cómo la disciplina se convierte en poder adquisitivo
 - Logos de socios (Elektra, Italika, Totalplay, etc.)
 - Tabla de ejemplo: "30 días racha = X tokens = Café gratis"
@@ -130,11 +136,13 @@ Motor de fidelización mediante tokens.
 Copiloto empático y objetivo.
 
 **En app mobile:**
+
 - Respuestas reflexivas al análisis de compras
 - Mensajes motivacionales
 - Notificaciones conductuales
 
 **En landing:**
+
 - Presentación de la mascota
 - Video: "Un día en la vida de Kali"
 - Muestra de diálogos ejemplo
@@ -150,11 +158,13 @@ Copiloto empático y objetivo.
 Sustitución del estado de cuenta tradicional.
 
 **Visión:**
+
 - Lienzo de grafos: Deudas vs. ahorro como nodos conectados
 - Slider temporal: Mueve el tiempo → visualiza crecimiento interés compuesto
 - Impacto visual: "En 12 meses: $2,799 → $4,200"
 
 **En landing:**
+
 - Animación conceptual (no funcional)
 - Explicación: "Visualiza el futuro de tus finanzas"
 - Roadmap: "Disponible en Q3 2026"
@@ -166,73 +176,22 @@ Sustitución del estado de cuenta tradicional.
 Conversión de disciplina en acceso crediticio formal.
 
 **Visión:**
+
 - Meses de disciplina → Score de Confianza
 - Usuarios "invisibles" desbloquean microcrédito formal
 
 **En landing:**
+
 - Explica el problema de exclusión (Abigail case study)
 - Muestra cómo Azkali abre puertas
 - Destacar partnership con Banco Azteca
 
 ---
 
-## arquitectura de datos (simplificada)
-
-### Entidades principales (PostgreSQL, shared entre mobile + backend)
-
-```
-usuarios
-├── id (UUID, PK)
-├── email (unique, auth supabase)
-├── perfil (mateo | abigail | otro)
-├── liquidez_actual (decimal)
-├── ingreso_mensual (decimal)
-├── gastos_fijos (decimal)
-├── score_confianza (0-1000, futuro)
-├── balance_tokens (decimal)
-└── created_at, updated_at
-
-compras_analizadas
-├── id (UUID, PK)
-├── usuario_id (FK)
-├── monto (decimal)
-├── categoria (string)
-├── veredicto_ia (json: {impulsividad_%, razon, recomendacion})
-├── congelada (boolean)
-├── en_nevera_hasta (timestamp)
-└── created_at
-
-rachas
-├── id (UUID, PK)
-├── usuario_id (FK)
-├── dias_consecutivos (int)
-├── meta_id (FK, optional)
-├── roto_en (timestamp, null si activa)
-└── updated_at
-
-metas_ahorro
-├── id (UUID, PK)
-├── usuario_id (FK)
-├── titulo (string)
-├── monto_meta (decimal)
-├── monto_acumulado (decimal)
-├── fecha_limite (date)
-├── tipo (personal | grupal)
-├── grupal_miembros (array de UUIDs si grupal)
-└── updated_at
-
-tokens_resiliencia
-├── id (UUID, PK)
-├── usuario_id (FK)
-├── cantidad (decimal)
-├── razon_emision (racha | nevera | hito_grupal)
-├── canjeado (boolean)
-└── created_at
-```
-
 ### Row Level Security (RLS)
 
 Cada usuario ve **solo su propia información**:
+
 - Políticas de SELECT: `auth.uid() = usuario_id`
 - Políticas de UPDATE: `auth.uid() = usuario_id`
 
@@ -243,6 +202,7 @@ Cada usuario ve **solo su propia información**:
 ### qué implementar en el landing
 
 ✅ **Contenido de marketing:**
+
 - Hero section con lema y valor único
 - Explicación accesible del problema (sesgo del presente)
 - Mockups/videos de funcionalidades MVP
@@ -251,18 +211,21 @@ Cada usuario ve **solo su propia información**:
 - Blog: Artículos educativos sobre educación financiera
 
 ✅ **Elementos interactivos (servidor):**
+
 - Newsletter signup (Supabase)
 - Early access form (captura de leads)
 - Contador de usuarios simulado o real
 - Analytics: Mixpanel, Plausible
 
 ✅ **Performance:**
+
 - `next/image` para optimización automática
 - Metadata dinámica por página (SEO)
 - Streaming SSR para lazy load
 - Lighthouse 90+
 
 ⚠️ **No incluir en MVP landing:**
+
 - Dashboard en tiempo real (es solo marketing site)
 - Integración de pagos (no hay monetización MVP)
 - Chatbot en vivo (solo email + formulario)
@@ -303,6 +266,7 @@ El landing puede hacer llamadas server-side a Supabase para:
 - **Testimonios**: GET `/testimonials` (si tienes tabla de reviews)
 
 **Alternativa segura:**
+
 - Usar Server Components con `fetch()` directamente a Supabase API
 - No exponer claves públicas en el cliente
 - RLS policies: Permitir SELECT público a tabla de testimonios, denegar inserts
