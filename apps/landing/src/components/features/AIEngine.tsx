@@ -1,110 +1,140 @@
 "use client";
 import { motion } from "framer-motion";
-import { Cpu, Code2, Zap, ShieldCheck } from "lucide-react";
 
 const pillars = [
   {
-    icon: Cpu,
+    number: "01",
     title: "System Prompting con contexto financiero",
     body: "Kali no improvisa. Cada respuesta está construida sobre un prompt de sistema con inyección de contexto financiero del usuario — su historial, liquidez actual y patrones de gasto — para que las preguntas sean relevantes y no genéricas.",
-    iconBg: "bg-violet-50 border border-violet-100",
-    iconColor: "text-violet-500",
+    tag: "Contexto",
+    accent: "text-violet-500",
+    tagBg: "bg-violet-50 border-violet-100 text-violet-600",
   },
   {
-    icon: Code2,
+    number: "02",
     title: "JSON Mode para salidas estructuradas",
-    body: "Los veredictos de impulsividad y las respuestas de Kali se fuerzan a salir en JSON Mode. Esto garantiza que ninguna respuesta del LLM pueda romper la interfaz — el porcentaje siempre es un número, el veredicto siempre es un string válido.",
-    iconBg: "bg-sky-50 border border-sky-100",
-    iconColor: "text-sky-500",
+    body: "Los veredictos de impulsividad se fuerzan a salir en JSON Mode. Esto garantiza que ninguna respuesta del LLM pueda romper la interfaz — el porcentaje siempre es un número, el veredicto siempre es un string válido.",
+    tag: "Confiabilidad",
+    accent: "text-sky-500",
+    tagBg: "bg-sky-50 border-sky-100 text-sky-600",
   },
   {
-    icon: ShieldCheck,
+    number: "03",
     title: "Árbol de decisiones determinístico como contingencia",
-    body: "Para el MVP existe un árbol de decisiones local que funciona sin conexión al LLM. Si el modelo falla o hay latencia, el usuario recibe un veredicto igualmente útil en cero milisegundos. La experiencia nunca se rompe.",
-    iconBg: "bg-emerald-50 border border-emerald-100",
-    iconColor: "text-[#0F6E56]",
+    body: "Para el MVP existe un árbol de decisiones local que funciona sin conexión al LLM. Si el modelo falla o hay latencia, el usuario recibe un veredicto igualmente útil en cero milisegundos.",
+    tag: "Resiliencia",
+    accent: "text-[#0F6E56]",
+    tagBg: "bg-emerald-50 border-emerald-100 text-emerald-700",
   },
   {
-    icon: Zap,
+    number: "04",
     title: "Latencia cero en el momento crítico",
-    body: "El checkout es el momento de mayor vulnerabilidad conductual. Kali debe responder antes de que el usuario tenga tiempo de racionalizar su impulso. La arquitectura está diseñada para que el veredicto aparezca en menos de 800ms.",
-    iconBg: "bg-amber-50 border border-amber-100",
-    iconColor: "text-amber-500",
+    body: "El checkout es el momento de mayor vulnerabilidad conductual. Kali debe responder antes de que el usuario tenga tiempo de racionalizar su impulso. Veredicto en menos de 800ms.",
+    tag: "Performance",
+    accent: "text-amber-500",
+    tagBg: "bg-amber-50 border-amber-100 text-amber-600",
   },
 ];
 
 export function AIEngine() {
   return (
-    <section className="py-20 sm:py-28 bg-zinc-100" aria-label="Mecánica de IA">
+    <section className="py-20 sm:py-28 bg-zinc-100 overflow-hidden" aria-label="Mecánica de IA">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
+
+        {/* Editorial header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="mb-16 md:mb-20"
+          className="grid grid-cols-1 lg:grid-cols-2 gap-10 mb-20 items-end"
         >
-          <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-violet-50 border border-violet-100 text-violet-600 text-xs font-semibold tracking-widest uppercase mb-5">
-            <Cpu size={11} />
-            Bajo el capó — Mecánica de IA
-          </span>
-          <h2 className="font-heading font-medium tracking-tighter text-4xl sm:text-5xl text-zinc-900 leading-tight max-w-2xl">
-            Kali no es un chatbot.
-            <br />
-            <span className="bg-gradient-to-r from-[#0F6E56] to-emerald-500 bg-clip-text text-transparent">
-              Es un sistema conductual.
+          <div>
+            <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-violet-50 border border-violet-100 text-violet-600 text-xs font-semibold tracking-widest uppercase mb-6">
+              Bajo el capó
             </span>
-          </h2>
-          <p className="mt-4 text-zinc-500 text-lg font-light leading-relaxed max-w-xl">
-            La IA detrás de Azkali está diseñada para intervenir en el momento exacto correcto,
-            con la respuesta correcta, sin fallar nunca.
-          </p>
+            <h2 className="font-heading font-medium tracking-tighter text-5xl sm:text-6xl lg:text-7xl text-zinc-900 leading-[1.0]">
+              Kali no es
+              <br />
+              un chatbot.
+            </h2>
+          </div>
+          <div className="lg:pb-2">
+            <p className="text-zinc-500 text-lg font-light leading-relaxed mb-5">
+              Es un sistema conductual con cuatro capas de ingeniería diseñadas para intervenir
+              en el momento exacto correcto, con la respuesta correcta, sin fallar nunca.
+            </p>
+            <p className="text-sm text-zinc-400 font-light leading-relaxed">
+              Agnóstica al modelo de lenguaje — funciona con cualquier LLM que soporte JSON Mode
+              y system prompting. Para el MVP: Claude Haiku y GPT-4o mini.
+            </p>
+          </div>
         </motion.div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-          {pillars.map((pillar, index) => {
-            const Icon = pillar.icon;
-            return (
-              <motion.div
-                key={pillar.title}
-                initial={{ opacity: 0, y: 28 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: index * 0.1 }}
-                className="bg-white rounded-[2rem] border border-zinc-100 hover:border-zinc-200 hover:shadow-md transition-all duration-500 p-7"
-              >
-                <div className={`w-11 h-11 rounded-2xl ${pillar.iconBg} flex items-center justify-center mb-5`}>
-                  <Icon strokeWidth={1.5} size={20} className={pillar.iconColor} />
-                </div>
-                <h3 className="font-heading font-semibold tracking-tight text-lg text-zinc-900 mb-3 leading-snug">
+        {/* Statement list */}
+        <div className="divide-y divide-zinc-200">
+          {pillars.map((pillar, index) => (
+            <motion.div
+              key={pillar.number}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-40px" }}
+              transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: index * 0.07 }}
+              className="group py-10 grid grid-cols-1 lg:grid-cols-[80px_1fr_1fr] gap-6 lg:gap-10 items-start hover:bg-white/50 transition-colors duration-300 -mx-6 px-6 rounded-2xl"
+            >
+              {/* Number */}
+              <div className="flex items-center gap-4 lg:block">
+                <span className={`font-heading font-medium text-2xl ${pillar.accent} tabular-nums`}>
+                  {pillar.number}
+                </span>
+                <span className={`lg:hidden inline-flex px-2.5 py-1 rounded-full border text-[10px] font-semibold tracking-widest uppercase ${pillar.tagBg}`}>
+                  {pillar.tag}
+                </span>
+              </div>
+
+              {/* Title */}
+              <div>
+                <h3 className="font-heading font-medium tracking-tight text-xl sm:text-2xl text-zinc-900 leading-snug">
                   {pillar.title}
                 </h3>
-                <p className="text-zinc-400 text-sm font-light leading-relaxed">
-                  {pillar.body}
-                </p>
-              </motion.div>
-            );
-          })}
+                <span className={`hidden lg:inline-flex mt-3 px-2.5 py-1 rounded-full border text-[10px] font-semibold tracking-widest uppercase ${pillar.tagBg}`}>
+                  {pillar.tag}
+                </span>
+              </div>
+
+              {/* Body */}
+              <p className="text-zinc-400 font-light leading-relaxed text-base">
+                {pillar.body}
+              </p>
+            </motion.div>
+          ))}
         </div>
 
-        {/* Technical note */}
+        {/* Technical note — full width */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
-          className="mt-8 bg-white rounded-2xl border border-zinc-100 p-6 flex items-start gap-4"
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
+          className="mt-14 bg-white rounded-[2rem] border border-zinc-100 p-8 lg:p-10 grid grid-cols-1 lg:grid-cols-[auto_1fr] gap-8 items-center"
         >
-          <div className="w-9 h-9 rounded-xl bg-[#0F6E56]/8 border border-[#0F6E56]/15 flex items-center justify-center flex-shrink-0 mt-0.5">
-            <span className="text-base">🐢</span>
+          <div className="flex items-center gap-5">
+            <span className="text-4xl">🐢</span>
+            <div className="lg:hidden">
+              <p className="text-sm font-semibold text-zinc-800">Nota técnica del equipo</p>
+            </div>
           </div>
           <div>
-            <p className="text-sm font-semibold text-zinc-800 mb-1">Nota técnica del equipo</p>
-            <p className="text-sm text-zinc-400 font-light leading-relaxed">
-              Kali es agnóstica al modelo de lenguaje — funciona con cualquier LLM que soporte JSON Mode y system prompting. Para el MVP evaluamos Claude Haiku y GPT-4o mini como proveedores principales por su balance entre latencia y calidad de razonamiento conductual.
+            <p className="hidden lg:block text-sm font-semibold text-zinc-800 mb-2">Nota técnica del equipo</p>
+            <p className="text-sm text-zinc-400 font-light leading-relaxed max-w-2xl">
+              Kali es agnóstica al modelo de lenguaje — funciona con cualquier LLM que soporte JSON Mode
+              y system prompting. Para el MVP evaluamos <span className="text-zinc-600 font-medium">Claude Haiku</span> y{" "}
+              <span className="text-zinc-600 font-medium">GPT-4o mini</span> como proveedores principales
+              por su balance entre latencia y calidad de razonamiento conductual.
             </p>
           </div>
         </motion.div>
+
       </div>
     </section>
   );
