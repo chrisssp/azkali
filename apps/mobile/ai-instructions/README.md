@@ -1,4 +1,4 @@
-# 🤖 AI Instructions Directory
+# 🤖 AI instructions directory
 
 ## Propósito
 
@@ -15,15 +15,18 @@ Los agentes de IA (como Copilot, Claude, ChatGPT, etc.) pueden generar código m
 - ✅ **Ejemplos de implementación**
 
 Al proporcionar estos documentos, los agentes pueden:
+
 - Generar código que siga las convenciones del proyecto
 - Sugerir soluciones arquitectónicamente correctas
 - Reducir la necesidad de correcciones manuales
 - Mantener consistencia en el código generado
 
-## 📄 Documentos Disponibles
+## 📄 Documentos disponibles
 
 ### `gluestack-ui-guide.md`
+
 Guía completa sobre cómo utilizar Gluestack UI como biblioteca de componentes principal:
+
 - Filosofía copy-paste de componentes
 - 30+ componentes disponibles
 - Patrones de composición
@@ -34,21 +37,22 @@ Guía completa sobre cómo utilizar Gluestack UI como biblioteca de componentes 
 
 **Usar cuando**: Necesites generar UI, componentes visuales, o pantallas
 
-## 🎯 Cómo Usar Esta Carpeta
+## 🎯 Cómo usar esta carpeta
 
-### Para Desarrolladores Humanos
+### Para desarrolladores humanos
 
 1. **Lee los documentos** antes de solicitar ayuda a agentes IA
 2. **Comparte los archivos** con el agente en el prompt/contexto
 3. **Referencia documentos específicos** cuando pidas código relacionado
 
 Ejemplo:
+
 ```
-@ai-instructions/gluestack-ui-guide.md 
+@ai-instructions/gluestack-ui-guide.md
 Crea un formulario de login usando los componentes de Gluestack UI
 ```
 
-### Para Agentes IA
+### Para agentes IA
 
 Cuando recibas una tarea relacionada con UI en este proyecto:
 
@@ -57,7 +61,7 @@ Cuando recibas una tarea relacionada con UI en este proyecto:
 3. **Utiliza los ejemplos** como referencia
 4. **Respeta las restricciones** mencionadas
 
-## 📚 Estructura Futura
+## 📚 Estructura futura
 
 A medida que el proyecto crezca, esta carpeta puede incluir:
 
@@ -76,9 +80,10 @@ ai-instructions/
 
 ## 🔄 Mantenimiento
 
-### Actualización de Documentos
+### Actualización de documentos
 
 Los documentos deben actualizarse cuando:
+
 - Cambian las versiones de las bibliotecas
 - Se establecen nuevos patrones de arquitectura
 - Se agregan nuevas herramientas o frameworks
@@ -87,16 +92,18 @@ Los documentos deben actualizarse cuando:
 ### Versionado
 
 Cada documento debe incluir al final:
+
 ```markdown
 ---
-*Última actualización: YYYY-MM-DD*
-*Versión: X.X*
-*Mantenido por: [Equipo/Persona]*
+
+_Última actualización: YYYY-MM-DD_
+_Versión: X.X_
+_Mantenido por: [Equipo/Persona]_
 ```
 
-## 💡 Mejores Prácticas
+## 💡 Mejores prácticas
 
-### Al Crear Nuevos Documentos
+### Al crear nuevos documentos
 
 1. **Sé específico**: Enfócate en un tema claro
 2. **Incluye ejemplos**: El código habla más que las palabras
@@ -104,7 +111,7 @@ Cada documento debe incluir al final:
 4. **Contexto primero**: Explica el "por qué" antes del "cómo"
 5. **Referencias**: Enlaza a documentación oficial cuando sea relevante
 
-### Al Actualizar Documentos
+### Al actualizar documentos
 
 1. **Marca cambios importantes**: Indica breaking changes
 2. **Mantén historial**: Considera usar comentarios para rastrear cambios
@@ -114,18 +121,21 @@ Cada documento debe incluir al final:
 ## 🚀 Contribuciones
 
 Si identificas:
+
 - Patrones que deberían documentarse
 - Mejoras a documentos existentes
 - Errores o información desactualizada
 - Nuevos temas que necesitan cobertura
 
-**Acción recomendada**: 
+**Acción recomendada**:
+
 1. Crea un issue en el repositorio
 2. O envía un PR con el documento/cambio propuesto
 
-## 🤝 Integración con el Workflow
+## 🤝 Integración con el workflow
 
 Esta carpeta complementa:
+
 - **CONTRIBUTING.md**: Flujo de trabajo y convenciones de Git
 - **README.md**: Documentación general del proyecto
 - **Código fuente**: La implementación real
@@ -138,5 +148,5 @@ No reemplaza la documentación técnica estándar, sino que la **aumenta** con c
 
 ---
 
-*Creado: 2026-04-07*
-*Propósito: Mejorar la colaboración humano-IA en el desarrollo*
+_Creado: 2026-04-07_
+_Propósito: Mejorar la colaboración humano-IA en el desarrollo_
