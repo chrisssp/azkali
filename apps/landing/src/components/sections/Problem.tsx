@@ -6,32 +6,38 @@ const stats = [
   {
     icon: CreditCard,
     number: "+40%",
-    stat: "de usuarios de tarjeta en México solo pagan el mínimo",
+    stat: "De usuarios de tarjeta en México solo pagan el mínimo",
     context:
       "Pagar el mínimo cada mes puede costarte hasta 3 veces el valor original de tu deuda.",
     source: "Banxico / CONDUSEF",
-    color: "bg-brand-guinda/10",
-    iconColor: "text-brand-guinda",
+    iconBg: "bg-red-50 border border-red-100",
+    iconColor: "text-red-500",
+    numberColor: "text-[#0F6E56]",
+    accentLine: "bg-red-200",
   },
   {
     icon: BarChart2,
     number: "~50%",
-    stat: "de mexicanos no lleva ningún registro de sus gastos",
+    stat: "De mexicanos no lleva ningún registro de sus gastos",
     context:
       "Sin saber a dónde va tu dinero, no puedes controlar a dónde va tu futuro.",
     source: "ENIF / INEGI",
-    color: "bg-brand-green/10",
-    iconColor: "text-brand-green",
+    iconBg: "bg-emerald-50 border border-emerald-100",
+    iconColor: "text-[#0F6E56]",
+    numberColor: "text-[#0F6E56]",
+    accentLine: "bg-emerald-200",
   },
   {
     icon: Clock,
     number: "Meses",
-    stat: "de trabajo en intereses por una compra de $2,799 MXN a MSI",
+    stat: "De trabajo en intereses por una compra de $2,799 a MSI",
     context:
       "Una compra de $2,799 MXN en 18 meses sin intereses puede costarte más de $4,000 en total.",
     source: "Estimación con TIIE + comisiones",
-    color: "bg-amber-500/10",
-    iconColor: "text-amber-600",
+    iconBg: "bg-amber-50 border border-amber-100",
+    iconColor: "text-amber-500",
+    numberColor: "text-[#0F6E56]",
+    accentLine: "bg-amber-200",
   },
 ];
 
@@ -39,75 +45,81 @@ export function Problem() {
   return (
     <section
       id="el-problema"
-      className="py-20 sm:py-28 bg-gray-950"
+      className="relative py-24 sm:py-32 bg-zinc-100 overflow-hidden"
       aria-label="El problema"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Subtle decorations */}
+      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#0F6E56]/5 rounded-full blur-[120px] pointer-events-none translate-x-1/3 -translate-y-1/3" />
+      <div className="absolute inset-0 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:24px_24px] opacity-50 pointer-events-none" />
+
+      <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.3, ease: "easeOut" }}
-          className="text-center mb-14"
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          className="text-center mb-20 md:mb-28"
         >
-          <span className="inline-block px-3 py-1 rounded-full bg-brand-guinda/20 text-brand-guinda-300 text-xs font-semibold mb-4"
-            style={{ color: "#f87171" }}
-          >
-            El problema real
-          </span>
-          <h2 className="font-heading font-bold text-3xl sm:text-4xl lg:text-5xl text-white leading-tight">
+          <p className="text-xs font-bold tracking-[0.2em] uppercase text-zinc-400 mb-8">
+            — El problema real —
+          </p>
+          <h2 className="font-heading font-medium tracking-tighter text-4xl sm:text-5xl md:text-7xl text-zinc-900 leading-[1.1]">
             El sistema está diseñado
             <br />
-            <span style={{ color: "#8B1A1A" }}>para que te endeudes</span>
+            <span className="bg-gradient-to-r from-red-500 via-rose-500 to-orange-400 bg-clip-text text-transparent">
+              para que te endeudes.
+            </span>
           </h2>
-          <p className="mt-4 text-gray-400 text-lg max-w-2xl mx-auto">
+          <p className="mt-8 text-zinc-500 text-lg md:text-xl max-w-3xl mx-auto tracking-tight font-light leading-relaxed">
             No es tu culpa. Las apps de compras, los bancos y las MSI están optimizados
             para que gastes más de lo que deberías. Azkali pone eso en evidencia.
           </p>
         </motion.div>
 
         {/* Stats cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 lg:gap-6">
           {stats.map((item, index) => {
             const Icon = item.icon;
             return (
               <motion.div
-                key={item.stat}
+                key={item.number}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: true, margin: "-50px" }}
                 transition={{
-                  duration: 0.3,
-                  ease: "easeOut",
+                  duration: 0.8,
+                  ease: [0.16, 1, 0.3, 1],
                   delay: index * 0.15,
                 }}
+                className="group relative bg-white rounded-[2rem] border border-zinc-100 hover:shadow-xl hover:border-[#0F6E56] overflow-hidden transition-all duration-500 p-8 flex flex-col cursor-default"
               >
-                <div className="bg-gray-900 border border-gray-800 rounded-2xl p-6 h-full flex flex-col hover:border-gray-700 transition-colors duration-200">
-                  {/* Icon */}
-                  <div
-                    className={`w-11 h-11 rounded-xl ${item.color} flex items-center justify-center mb-5`}
-                  >
-                    <Icon size={20} className={item.iconColor} />
-                  </div>
+                {/* Green fill on hover */}
+                <div className="absolute inset-0 bg-[#0F6E56] opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-[2rem]" />
 
-                  {/* Number */}
-                  <p className="font-heading font-bold text-5xl text-brand-green mb-2">
-                    {item.number}
-                  </p>
+                {/* Icon */}
+                <div className={`relative w-12 h-12 rounded-2xl ${item.iconBg} group-hover:bg-white/20 group-hover:border-white/30 flex items-center justify-center mb-8 transition-all duration-500 group-hover:scale-110`}>
+                  <Icon strokeWidth={1.5} className={`w-5 h-5 ${item.iconColor} group-hover:text-white transition-colors duration-500`} />
+                </div>
 
-                  {/* Stat */}
-                  <p className="font-semibold text-white text-base mb-3 leading-snug">
-                    {item.stat}
-                  </p>
+                {/* Number */}
+                <p className={`relative font-heading font-medium tracking-tighter text-5xl lg:text-6xl ${item.numberColor} group-hover:text-white mb-4 transition-colors duration-500`}>
+                  {item.number}
+                </p>
 
-                  {/* Context */}
-                  <p className="text-gray-400 text-sm leading-relaxed flex-1">
-                    {item.context}
-                  </p>
+                {/* Stat */}
+                <h3 className="relative font-medium text-zinc-800 group-hover:text-white text-lg mb-4 tracking-tight leading-snug transition-colors duration-500">
+                  {item.stat}
+                </h3>
 
-                  {/* Source */}
-                  <p className="text-gray-600 text-xs mt-4 pt-4 border-t border-gray-800">
+                {/* Context */}
+                <p className="relative text-zinc-400 group-hover:text-white/80 text-sm leading-relaxed flex-1 font-light transition-colors duration-500">
+                  {item.context}
+                </p>
+
+                {/* Source */}
+                <div className="relative mt-8 pt-6 border-t border-zinc-100 group-hover:border-white/20 transition-colors duration-500">
+                  <p className="text-zinc-400 group-hover:text-white/60 text-[10px] uppercase tracking-widest font-medium transition-colors duration-500">
                     Fuente: {item.source}
                   </p>
                 </div>
