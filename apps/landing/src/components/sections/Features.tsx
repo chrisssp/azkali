@@ -78,7 +78,7 @@ const features = [
           <span className="text-[10px] text-violet-500 font-bold">15 días</span>
         </div>
         {[
-          { name: "Tú", pct: 78, color: "bg-[#0F6E56]" },
+          { name: "Tú", pct: 78, color: "bg-[#006341]" },
           { name: "Abigail", pct: 64, color: "bg-violet-400" },
           { name: "Diego", pct: 51, color: "bg-amber-400" },
         ].map((p) => (
@@ -100,13 +100,13 @@ const features = [
       "Aprende finanzas en tu idioma, sin PDFs aburridos. Kali te explica todo como si fuera tu amiga que estudió economía.",
     tag: "IA conductual",
     iconBg: "bg-emerald-50 border border-emerald-100",
-    iconColor: "text-[#0F6E56]",
-    tagStyle: "bg-emerald-50 border-emerald-100 text-[#0F6E56]",
+    iconColor: "text-[#006341]",
+    tagStyle: "bg-emerald-50 border-emerald-100 text-[#006341]",
     hoverBorder: "hover:border-emerald-200",
     preview: (
       <div className="mt-6 rounded-2xl bg-zinc-50 border border-zinc-100 p-4">
         <div className="flex items-start gap-2.5 mb-3">
-          <div className="w-7 h-7 rounded-full bg-gradient-to-b from-[#0F6E56] to-emerald-500 flex items-center justify-center flex-shrink-0 shadow-sm">
+          <div className="w-7 h-7 rounded-full bg-gradient-to-b from-[#006341] to-emerald-500 flex items-center justify-center flex-shrink-0 shadow-sm">
             <span className="text-xs leading-none">🐢</span>
           </div>
           <div className="bg-white border border-zinc-100 rounded-2xl rounded-tl-sm px-3 py-2 flex-1 shadow-sm">
@@ -114,8 +114,8 @@ const features = [
           </div>
         </div>
         <div className="flex justify-end">
-          <div className="bg-[#0F6E56]/10 border border-[#0F6E56]/15 rounded-2xl rounded-tr-sm px-3 py-2">
-            <p className="text-xs text-[#0F6E56] font-medium">No lo había pensado...</p>
+          <div className="bg-[#006341]/10 border border-[#006341]/15 rounded-2xl rounded-tr-sm px-3 py-2">
+            <p className="text-xs text-[#006341] font-medium">No lo había pensado...</p>
           </div>
         </div>
       </div>
@@ -131,7 +131,7 @@ export function Features() {
       aria-label="Features de Azkali"
     >
       {/* Decorative */}
-      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[#0F6E56]/5 rounded-full blur-[120px] pointer-events-none -translate-x-1/3 translate-y-1/3" />
+      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[#006341]/5 rounded-full blur-[120px] pointer-events-none -translate-x-1/3 translate-y-1/3" />
       <div className="absolute inset-0 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:32px_32px] opacity-30 pointer-events-none" />
 
       <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
@@ -149,7 +149,7 @@ export function Features() {
           <h2 className="font-heading font-medium tracking-tighter text-4xl sm:text-5xl md:text-7xl text-zinc-900 leading-[1.1]">
             Todo lo que Azkali
             <br />
-            <span className="bg-gradient-to-r from-[#0F6E56] to-emerald-500 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-[#006341] to-emerald-500 bg-clip-text text-transparent">
               hace por ti.
             </span>
           </h2>
@@ -215,7 +215,7 @@ export function Features() {
           </div>
           <a
             href="/features"
-            className="inline-flex items-center gap-2 bg-[#0F6E56] text-white px-6 py-2.5 rounded-full text-sm font-semibold hover:bg-[#0c5c47] transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] shadow-sm"
+            className="inline-flex items-center gap-2 bg-[#006341] text-white px-6 py-2.5 rounded-full text-sm font-semibold hover:bg-[#003930] transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] shadow-sm"
           >
             Ver todas las características
             <svg viewBox="0 0 16 16" className="w-3.5 h-3.5 fill-none stroke-current" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

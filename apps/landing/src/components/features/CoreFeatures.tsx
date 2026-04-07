@@ -35,7 +35,7 @@ const features = [
         <div className="grid grid-cols-2 gap-2">
           {[{ l: "Horas trabajadas", v: "14.2 hrs" }, { l: "Días de ahorro", v: "3 días" }].map(m => (
             <div key={m.l} className="bg-zinc-50 rounded-xl p-2.5 text-center">
-              <p className="text-sm font-heading font-bold text-[#0F6E56]">{m.v}</p>
+              <p className="text-sm font-heading font-bold text-[#006341]">{m.v}</p>
               <p className="text-[9px] text-zinc-400 mt-0.5">{m.l}</p>
             </div>
           ))}
@@ -50,8 +50,8 @@ const features = [
     title: "Kali — IA conductual",
     tagline: "La voz que necesitas escuchar antes de pagar.",
     iconBg: "bg-emerald-50 border border-emerald-100",
-    iconColor: "text-[#0F6E56]",
-    accentColor: "bg-[#0F6E56]",
+    iconColor: "text-[#006341]",
+    accentColor: "bg-[#006341]",
     borderAccent: "border-t-emerald-500",
     details: [
       { heading: "Preguntas reflexivas personalizadas", body: "Justo antes del checkout, Kali genera 3 preguntas calibradas a tu historial — no genéricas, sino diseñadas para romper tu piloto automático." },
@@ -67,14 +67,14 @@ const features = [
           { q: "¿Tienes el efectivo para pagarlo hoy?", active: false },
           { q: "¿Lo seguirás queriendo en 30 días?", active: false },
         ].map((item, i) => (
-          <div key={i} className={`flex items-center gap-2.5 rounded-xl px-3 py-2.5 text-xs ${item.active ? "bg-[#0F6E56]/8 border border-[#0F6E56]/15 text-[#0F6E56] font-medium" : "bg-zinc-50 text-zinc-400"}`}>
-            <span className={`font-bold w-4 flex-shrink-0 ${item.active ? "text-[#0F6E56]" : "text-zinc-300"}`}>{i + 1}.</span>
+          <div key={i} className={`flex items-center gap-2.5 rounded-xl px-3 py-2.5 text-xs ${item.active ? "bg-[#006341]/8 border border-[#006341]/15 text-[#006341] font-medium" : "bg-zinc-50 text-zinc-400"}`}>
+            <span className={`font-bold w-4 flex-shrink-0 ${item.active ? "text-[#006341]" : "text-zinc-300"}`}>{i + 1}.</span>
             {item.q}
           </div>
         ))}
-        <div className="flex items-start gap-2 mt-1 bg-[#0F6E56]/5 border border-[#0F6E56]/10 rounded-xl p-3">
+        <div className="flex items-start gap-2 mt-1 bg-[#006341]/5 border border-[#006341]/10 rounded-xl p-3">
           <span className="text-sm flex-shrink-0">🐢</span>
-          <p className="text-[11px] text-[#0F6E56] font-medium leading-relaxed">¿Realmente los necesitas o solo los viste en el feed tres veces?</p>
+          <p className="text-[11px] text-[#006341] font-medium leading-relaxed">¿Realmente los necesitas o solo los viste en el feed tres veces?</p>
         </div>
       </div>
     ),
@@ -150,7 +150,7 @@ const features = [
           <p className="text-xs text-violet-400">Vacaciones Cancún 🏖️</p>
         </div>
         {[
-          { name: "Tú", pct: 78, color: "bg-[#0F6E56]", amt: "$3,120" },
+          { name: "Tú", pct: 78, color: "bg-[#006341]", amt: "$3,120" },
           { name: "Abigail", pct: 64, color: "bg-violet-400", amt: "$2,560" },
           { name: "Diego", pct: 51, color: "bg-amber-400", amt: "$2,040" },
         ].map(p => (
@@ -242,8 +242,8 @@ export function CoreFeatures() {
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="mb-16 md:mb-20"
         >
-          <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#0F6E56]/8 border border-[#0F6E56]/20 text-[#0F6E56] text-xs font-semibold tracking-widest uppercase mb-5">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#0F6E56]" />
+          <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#006341]/8 border border-[#006341]/20 text-[#006341] text-xs font-semibold tracking-widest uppercase mb-5">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#006341]" />
             MVP — Disponible en lanzamiento
           </span>
           <h2 className="font-heading font-medium tracking-tighter text-4xl sm:text-5xl text-zinc-900 leading-tight max-w-2xl">

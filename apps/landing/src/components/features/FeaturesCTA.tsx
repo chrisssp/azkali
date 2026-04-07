@@ -24,7 +24,7 @@ export function FeaturesCTA() {
         >
           ¿Listo para que Kali
           <br />
-          <span className="bg-gradient-to-r from-[#0F6E56] to-emerald-400 bg-clip-text text-transparent">
+          <span className="bg-gradient-to-r from-[#006341] to-emerald-400 bg-clip-text text-transparent">
             entre en acción?
           </span>
         </motion.h2>
@@ -49,7 +49,7 @@ export function FeaturesCTA() {
         >
           <a
             href="/#descargar"
-            className="inline-flex items-center justify-center bg-[#0F6E56] text-white px-8 py-3.5 rounded-full font-semibold text-sm hover:bg-[#0c5c47] transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] shadow-md shadow-[#0F6E56]/20"
+            className="inline-flex items-center justify-center bg-[#006341] text-white px-8 py-3.5 rounded-full font-semibold text-sm hover:bg-[#003930] transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] shadow-md shadow-[#006341]/20"
           >
             Descarga gratis
           </a>

@@ -66,7 +66,7 @@ export function Navbar() {
         <div className="hidden md:flex items-center gap-3">
           <a
             href="#descargar"
-            className="inline-flex items-center gap-2 bg-[#0F6E56] text-white px-4 py-2 rounded-full text-sm font-semibold hover:bg-[#0c5c47] transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] shadow-sm"
+            className="inline-flex items-center gap-2 bg-[#006341] text-white px-4 py-2 rounded-full text-sm font-semibold hover:bg-[#003930] transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] shadow-sm"
           >
             Descargar gratis
           </a>
@@ -107,7 +107,7 @@ export function Navbar() {
               <a
                 href="#descargar"
                 onClick={() => setMobileOpen(false)}
-                className="mt-3 flex items-center justify-center bg-[#0F6E56] text-white py-3 rounded-full text-sm font-semibold"
+                className="mt-3 flex items-center justify-center bg-[#006341] text-white py-3 rounded-full text-sm font-semibold"
               >
                 Descargar gratis
               </a>

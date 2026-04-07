@@ -6,7 +6,7 @@ function PhoneMockup() {
   return (
     <div className="relative">
       {/* Glow under the phone */}
-      <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 w-64 h-24 bg-[#0F6E56]/20 blur-[50px] rounded-full pointer-events-none" />
+      <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 w-64 h-24 bg-[#006341]/20 blur-[50px] rounded-full pointer-events-none" />
 
       {/* Phone shell */}
       <div className="relative w-64 sm:w-72 bg-white rounded-[2.8rem] shadow-[0_32px_72px_-12px_rgba(0,0,0,0.18),0_16px_32px_-8px_rgba(0,0,0,0.10)] border-[5px] border-zinc-800 overflow-hidden">
@@ -25,7 +25,7 @@ function PhoneMockup() {
           {/* App header */}
           <div className="bg-white px-4 py-3 flex items-center justify-between border-b border-zinc-100">
             <div className="flex items-center gap-2">
-              <div className="w-7 h-7 rounded-lg bg-[#0F6E56] flex items-center justify-center">
+              <div className="w-7 h-7 rounded-lg bg-[#006341] flex items-center justify-center">
                 <span className="text-white font-bold text-xs">A</span>
               </div>
               <span className="font-heading font-semibold text-zinc-900 text-sm tracking-tight">Azkali</span>
@@ -76,7 +76,7 @@ function PhoneMockup() {
                   { label: "Días ahorro", val: "3 días" },
                 ].map((m) => (
                   <div key={m.label} className="bg-zinc-50 rounded-xl p-2 text-center">
-                    <p className="text-sm font-heading font-bold text-[#0F6E56]">{m.val}</p>
+                    <p className="text-sm font-heading font-bold text-[#006341]">{m.val}</p>
                     <p className="text-[9px] text-zinc-400 mt-0.5 font-medium">{m.label}</p>
                   </div>
                 ))}
@@ -84,14 +84,14 @@ function PhoneMockup() {
             </div>
 
             {/* Kali insight */}
-            <div className="bg-[#0F6E56]/6 border border-[#0F6E56]/15 rounded-2xl px-3.5 py-2.5 flex items-start gap-2">
+            <div className="bg-[#006341]/6 border border-[#006341]/15 rounded-2xl px-3.5 py-2.5 flex items-start gap-2">
               <span className="text-sm leading-none flex-shrink-0 mt-0.5">🐢</span>
-              <p className="text-[10px] text-[#0F6E56] font-medium leading-tight">¿Realmente los necesitas o solo los viste en el feed?</p>
+              <p className="text-[10px] text-[#006341] font-medium leading-tight">¿Realmente los necesitas o solo los viste en el feed?</p>
             </div>
 
             {/* CTA row */}
             <div className="flex gap-2 pb-1">
-              <button className="flex-1 bg-[#0F6E56] text-white text-[10px] py-2.5 rounded-xl font-semibold">
+              <button className="flex-1 bg-[#006341] text-white text-[10px] py-2.5 rounded-xl font-semibold">
                 🧊 Nevera 24h
               </button>
               <button className="flex-1 bg-zinc-100 text-zinc-400 text-[10px] py-2.5 rounded-xl font-medium">
@@ -120,7 +120,7 @@ function PhoneMockup() {
         className="absolute -left-10 bottom-24 bg-white border border-gray-100 shadow-lg rounded-2xl px-3.5 py-2.5"
       >
         <p className="text-[9px] text-zinc-400 font-semibold uppercase tracking-widest">Ahorrado</p>
-        <p className="text-sm font-heading font-bold text-[#0F6E56] mt-0.5">$2,799 MXN</p>
+        <p className="text-sm font-heading font-bold text-[#006341] mt-0.5">$2,799 MXN</p>
       </motion.div>
     </div>
   );
@@ -156,7 +156,7 @@ export function Hero() {
               className="font-heading font-medium tracking-tighter text-5xl sm:text-6xl lg:text-7xl text-zinc-900 leading-[1.05] mb-6"
             >
               ¿Cuántas horas de trabajo vale ese{" "}
-              <span className="bg-gradient-to-r from-[#0F6E56] via-emerald-500 to-emerald-400 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-[#006341] via-emerald-500 to-emerald-400 bg-clip-text text-transparent">
                 tenis?
               </span>
             </motion.h1>
@@ -179,7 +179,7 @@ export function Hero() {
             >
               <a
                 href="#descargar"
-                className="inline-flex items-center justify-center bg-[#0F6E56] text-white px-7 py-3.5 rounded-full font-semibold text-sm hover:bg-[#0c5c47] transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] shadow-md shadow-[#0F6E56]/20"
+                className="inline-flex items-center justify-center bg-[#006341] text-white px-7 py-3.5 rounded-full font-semibold text-sm hover:bg-[#003930] transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] shadow-md shadow-[#006341]/20"
               >
                 Descarga gratis
               </a>

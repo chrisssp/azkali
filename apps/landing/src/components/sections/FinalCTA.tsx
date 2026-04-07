@@ -45,7 +45,7 @@ export function FinalCTA() {
     <section
       id="descargar"
       className="relative py-28 sm:py-40 overflow-hidden"
-      style={{ backgroundColor: "#0a3d2b" }}
+      style={{ backgroundColor: "#003930" }}
       aria-label="Descarga Azkali"
     >
       {/* ── Background layers ── */}
@@ -158,11 +158,11 @@ export function FinalCTA() {
           <div className="inline-flex items-center gap-3 bg-white/[0.06] border border-white/[0.10] rounded-full px-5 py-2.5">
             <div className="flex -space-x-2">
               {[
-                { bg: "#0F6E56", i: "MA" },
+                { bg: "#006341", i: "MA" },
                 { bg: "#7c3aed", i: "AB" },
                 { bg: "#d97706", i: "DI" },
               ].map((a) => (
-                <div key={a.i} className="w-7 h-7 rounded-full border-2 border-[#0a3d2b] flex items-center justify-center text-white text-[9px] font-bold"
+                <div key={a.i} className="w-7 h-7 rounded-full border-2 border-[#003930] flex items-center justify-center text-white text-[9px] font-bold"
                   style={{ backgroundColor: a.bg }}
                 >
                   {a.i}

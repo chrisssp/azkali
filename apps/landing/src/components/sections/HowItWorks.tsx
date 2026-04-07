@@ -12,8 +12,8 @@ const steps = [
     detail: "Azkali detecta la compra en tiempo real — ya sea en una tienda en línea o cuando escaneas un código QR.",
     iconBg: "bg-orange-50",
     iconColor: "text-orange-500",
-    badgeBg: "bg-[#0F6E56]",
-    labelColor: "text-[#0F6E56]",
+    badgeBg: "bg-[#006341]",
+    labelColor: "text-[#006341]",
     hoverGlow: "from-orange-50",
   },
   {
@@ -24,8 +24,8 @@ const steps = [
     detail: "En lugar de bloquearte, Kali activa tu corteza prefrontal con preguntas simples que rompen el sesgo del presente.",
     iconBg: "bg-emerald-50",
     iconColor: "text-emerald-600",
-    badgeBg: "bg-[#0F6E56]",
-    labelColor: "text-[#0F6E56]",
+    badgeBg: "bg-[#006341]",
+    labelColor: "text-[#006341]",
     hoverGlow: "from-emerald-50",
   },
   {
@@ -36,8 +36,8 @@ const steps = [
     detail: "El porcentaje de impulsividad, tus horas de trabajo, días de ahorro y la recomendación de Kali — todo en una pantalla.",
     iconBg: "bg-sky-50",
     iconColor: "text-sky-600",
-    badgeBg: "bg-[#0F6E56]",
-    labelColor: "text-[#0F6E56]",
+    badgeBg: "bg-[#006341]",
+    labelColor: "text-[#006341]",
     hoverGlow: "from-sky-50",
   },
 ];
@@ -92,7 +92,7 @@ function MockupIntervencion() {
     <div className="flex flex-col gap-3 h-full">
       {/* Header row */}
       <div className="flex items-center gap-3 bg-gray-50 rounded-2xl px-4 py-3 border border-gray-100">
-        <div className="w-8 h-8 rounded-full bg-gradient-to-b from-[#0F6E56] to-emerald-500 flex items-center justify-center flex-shrink-0 shadow-sm">
+        <div className="w-8 h-8 rounded-full bg-gradient-to-b from-[#006341] to-emerald-500 flex items-center justify-center flex-shrink-0 shadow-sm">
           <Sparkles size={14} className="text-white" strokeWidth={1.5} />
         </div>
         <div>
@@ -152,7 +152,7 @@ function MockupResultado() {
       </div>
 
       {/* CTA row */}
-      <button className="w-full bg-gradient-to-r from-[#0F6E56] to-emerald-500 text-white rounded-2xl py-3 text-[13px] font-semibold hover:from-emerald-600 hover:to-emerald-400 transition-all shadow-sm flex items-center justify-center gap-2">
+      <button className="w-full bg-gradient-to-r from-[#006341] to-emerald-500 text-white rounded-2xl py-3 text-[13px] font-semibold hover:from-emerald-600 hover:to-emerald-400 transition-all shadow-sm flex items-center justify-center gap-2">
         <span className="text-base leading-none">🧊</span> Mandar a la Nevera
       </button>
     </div>
@@ -187,7 +187,7 @@ export function HowItWorks() {
           <h2 className="font-heading font-medium tracking-tighter text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-gray-900 leading-[1.1]">
             Tu copiloto financiero entra
             <br className="hidden sm:block" />
-            <span className="bg-gradient-to-r from-[#0F6E56] to-emerald-500 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-[#006341] to-emerald-500 bg-clip-text text-transparent">
               {" "}justo cuando más lo necesitas.
             </span>
           </h2>

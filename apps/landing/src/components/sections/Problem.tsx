@@ -12,7 +12,7 @@ const stats = [
     source: "Banxico / CONDUSEF",
     iconBg: "bg-red-50 border border-red-100",
     iconColor: "text-red-500",
-    numberColor: "text-[#0F6E56]",
+    numberColor: "text-[#006341]",
     accentLine: "bg-red-200",
   },
   {
@@ -23,8 +23,8 @@ const stats = [
       "Sin saber a dónde va tu dinero, no puedes controlar a dónde va tu futuro.",
     source: "ENIF / INEGI",
     iconBg: "bg-emerald-50 border border-emerald-100",
-    iconColor: "text-[#0F6E56]",
-    numberColor: "text-[#0F6E56]",
+    iconColor: "text-[#006341]",
+    numberColor: "text-[#006341]",
     accentLine: "bg-emerald-200",
   },
   {
@@ -36,7 +36,7 @@ const stats = [
     source: "Estimación con TIIE + comisiones",
     iconBg: "bg-amber-50 border border-amber-100",
     iconColor: "text-amber-500",
-    numberColor: "text-[#0F6E56]",
+    numberColor: "text-[#006341]",
     accentLine: "bg-amber-200",
   },
 ];
@@ -49,7 +49,7 @@ export function Problem() {
       aria-label="El problema"
     >
       {/* Subtle decorations */}
-      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#0F6E56]/5 rounded-full blur-[120px] pointer-events-none translate-x-1/3 -translate-y-1/3" />
+      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#006341]/5 rounded-full blur-[120px] pointer-events-none translate-x-1/3 -translate-y-1/3" />
       <div className="absolute inset-0 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:24px_24px] opacity-50 pointer-events-none" />
 
       <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
@@ -92,10 +92,10 @@ export function Problem() {
                   ease: [0.16, 1, 0.3, 1],
                   delay: index * 0.15,
                 }}
-                className="group relative bg-white rounded-[2rem] border border-zinc-100 hover:shadow-xl hover:border-[#0F6E56] overflow-hidden transition-all duration-500 p-8 flex flex-col cursor-default"
+                className="group relative bg-white rounded-[2rem] border border-zinc-100 hover:shadow-xl hover:border-[#006341] overflow-hidden transition-all duration-500 p-8 flex flex-col cursor-default"
               >
                 {/* Green fill on hover */}
-                <div className="absolute inset-0 bg-[#0F6E56] opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-[2rem]" />
+                <div className="absolute inset-0 bg-[#006341] opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-[2rem]" />
 
                 {/* Icon */}
                 <div className={`relative w-12 h-12 rounded-2xl ${item.iconBg} group-hover:bg-white/20 group-hover:border-white/30 flex items-center justify-center mb-8 transition-all duration-500 group-hover:scale-110`}>

@@ -23,7 +23,7 @@ const pillars = [
     title: "Árbol de decisiones determinístico como contingencia",
     body: "Para el MVP existe un árbol de decisiones local que funciona sin conexión al LLM. Si el modelo falla o hay latencia, el usuario recibe un veredicto igualmente útil en cero milisegundos.",
     tag: "Resiliencia",
-    accent: "text-[#0F6E56]",
+    accent: "text-[#006341]",
     tagBg: "bg-emerald-50 border-emerald-100 text-emerald-700",
   },
   {

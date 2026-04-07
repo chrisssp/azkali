@@ -59,7 +59,7 @@ export function RoadmapFeatures() {
                 {[20, 35, 30, 50, 45, 65, 60, 78, 72, 88, 82, 95].map((h, i) => (
                   <div key={i} className="flex-1 flex flex-col justify-end">
                     <div
-                      className="rounded-t-md bg-gradient-to-t from-[#0F6E56] to-emerald-400"
+                      className="rounded-t-md bg-gradient-to-t from-[#006341] to-emerald-400"
                       style={{ height: `${h}%`, opacity: 0.6 + i * 0.03 }}
                     />
                   </div>
@@ -67,7 +67,7 @@ export function RoadmapFeatures() {
               </div>
               <div className="flex justify-between mt-2">
                 <span className="text-[9px] text-zinc-400">Ene</span>
-                <span className="text-[9px] text-[#0F6E56] font-semibold">+$47,200 MXN proyectados</span>
+                <span className="text-[9px] text-[#006341] font-semibold">+$47,200 MXN proyectados</span>
                 <span className="text-[9px] text-zinc-400">Dic</span>
               </div>
             </div>
@@ -92,13 +92,13 @@ export function RoadmapFeatures() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
-            className="bg-[#0F6E56]/[0.04] rounded-[2rem] border border-[#0F6E56]/10 p-8 relative overflow-hidden flex flex-col"
+            className="bg-[#006341]/[0.04] rounded-[2rem] border border-[#006341]/10 p-8 relative overflow-hidden flex flex-col"
           >
             <span className="absolute top-6 right-6 text-[10px] font-bold uppercase tracking-widest text-zinc-400 border border-zinc-200 px-2.5 py-1 rounded-full bg-white">
               Próximamente
             </span>
 
-            <p className="text-[10px] font-bold uppercase tracking-widest text-[#0F6E56] mb-3">Inclusión financiera</p>
+            <p className="text-[10px] font-bold uppercase tracking-widest text-[#006341] mb-3">Inclusión financiera</p>
             <h3 className="font-heading font-semibold tracking-tight text-xl text-zinc-900 mb-2 leading-snug">
               Score de Confianza Azkali
             </h3>
@@ -112,13 +112,13 @@ export function RoadmapFeatures() {
                 <svg viewBox="0 0 96 96" className="w-full h-full -rotate-90">
                   <circle cx="48" cy="48" r="38" fill="none" stroke="#e5e7eb" strokeWidth="9" />
                   <circle
-                    cx="48" cy="48" r="38" fill="none" stroke="#0F6E56" strokeWidth="9"
+                    cx="48" cy="48" r="38" fill="none" stroke="#006341" strokeWidth="9"
                     strokeDasharray="239" strokeDashoffset="48" strokeLinecap="round"
                   />
                 </svg>
                 <div className="absolute inset-0 flex flex-col items-center justify-center">
                   <span className="font-heading font-bold text-3xl text-zinc-900 leading-none">780</span>
-                  <span className="text-[9px] text-[#0F6E56] font-semibold mt-0.5">Confiable</span>
+                  <span className="text-[9px] text-[#006341] font-semibold mt-0.5">Confiable</span>
                 </div>
               </div>
             </div>
@@ -132,7 +132,7 @@ export function RoadmapFeatures() {
                 <div key={b.label} className="flex items-center gap-2">
                   <span className="text-[9px] text-zinc-400 w-28 flex-shrink-0">{b.label}</span>
                   <div className="flex-1 h-1.5 bg-white rounded-full overflow-hidden">
-                    <div className="h-full bg-[#0F6E56] rounded-full" style={{ width: b.w }} />
+                    <div className="h-full bg-[#006341] rounded-full" style={{ width: b.w }} />
                   </div>
                 </div>
               ))}
@@ -183,7 +183,7 @@ export function RoadmapFeatures() {
                     key={p.name}
                     className={`rounded-2xl p-4 border ${
                       p.active
-                        ? "bg-[#0F6E56]/10 border-[#0F6E56]/20"
+                        ? "bg-[#006341]/10 border-[#006341]/20"
                         : "bg-white/[0.03] border-white/[0.06]"
                     }`}
                   >
@@ -193,7 +193,7 @@ export function RoadmapFeatures() {
                     </p>
                     <p className="text-[10px] text-zinc-500">{p.desc}</p>
                     {p.active && (
-                      <span className="inline-block mt-1.5 text-[8px] text-[#0F6E56] font-bold uppercase tracking-widest">
+                      <span className="inline-block mt-1.5 text-[8px] text-[#006341] font-bold uppercase tracking-widest">
                         Activo
                       </span>
                     )}

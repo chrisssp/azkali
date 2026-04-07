@@ -9,7 +9,7 @@ const testimonials = [
     age: 21,
     city: "CDMX",
     initials: "MA",
-    avatarBg: "bg-[#0F6E56]",
+    avatarBg: "bg-[#006341]",
     stars: 5,
     quote:
       "Iba a comprar unos tenis a MSI. Kali me mostró que eran 87 horas de trabajo. Los mandé a la nevera. Todavía están ahí y ya no los quiero tanto.",
@@ -83,7 +83,7 @@ function TestimonialCard({ t, delay }: { t: (typeof testimonials)[0]; delay: num
           <p className="text-zinc-400 text-xs">{t.city}</p>
         </div>
         <div className="text-right flex-shrink-0">
-          <p className="font-heading font-bold text-[#0F6E56] text-sm tracking-tight">{t.stat.value}</p>
+          <p className="font-heading font-bold text-[#006341] text-sm tracking-tight">{t.stat.value}</p>
           <p className="text-zinc-400 text-[10px]">{t.stat.label}</p>
         </div>
       </div>
@@ -118,7 +118,7 @@ export function Testimonials() {
           <h2 className="font-heading font-medium tracking-tighter text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-gray-900 leading-[1.1]">
             Lo que dicen los que ya
             <br className="hidden sm:block" />
-            <span className="bg-gradient-to-r from-[#0F6E56] to-emerald-500 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-[#006341] to-emerald-500 bg-clip-text text-transparent">
               {" "}frenaron el impulso.
             </span>
           </h2>

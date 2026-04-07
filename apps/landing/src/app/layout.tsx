@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
-import { Montserrat } from "next/font/google";
+import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import { GluestackUIProvider } from "@/components/ui/gluestack-ui-provider";
 
-const montserrat = Montserrat({
-  variable: "--font-montserrat",
+const plusJakarta = Plus_Jakarta_Sans({
+  variable: "--font-jakarta",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800", "900"],
+  weight: ["400", "500", "600", "700", "800"],
   display: "swap",
 });
 
@@ -47,7 +47,7 @@ export default function RootLayout({
   return (
     <html
       lang="es-MX"
-      className={`${montserrat.variable} h-full`}
+      className={`${plusJakarta.variable} h-full`}
       suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col antialiased font-body">

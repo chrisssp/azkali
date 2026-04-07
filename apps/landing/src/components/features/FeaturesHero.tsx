@@ -25,7 +25,7 @@ export function FeaturesHero() {
         >
           Más que una app.
           <br />
-          <span className="bg-gradient-to-r from-[#0F6E56] to-emerald-400 bg-clip-text text-transparent">
+          <span className="bg-gradient-to-r from-[#006341] to-emerald-400 bg-clip-text text-transparent">
             Un cambio de hábitos.
           </span>
         </motion.h1>
