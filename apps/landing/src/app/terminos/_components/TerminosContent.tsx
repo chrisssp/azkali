@@ -12,7 +12,7 @@ Azkali se reserva el derecho de modificar estos términos en cualquier momento. 
     title: "Descripción del servicio",
     content: `Azkali es una herramienta de educación financiera conductual que ayuda a sus usuarios a tomar decisiones de gasto más conscientes mediante:
 
-• Análisis de impulsividad financiera en tiempo real (La Nevera).
+• Análisis de impulsividad financiera en tiempo real.
 • Asistencia conversacional con inteligencia artificial (Kali).
 • Sistemas de gamificación y rachas de disciplina.
 • Retos grupales de ahorro.

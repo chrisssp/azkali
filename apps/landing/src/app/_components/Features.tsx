@@ -1,39 +1,8 @@
 "use client";
 import { motion } from "framer-motion";
-import { Snowflake, Award, Users, Bot } from "lucide-react";
+import { Award, Users, Bot } from "lucide-react";
 
 const features = [
-  {
-    icon: Snowflake,
-    title: "La Nevera",
-    description:
-      "Congela el impulso 24 horas y conviértelo en ahorro. Si en 24h sigues queriéndolo, entonces sí lo compras.",
-    tag: "Anti-impulso",
-    iconBg: "bg-sky-50 border border-sky-100",
-    iconColor: "text-sky-500",
-    tagStyle: "bg-sky-50 border-sky-100 text-sky-600",
-    hoverBorder: "hover:border-sky-200",
-    preview: (
-      <div className="mt-6 rounded-2xl bg-zinc-50 border border-zinc-100 p-4">
-        <div className="flex items-center justify-between mb-3">
-          <span className="text-[10px] text-zinc-400 uppercase tracking-widest font-semibold">En la Nevera</span>
-          <span className="text-[10px] text-sky-500 font-bold">23h 14m restantes</span>
-        </div>
-        <div className="flex items-center gap-3">
-          <div className="w-8 h-8 rounded-xl bg-sky-50 border border-sky-100 flex items-center justify-center flex-shrink-0">
-            <span className="text-base">🧊</span>
-          </div>
-          <div>
-            <p className="text-sm font-semibold text-zinc-800 tracking-tight">Nike Air Max 270</p>
-            <p className="text-xs text-zinc-400">$2,799 MXN · Congelado</p>
-          </div>
-        </div>
-        <div className="mt-3 w-full h-1.5 bg-zinc-200 rounded-full overflow-hidden">
-          <div className="h-full w-[4%] bg-sky-400 rounded-full" />
-        </div>
-      </div>
-    ),
-  },
   {
     icon: Award,
     title: "Tokens de Disciplina",
@@ -160,7 +129,7 @@ export function Features() {
         </motion.div>
 
         {/* Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 lg:gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6">
           {features.map((feature, index) => {
             const Icon = feature.icon;
             return (

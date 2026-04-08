@@ -153,7 +153,7 @@ function MockupResultado() {
 
       {/* CTA row */}
       <button className="w-full bg-gradient-to-r from-[#006341] to-emerald-500 text-white rounded-2xl py-3 text-[13px] font-semibold hover:from-emerald-600 hover:to-emerald-400 transition-all shadow-sm flex items-center justify-center gap-2">
-        <span className="text-base leading-none">🧊</span> Mandar a la Nevera
+        Guardar para después
       </button>
     </div>
   );

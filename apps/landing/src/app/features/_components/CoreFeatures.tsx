@@ -1,49 +1,9 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Snowflake, Bot, Flame, Users, Award } from "lucide-react";
+import { Bot, Flame, Users, Award } from "lucide-react";
 
 const features = [
-  {
-    id: "nevera",
-    icon: Snowflake,
-    title: "La Nevera",
-    tagline: "Congela el impulso antes de que queme tu cartera.",
-    iconBg: "bg-sky-50 border border-sky-100",
-    iconColor: "text-sky-500",
-    accentColor: "bg-sky-500",
-    borderAccent: "border-t-sky-400",
-    details: [
-      { heading: "Veredicto de impulsividad", body: "La IA cruza el monto de la compra contra tu liquidez real mediante un micro-chat y arroja un porcentaje — '89% Impulsiva'. Sin juicios, solo datos." },
-      { heading: "Congelamiento de 24 horas", body: "Si el veredicto es alto, puedes congelar el gasto 24h. La mayoría de los impulsos se evaporan antes de que el tiempo expire." },
-      { heading: "Redirección automática al ahorro", body: "Si resistes, el monto congelado se redirige automáticamente a tu meta de ahorro activa. El impulso se convierte en progreso real." },
-      { heading: "Métricas de vida real", body: "Cada compra se traduce a horas trabajadas, recibos de luz pagados o quincenas de renta — para que el precio no sea un número abstracto." },
-    ],
-    mockup: (
-      <div className="bg-white rounded-2xl border border-zinc-100 shadow-sm p-5 space-y-3">
-        <div className="flex items-center justify-between">
-          <p className="text-xs font-semibold text-zinc-400 uppercase tracking-widest">Decisión activa</p>
-          <span className="text-[10px] bg-red-50 border border-red-100 text-red-500 px-2 py-0.5 rounded-full font-bold uppercase tracking-wider">89% Impulsiva</span>
-        </div>
-        <div className="flex items-center gap-3 p-3 bg-zinc-50 rounded-xl">
-          <span className="text-xl">👟</span>
-          <div>
-            <p className="text-sm font-semibold text-zinc-900">Nike Air Max 270</p>
-            <p className="text-xs text-zinc-400">$2,799 MXN · ZARA Online</p>
-          </div>
-        </div>
-        <div className="grid grid-cols-2 gap-2">
-          {[{ l: "Horas trabajadas", v: "14.2 hrs" }, { l: "Días de ahorro", v: "3 días" }].map(m => (
-            <div key={m.l} className="bg-zinc-50 rounded-xl p-2.5 text-center">
-              <p className="text-sm font-heading font-bold text-[#006341]">{m.v}</p>
-              <p className="text-[9px] text-zinc-400 mt-0.5">{m.l}</p>
-            </div>
-          ))}
-        </div>
-        <button className="w-full bg-sky-500 text-white text-xs py-2.5 rounded-xl font-semibold">🧊 Congelar 24 horas</button>
-      </div>
-    ),
-  },
   {
     id: "kali",
     icon: Bot,
@@ -247,7 +207,7 @@ export function CoreFeatures() {
             MVP — Disponible en lanzamiento
           </span>
           <h2 className="font-heading font-medium tracking-tighter text-4xl sm:text-5xl text-zinc-900 leading-tight max-w-2xl">
-            Las cinco armas de Azkali.
+            Las cuatro armas de Azkali.
           </h2>
           <p className="mt-4 text-zinc-500 text-lg font-light leading-relaxed max-w-xl">
             Todo lo que necesitas para cambiar tu relación con el dinero desde el día uno.

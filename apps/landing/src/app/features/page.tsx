@@ -10,7 +10,7 @@ import { FeaturesCTA } from "./_components/FeaturesCTA";
 export const metadata: Metadata = {
   title: "Características — Azkali",
   description:
-    "Descubre todo lo que Azkali puede hacer por ti: La Nevera, Kali IA, Tokens de Disciplina, Retos Grupales y más.",
+    "Descubre todo lo que Azkali puede hacer por ti: Kali IA conductual, Tokens de Disciplina, Retos Grupales, Rachas y más.",
 };
 
 export default function FeaturesPage() {

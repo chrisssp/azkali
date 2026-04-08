@@ -12,7 +12,7 @@ const testimonials = [
     avatarBg: "bg-[#006341]",
     stars: 5,
     quote:
-      "Iba a comprar unos tenis a MSI. Kali me mostró que eran 87 horas de trabajo. Los mandé a la nevera. Todavía están ahí y ya no los quiero tanto.",
+      "Iba a comprar unos tenis a MSI. Kali me mostró que eran 87 horas de trabajo. Decidí esperar. Una semana después ya ni los quería.",
     tag: "Frenó $2,799 MXN",
     tagStyle: "bg-emerald-50 border-emerald-100 text-emerald-700",
     stat: { value: "$2,799", label: "frenado" },
