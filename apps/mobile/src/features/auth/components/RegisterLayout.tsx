@@ -136,7 +136,7 @@ export function RegisterLayout({
       >
         {/* Progress bar — gray track + green fill, no circle, no label */}
         <Box className="px-6 pt-5 pb-2">
-          <View className="h-2 bg-gray-200 rounded overflow-hidden">
+          <View className="h-2 bg-outline-100 rounded overflow-hidden">
             <View 
               className="h-full bg-success-600 rounded"
               style={{ width: `${progress * 100}%` }} 
