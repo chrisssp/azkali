@@ -1,12 +1,19 @@
 import React, { useState } from 'react';
+import { useRouter } from 'expo-router';
 import { Box } from '@/components/ui/box';
 import { Text } from '@/components/ui/text';
 import { Button, ButtonText } from '@/components/ui/button';
 import { VStack } from '@/components/ui/vstack';
 import { Input, InputField } from '@/components/ui/input';
+import {
+  FormControl,
+  FormControlLabel,
+  FormControlLabelText,
+} from '@/components/ui/form-control';
+import { Pressable } from '@/components/ui/pressable';
 
 interface LoginFormProps {
-  onSubmit: (email: string, password: string) => void;
+  onSubmit: (emailOrPhone: string, password: string) => void;
   isLoading?: boolean;
   error?: string | null;
 }
@@ -16,62 +23,75 @@ export const LoginForm: React.FC<LoginFormProps> = ({
   isLoading = false,
   error,
 }) => {
-  const [email, setEmail] = useState('demo@example.com');
-  const [password, setPassword] = useState('password');
-
-  const handleSubmit = () => {
-    onSubmit(email, password);
-  };
+  const router = useRouter();
+  const [emailOrPhone, setEmailOrPhone] = useState('');
+  const [password, setPassword] = useState('');
 
   return (
-    <VStack space="lg" className="w-full">
-      <Box>
-        <Text className="mb-2 font-medium">Email</Text>
-        <Input>
+    <VStack className="flex-1 px-6 pt-8" space="md">
+      <Text className="text-3xl font-bold text-black mb-4">
+        Bienvenido de vuelta
+      </Text>
+
+      <FormControl>
+        <FormControlLabel>
+          <FormControlLabelText className="text-sm font-medium text-typography-700">
+            Correo o número
+          </FormControlLabelText>
+        </FormControlLabel>
+        <Input variant="outline" size="lg" className="rounded-xl mt-1">
           <InputField
-            value={email}
-            onChangeText={setEmail}
-            placeholder="tu@email.com"
+            value={emailOrPhone}
+            onChangeText={setEmailOrPhone}
             autoCapitalize="none"
             keyboardType="email-address"
           />
         </Input>
-      </Box>
+      </FormControl>
 
-      <Box>
-        <Text className="mb-2 font-medium">Contraseña</Text>
-        <Input>
+      <FormControl>
+        <FormControlLabel>
+          <FormControlLabelText className="text-sm font-medium text-typography-700">
+            Contraseña
+          </FormControlLabelText>
+        </FormControlLabel>
+        <Input variant="outline" size="lg" className="rounded-xl mt-1">
           <InputField
             value={password}
             onChangeText={setPassword}
-            placeholder="••••••••"
             secureTextEntry
           />
         </Input>
-      </Box>
+        <Pressable className="mt-2 self-start">
+          <Text className="text-sm text-typography-500">
+            ¿Olvidaste tu contraseña?
+          </Text>
+        </Pressable>
+      </FormControl>
 
       {error && (
-        <Box className="bg-red-50 p-3 rounded-lg">
-          <Text className="text-red-600">{error}</Text>
+        <Box className="bg-error-50 p-3 rounded-xl">
+          <Text className="text-error-700 text-sm">{error}</Text>
         </Box>
       )}
 
       <Button
-        onPress={handleSubmit}
+        onPress={() => onSubmit(emailOrPhone, password)}
         isDisabled={isLoading}
-        className="mt-4"
+        className="w-full bg-black rounded-2xl mt-4"
+        size="xl"
       >
-        <ButtonText>
-          {isLoading ? 'Iniciando sesión...' : 'Iniciar sesión'}
+        <ButtonText className="text-white font-semibold">
+          {isLoading ? 'Cargando...' : 'Iniciar sesión'}
         </ButtonText>
       </Button>
 
-      <Box className="mt-4 p-3 bg-gray-100 rounded-lg">
-        <Text className="text-sm text-gray-600 text-center">
-          Credenciales de prueba:{'\n'}
-          Email: demo@example.com{'\n'}
-          Contraseña: password
-        </Text>
+      <Box className="flex-1 justify-end items-center pb-8 pt-4">
+        <Pressable onPress={() => router.push('/signup' as never)}>
+          <Text className="text-sm text-typography-500 text-center">
+            ¿Aún no tienes una cuenta?
+          </Text>
+        </Pressable>
       </Box>
     </VStack>
   );

@@ -3,7 +3,7 @@ import React from 'react';
 
 import { Box } from '@/components/ui/box';
 import { Button, ButtonText } from '@/components/ui/button';
-import { Heading } from '@/components/ui/heading';
+import { Text } from '@/components/ui/text';
 import { VStack } from '@/components/ui/vstack';
 
 import { AnimatedHero } from '../components';
@@ -16,9 +16,9 @@ export function WelcomeScreen() {
       <AnimatedHero />
 
       <VStack className="flex-1 items-center justify-center px-6 gap-4">
-        <Heading className="text-4xl font-bold text-black text-center mb-4">
+        <Text className="text-4xl font-bold text-black text-center mb-4">
           Toma el control
-        </Heading>
+        </Text>
 
         <Button
           size="xl"
