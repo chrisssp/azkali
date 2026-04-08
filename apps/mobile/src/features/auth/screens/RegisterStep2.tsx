@@ -39,7 +39,7 @@ export function RegisterStep2({ form }: RegisterStepProps) {
           name="emailOrPhone"
           rules={{ required: 'El correo es obligatorio' }}
           render={({ field: { onChange, onBlur, value } }) => (
-            <Input variant="outline" size="lg" className="rounded-xl mt-1">
+            <Input variant="outline" size="xl" className="rounded-xl mt-1">
               <InputField
                 value={value}
                 onChangeText={onChange}
@@ -73,7 +73,7 @@ export function RegisterStep2({ form }: RegisterStepProps) {
             minLength: { value: 8, message: 'Mínimo 8 caracteres' },
           }}
           render={({ field: { onChange, onBlur, value } }) => (
-            <Input variant="outline" size="lg" className="rounded-xl mt-1">
+            <Input variant="outline" size="xl" className="rounded-xl mt-1">
               <InputField
                 value={value}
                 onChangeText={onChange}

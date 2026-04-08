@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import {
   Dimensions,
   KeyboardAvoidingView,
-  Platform,
   ScrollView,
 } from 'react-native';
 import Animated, {
@@ -110,7 +109,7 @@ export const LoginScreen: React.FC = () => {
         </Svg>
 
         <Animated.View
-          className="absolute top-0 left-0 right-0 px-5"
+          className="absolute top-0 left-0 right-0 px-5 flex-row items-center"
           style={[
             { paddingTop: insets.top + 10 },
             contentStyle,
@@ -123,7 +122,7 @@ export const LoginScreen: React.FC = () => {
             <Icon as={ArrowLeft} size="xl" className="text-white" />
           </Pressable>
 
-          <Text className="text-2xl font-bold text-white mt-3">
+          <Text className="text-2xl font-bold text-white ml-3">
             Iniciar sesión
           </Text>
         </Animated.View>
@@ -131,7 +130,7 @@ export const LoginScreen: React.FC = () => {
 
       {/* ── Form body ────────────────────────────────────────────── */}
       <KeyboardAvoidingView
-        behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+        behavior="padding"
         className="flex-1"
       >
         <ScrollView

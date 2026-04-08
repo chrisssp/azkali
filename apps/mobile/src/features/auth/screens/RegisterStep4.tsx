@@ -61,7 +61,7 @@ export function RegisterStep4({ form }: RegisterStepProps) {
           rules={{ required: 'Selecciona un rango de ingreso' }}
           render={({ field: { onChange, value } }) => (
             <Select onValueChange={onChange} selectedValue={value}>
-              <SelectTrigger variant="outline" size="lg" className="rounded-xl mt-1">
+              <SelectTrigger variant="outline" size="xl" className="rounded-xl mt-1">
                 <SelectInput placeholder="Selecciona un rango..." />
                 <SelectIcon className="mr-3" as={ChevronDownIcon} />
               </SelectTrigger>
@@ -99,7 +99,7 @@ export function RegisterStep4({ form }: RegisterStepProps) {
           rules={{ required: 'Selecciona tu ocupación' }}
           render={({ field: { onChange, value } }) => (
             <Select onValueChange={onChange} selectedValue={value}>
-              <SelectTrigger variant="outline" size="lg" className="rounded-xl mt-1">
+              <SelectTrigger variant="outline" size="xl" className="rounded-xl mt-1">
                 <SelectInput placeholder="Selecciona tu ocupación..." />
                 <SelectIcon className="mr-3" as={ChevronDownIcon} />
               </SelectTrigger>

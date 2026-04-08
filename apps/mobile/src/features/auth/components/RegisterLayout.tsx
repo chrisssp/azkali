@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import {
   Dimensions,
   KeyboardAvoidingView,
-  Platform,
   ScrollView,
   View,
 } from 'react-native';
@@ -107,7 +106,7 @@ export function RegisterLayout({
         </Svg>
 
         <Animated.View
-          className="absolute top-0 left-0 right-0 px-5"
+          className="absolute top-0 left-0 right-0 px-5 flex-row items-center"
           style={[
             { paddingTop: insets.top + 10 },
             headerContentStyle,
@@ -119,13 +118,13 @@ export function RegisterLayout({
           >
             <ArrowLeft color="#fff" size={22} />
           </Pressable>
-          <Text className="text-2xl font-bold text-white mt-3">{title}</Text>
+          <Text className="text-2xl font-bold text-white ml-3">{title}</Text>
         </Animated.View>
       </Animated.View>
 
       {/* ── White content area ── */}
       <KeyboardAvoidingView
-        behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+        behavior="padding"
         className="flex-1"
       >
         {/* Progress bar — gray track + green fill, no circle, no label */}

@@ -38,7 +38,7 @@ export function RegisterStep1({ form }: RegisterStepProps) {
           name="firstName"
           rules={{ required: 'El nombre es obligatorio' }}
           render={({ field: { onChange, onBlur, value } }) => (
-            <Input variant="outline" size="lg" className="rounded-xl mt-1">
+            <Input variant="outline" size="xl" className="rounded-xl mt-1">
               <InputField
                 value={value}
                 onChangeText={onChange}
@@ -68,7 +68,7 @@ export function RegisterStep1({ form }: RegisterStepProps) {
           name="paternalLastName"
           rules={{ required: 'El apellido paterno es obligatorio' }}
           render={({ field: { onChange, onBlur, value } }) => (
-            <Input variant="outline" size="lg" className="rounded-xl mt-1">
+            <Input variant="outline" size="xl" className="rounded-xl mt-1">
               <InputField
                 value={value}
                 onChangeText={onChange}
@@ -100,7 +100,7 @@ export function RegisterStep1({ form }: RegisterStepProps) {
           name="maternalLastName"
           rules={{ required: 'El apellido materno es obligatorio' }}
           render={({ field: { onChange, onBlur, value } }) => (
-            <Input variant="outline" size="lg" className="rounded-xl mt-1">
+            <Input variant="outline" size="xl" className="rounded-xl mt-1">
               <InputField
                 value={value}
                 onChangeText={onChange}

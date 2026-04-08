@@ -37,7 +37,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({
             Correo o número
           </FormControlLabelText>
         </FormControlLabel>
-        <Input variant="outline" size="lg" className="rounded-xl mt-1">
+        <Input variant="outline" size="xl" className="rounded-xl mt-1">
           <InputField
             value={emailOrPhone}
             onChangeText={onChangeEmailOrPhone}
@@ -53,7 +53,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({
             Contraseña
           </FormControlLabelText>
         </FormControlLabel>
-        <Input variant="outline" size="lg" className="rounded-xl mt-1">
+        <Input variant="outline" size="xl" className="rounded-xl mt-1">
           <InputField
             value={password}
             onChangeText={onChangePassword}
