@@ -1,97 +1,40 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import {
+  Dimensions,
   KeyboardAvoidingView,
-  LayoutChangeEvent,
   Platform,
   ScrollView,
+  StyleSheet,
   View,
 } from 'react-native';
+import Animated, {
+  Easing,
+  useAnimatedProps,
+  useAnimatedStyle,
+  useSharedValue,
+  withDelay,
+  withSpring,
+  withTiming,
+} from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import Svg, { Path } from 'react-native-svg';
 import { ArrowLeft } from 'lucide-react-native';
 import { Box } from '@/components/ui/box';
 import { Text } from '@/components/ui/text';
 import { Pressable } from '@/components/ui/pressable';
 import { Button, ButtonText } from '@/components/ui/button';
-import { HStack } from '@/components/ui/hstack';
 
-// ─── Progress Bar with circle indicator ──────────────────────────────────────
+const AnimatedPath = Animated.createAnimatedComponent(Path);
 
-interface ProgressIndicatorProps {
-  currentStep: number;
-  totalSteps: number;
-}
+const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('window');
 
-const CIRCLE_SIZE = 20;
-const BAR_HEIGHT = 8;
+// Mirror AnimatedHero constants exactly so the morph starts flush
+const WELCOME_HERO_HEIGHT = SCREEN_HEIGHT * 0.48;
+const WELCOME_CURVE_DEPTH = 40;
+const REGISTER_HEADER_HEIGHT = 130;
+const SVG_CANVAS_HEIGHT = WELCOME_HERO_HEIGHT + WELCOME_CURVE_DEPTH * 2;
 
-function ProgressIndicator({ currentStep, totalSteps }: ProgressIndicatorProps) {
-  const [barWidth, setBarWidth] = useState(0);
-  const progress = currentStep / totalSteps;
-
-  const handleLayout = (e: LayoutChangeEvent) => {
-    setBarWidth(e.nativeEvent.layout.width);
-  };
-
-  const circleLeft = barWidth * progress - CIRCLE_SIZE / 2;
-  const circleTop = (BAR_HEIGHT - CIRCLE_SIZE) / 2; // centres circle on bar
-
-  return (
-    <HStack className="items-center" space="sm">
-      <View
-        style={{ height: BAR_HEIGHT, flex: 1, position: 'relative' }}
-        onLayout={handleLayout}
-      >
-        {/* Track */}
-        <View
-          style={{
-            position: 'absolute',
-            inset: 0,
-            backgroundColor: '#E5E7EB',
-            borderRadius: BAR_HEIGHT / 2,
-          }}
-        />
-        {/* Fill */}
-        {barWidth > 0 && (
-          <View
-            style={{
-              position: 'absolute',
-              left: 0,
-              top: 0,
-              bottom: 0,
-              width: barWidth * progress,
-              backgroundColor: '#000',
-              borderRadius: BAR_HEIGHT / 2,
-            }}
-          />
-        )}
-        {/* Circle at the tip */}
-        {barWidth > 0 && (
-          <View
-            style={{
-              position: 'absolute',
-              left: circleLeft,
-              top: circleTop,
-              width: CIRCLE_SIZE,
-              height: CIRCLE_SIZE,
-              borderRadius: CIRCLE_SIZE / 2,
-              backgroundColor: '#000',
-              borderWidth: 2.5,
-              borderColor: '#fff',
-              shadowColor: '#000',
-              shadowOffset: { width: 0, height: 1 },
-              shadowOpacity: 0.18,
-              shadowRadius: 3,
-              elevation: 3,
-            }}
-          />
-        )}
-      </View>
-      <Text className="text-xs text-typography-400 font-medium w-8 text-right">
-        {currentStep}/{totalSteps}
-      </Text>
-    </HStack>
-  );
-}
+const SPRING = { damping: 26, stiffness: 130, mass: 1 };
 
 // ─── Layout ───────────────────────────────────────────────────────────────────
 
@@ -117,46 +60,93 @@ export function RegisterLayout({
   const insets = useSafeAreaInsets();
   const isLastStep = currentStep === totalSteps;
 
+  // Start from the exact dimensions AnimatedHero leaves behind
+  const bandHeight = useSharedValue(WELCOME_HERO_HEIGHT);
+  const curveDepth = useSharedValue(WELCOME_CURVE_DEPTH * 2);
+  const contentOpacity = useSharedValue(0);
+
+  useEffect(() => {
+    bandHeight.value = withSpring(REGISTER_HEADER_HEIGHT, SPRING);
+    curveDepth.value = withSpring(0, SPRING);
+    contentOpacity.value = withDelay(
+      260,
+      withTiming(1, { duration: 320, easing: Easing.out(Easing.ease) }),
+    );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const containerStyle = useAnimatedStyle(() => ({
+    height: bandHeight.value + curveDepth.value,
+  }));
+
+  const animatedPathProps = useAnimatedProps(() => ({
+    d: [
+      `M 0 0`,
+      `L ${SCREEN_WIDTH} 0`,
+      `L ${SCREEN_WIDTH} ${bandHeight.value}`,
+      `Q ${SCREEN_WIDTH / 2} ${bandHeight.value + curveDepth.value} 0 ${bandHeight.value}`,
+      'Z',
+    ].join(' '),
+  }));
+
+  const headerContentStyle = useAnimatedStyle(() => ({
+    opacity: contentOpacity.value,
+  }));
+
+  const progress = currentStep / totalSteps;
+
   return (
-    <KeyboardAvoidingView
-      style={{ flex: 1 }}
-      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-    >
-      {/* ── Black header ── */}
-      <Box
-        className="bg-black"
-        style={{ paddingTop: insets.top + 8, paddingBottom: 24, paddingHorizontal: 16 }}
-      >
-        <Pressable
-          onPress={onBack}
-          hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}
-          className="self-start"
+    <Box className="flex-1 bg-white">
+      {/* ── Animated black header — morphs from welcome curve ── */}
+      <Animated.View style={containerStyle}>
+        <Svg
+          width={SCREEN_WIDTH}
+          height={SVG_CANVAS_HEIGHT}
+          style={StyleSheet.absoluteFill}
         >
-          <ArrowLeft color="#fff" size={22} />
-        </Pressable>
-        <Text className="text-white text-2xl font-bold mt-5">{title}</Text>
-      </Box>
+          <AnimatedPath animatedProps={animatedPathProps} fill="black" />
+        </Svg>
+
+        <Animated.View
+          style={[
+            styles.headerContent,
+            { paddingTop: insets.top + 10 },
+            headerContentStyle,
+          ]}
+        >
+          <Pressable
+            onPress={onBack}
+            hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}
+          >
+            <ArrowLeft color="#fff" size={22} />
+          </Pressable>
+          <Text className="text-2xl font-bold text-white mt-3">{title}</Text>
+        </Animated.View>
+      </Animated.View>
 
       {/* ── White content area ── */}
-      <Box className="flex-1 bg-white rounded-tl-3xl rounded-tr-3xl" style={{ marginTop: -16 }}>
-        {/* Progress bar */}
-        <Box className="px-6 pt-6 pb-2">
-          <ProgressIndicator currentStep={currentStep} totalSteps={totalSteps} />
+      <KeyboardAvoidingView
+        behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+        style={styles.formWrapper}
+      >
+        {/* Progress bar — gray track + green fill, no circle, no label */}
+        <Box className="px-6 pt-5 pb-2">
+          <View style={styles.progressTrack}>
+            <View style={[styles.progressFill, { width: `${progress * 100}%` }]} />
+          </View>
         </Box>
 
-        {/* Scrollable step content */}
         <ScrollView
-          className="flex-1"
-          contentContainerStyle={{ paddingHorizontal: 24, paddingTop: 16, paddingBottom: 12 }}
+          style={styles.scrollView}
+          contentContainerStyle={styles.scrollContent}
           keyboardShouldPersistTaps="handled"
           showsVerticalScrollIndicator={false}
         >
           {children}
         </ScrollView>
 
-        {/* Bottom button */}
         <Box
-          className="px-6 pt-3"
+          className="px-6 pt-3 bg-white"
           style={{ paddingBottom: Math.max(insets.bottom + 8, 24) }}
         >
           <Button
@@ -170,7 +160,39 @@ export function RegisterLayout({
             </ButtonText>
           </Button>
         </Box>
-      </Box>
-    </KeyboardAvoidingView>
+      </KeyboardAvoidingView>
+    </Box>
   );
 }
+
+const styles = StyleSheet.create({
+  headerContent: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    paddingHorizontal: 20,
+  },
+  formWrapper: {
+    flex: 1,
+  },
+  scrollView: {
+    flex: 1,
+  },
+  scrollContent: {
+    paddingHorizontal: 24,
+    paddingTop: 8,
+    paddingBottom: 12,
+  },
+  progressTrack: {
+    height: 8,
+    backgroundColor: '#E5E7EB',
+    borderRadius: 4,
+    overflow: 'hidden',
+  },
+  progressFill: {
+    height: '100%',
+    backgroundColor: '#22C55E',
+    borderRadius: 4,
+  },
+});
