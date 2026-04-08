@@ -43,7 +43,7 @@ export function WelcomeScreen() {
         </Button>
 
         <Button
-          onPress={() => router.push('/(tabs)/chat')}
+          onPress={() => router.replace('/(tabs)/chat')}
         >
           <ButtonText>
             [DEV] Ir al home

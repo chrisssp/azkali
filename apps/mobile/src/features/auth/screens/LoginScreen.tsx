@@ -98,7 +98,7 @@ export const LoginScreen: React.FC = () => {
   const handleLogin = async (emailOrPhone: string, password: string) => {
     try {
       await login({ email: emailOrPhone, password });
-      router.replace('/(tabs)/feature1');
+      router.replace('/(tabs)/chat');
     } catch {
       // Error is surfaced through the hook's error state
     }

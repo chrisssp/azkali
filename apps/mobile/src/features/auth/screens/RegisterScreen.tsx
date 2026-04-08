@@ -68,7 +68,7 @@ export function RegisterScreen() {
       // All steps complete — form data available in form.getValues()
       // TODO: wire up to registration API when ready
       console.log('Register form data:', form.getValues());
-      router.replace('/(tabs)' as never);
+      router.push('/(auth)/verify' as never);
     }
   };
 
