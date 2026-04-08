@@ -126,7 +126,7 @@ export function RegisterLayout({
 
       {/* ── White content area ── */}
       <KeyboardAvoidingView
-        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+        behavior={Platform.OS === 'ios' ? 'padding' : undefined}
         style={styles.formWrapper}
       >
         {/* Progress bar — gray track + green fill, no circle, no label */}
@@ -146,7 +146,7 @@ export function RegisterLayout({
         </ScrollView>
 
         <Box
-          className="px-6 pt-3"
+          className="px-6 pt-3 bg-white"
           style={{ paddingBottom: Math.max(insets.bottom + 8, 24) }}
         >
           <Button
