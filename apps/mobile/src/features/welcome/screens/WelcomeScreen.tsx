@@ -41,6 +41,14 @@ export function WelcomeScreen() {
             Continuar sin conectarse
           </ButtonText>
         </Button>
+
+        <Button
+          onPress={() => router.push('/(tabs)/chat')}
+        >
+          <ButtonText>
+            [DEV] Ir al home
+          </ButtonText>
+        </Button>
       </VStack>
     </Box>
   );
