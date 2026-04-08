@@ -2,6 +2,7 @@
 	"expo": {
 		"name": "frontend",
 		"slug": "frontend",
+		"scheme": "frontend",
 		"version": "1.0.0",
 		"orientation": "portrait",
 		"icon": "./assets/icon.png",
@@ -30,6 +31,7 @@
 				"projectId": "542d86e0-26f5-4f0d-bd59-612774df7682"
 			}
 		},
-		"owner": "chrisdev.ts"
+		"owner": "chrisdev.ts",
+		"plugins": ["expo-router", "expo-font"]
 	}
 }
