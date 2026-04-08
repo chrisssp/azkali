@@ -18,19 +18,19 @@ export function MessageBubble({ message }: MessageBubbleProps) {
         className={`max-w-xs px-4 py-3 rounded-2xl ${
           isUser
             ? 'bg-primary-700'
-            : 'bg-gray-100 border border-gray-200'
+            : 'bg-primary-50 border border-primary-200'
         }`}
       >
         <Text
-          className={`text-base ${
-            isUser ? 'text-white' : 'text-gray-900'
+          className={`text-base font-medium ${
+            isUser ? 'text-white' : 'text-typography-900'
           }`}
         >
           {message.content}
         </Text>
         <Text
           className={`text-xs mt-1 ${
-            isUser ? 'text-primary-100' : 'text-gray-500'
+            isUser ? 'text-primary-100' : 'text-primary-600'
           }`}
         >
           {message.timestamp.toLocaleTimeString('es-ES', {

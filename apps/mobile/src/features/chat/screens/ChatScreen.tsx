@@ -23,12 +23,12 @@ export function ChatScreen() {
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'padding' : undefined}
-      className="flex-1 bg-white"
+      className="flex-1 bg-background-light"
     >
       <ChatHeader />
 
       {messages.length === 0 ? (
-        <Box className="flex-1 bg-white">
+        <Box className="flex-1 bg-background-light">
           <WelcomeMessage />
           <QuickActions
             actions={quickActions}

@@ -12,23 +12,20 @@ interface QuickActionsProps {
 
 export function QuickActions({ actions, onActionPress }: QuickActionsProps) {
   return (
-    <ScrollView
-      horizontal={true}
-      className="px-4 py-3"
-    >
-      <Box className="flex-row gap-2">
+    <Box className="px-4 py-2">
+      <Box className="flex-row flex-wrap gap-2 justify-center">
         {actions.map((action) => (
           <Pressable
             key={action.id}
             onPress={() => onActionPress(action)}
-            className="px-4 py-2 bg-white border border-outline-100 rounded-2xl mr-2"
+            className="px-3 py-2 bg-primary-50 border border-primary-300 rounded-full"
           >
-            <Text className="text-sm font-medium text-typography-black">
+            <Text className="text-xs font-medium text-primary-700">
               {action.emoji} {action.label}
             </Text>
           </Pressable>
         ))}
       </Box>
-    </ScrollView>
+    </Box>
   );
 }

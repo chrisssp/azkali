@@ -37,33 +37,14 @@ export const ChatHeader: React.FC<ChatHeaderProps> = ({
   }
 
   return (
-    <HStack className="items-center justify-between px-6 pt-12 pb-4 bg-background-50 border-b border-outline-200">
-      
-      {/* Izquierda: Nombre y Barra de progreso */}
-      <Box className="flex-1 mr-4">
-        <Text className="text-xl font-bold text-typography-900 mb-1">{userName}</Text>
-        <Box className="w-32 h-1.5 bg-outline-200 rounded-full overflow-hidden">
-          <Box 
-            className="h-full bg-primary-700 rounded-full" 
-            style={{ width: `${progress}%` }} 
-          />
-        </Box>
+    <Box className="flex-row items-center justify-between px-6 py-4 bg-primary-700 border-b border-primary-800">
+      <Box>
+        <Text className="text-xl font-bold text-white">Kali</Text>
+        <Text className="text-xs text-primary-100">Asistente IA</Text>
       </Box>
-
-      {/* Derecha: Monedas y Engrane */}
-      <HStack className="items-center" space="md">
-        <HStack className="items-center bg-warning-50 px-2 py-1 rounded-full" space="xs">
-          <FontAwesome5 name="coins" size={16} color="#F59E0B" />
-          <Text className="text-md font-bold text-warning-800 ml-1">{tokens}</Text>
-        </HStack>
-        
-        {showSettings && (
-          <Pressable onPress={() => router.push('/settings')}>
-            <Ionicons name="settings-outline" size={24} color="#A6A6A6" />
-          </Pressable>
-        )}
-      </HStack>
-
-    </HStack>
+      <Pressable onPress={() => router.push('/(tabs)/settings')}>
+        <Ionicons name="settings-outline" size={24} color="#FFFFFF" />
+      </Pressable>
+    </Box>
   );
 };

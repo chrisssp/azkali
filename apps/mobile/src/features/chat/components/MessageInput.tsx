@@ -21,9 +21,9 @@ export function MessageInput({
   const isDisabled = value.trim().length === 0 || isLoading === true;
   
   return (
-    <Box className="px-4 pb-4 bg-white border-t border-outline-100">
+    <Box className="px-4 pb-4 bg-white border-t border-primary-200">
       <Box className="flex-row items-end gap-2">
-        <Input className="flex-1 rounded-2xl" variant="outline" size="lg">
+        <Input className="flex-1 rounded-2xl border-primary-200" variant="outline" size="lg">
           <InputField
             placeholder="Escribe un mensaje..."
             value={value}
@@ -38,12 +38,12 @@ export function MessageInput({
             width: 48,
             height: 48,
             borderRadius: 24,
-            backgroundColor: isDisabled ? '#D1D5DB' : '#006341',
+            backgroundColor: isDisabled ? '#CCE5D9' : '#006341',
             alignItems: 'center',
             justifyContent: 'center',
           }}
         >
-          <Ionicons name="send" size={20} color="#FFFFFF" />
+          <Ionicons name="send" size={20} color={isDisabled ? '#99CCB3' : '#FFFFFF'} />
         </TouchableOpacity>
       </Box>
     </Box>
