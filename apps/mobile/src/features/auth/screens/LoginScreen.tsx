@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Dimensions,
   KeyboardAvoidingView,
@@ -22,6 +22,7 @@ import { Box } from '@/components/ui/box';
 import { Pressable } from '@/components/ui/pressable';
 import { Icon } from '@/components/ui/icon';
 import { Text } from '@/components/ui/text';
+import { Button, ButtonText } from '@/components/ui/button';
 import { LoginForm } from '../components/LoginForm';
 import { useAuth } from '../hooks';
 
@@ -46,6 +47,9 @@ export const LoginScreen: React.FC = () => {
   const router = useRouter();
   const { login, isLoading, error } = useAuth();
   const insets = useSafeAreaInsets();
+
+  const [emailOrPhone, setEmailOrPhone] = useState('');
+  const [password, setPassword] = useState('');
 
   // Start from the exact size/curve that AnimatedHero leaves behind
   const bandHeight = useSharedValue(WELCOME_HERO_HEIGHT);
@@ -127,20 +131,47 @@ export const LoginScreen: React.FC = () => {
 
       {/* ── Form body ────────────────────────────────────────────── */}
       <KeyboardAvoidingView
-        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+        behavior={Platform.OS === 'ios' ? 'padding' : undefined}
         className="flex-1"
       >
         <ScrollView
-          contentContainerStyle={{ flexGrow: 1 }}
+          contentContainerStyle={{ paddingBottom: 12 }}
           keyboardShouldPersistTaps="handled"
           showsVerticalScrollIndicator={false}
         >
           <LoginForm
-            onSubmit={handleLogin}
-            isLoading={isLoading}
+            emailOrPhone={emailOrPhone}
+            onChangeEmailOrPhone={setEmailOrPhone}
+            password={password}
+            onChangePassword={setPassword}
             error={error?.message}
           />
         </ScrollView>
+
+        <Box
+          className="px-6 pt-3 bg-white"
+          style={{ paddingBottom: Math.max(insets.bottom + 8, 24) }}
+        >
+          <Button
+            onPress={() => handleLogin(emailOrPhone, password)}
+            isDisabled={isLoading}
+            className="w-full bg-primary-700 rounded-2xl"
+            size="xl"
+          >
+            <ButtonText className="text-white font-semibold">
+              {isLoading ? 'Cargando...' : 'Iniciar sesión'}
+            </ButtonText>
+          </Button>
+
+          <Pressable
+            className="mt-4 items-center"
+            onPress={() => router.push('/(auth)/register' as never)}
+          >
+            <Text className="text-sm text-typography-500 text-center">
+              ¿Aún no tienes una cuenta?
+            </Text>
+          </Pressable>
+        </Box>
       </KeyboardAvoidingView>
     </Box>
   );
