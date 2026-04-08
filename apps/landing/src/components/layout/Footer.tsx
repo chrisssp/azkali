@@ -36,7 +36,7 @@ const navLinks = [
   { href: "#como-funciona", label: "Cómo funciona" },
   { href: "#features", label: "Features" },
   { href: "/privacidad", label: "Privacidad" },
-  { href: "#", label: "Términos" },
+  { href: "/terminos", label: "Términos" },
   { href: "#", label: "Contacto" },
 ];
 

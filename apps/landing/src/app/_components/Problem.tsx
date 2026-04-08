@@ -65,15 +65,15 @@ export function Problem() {
             — El problema real —
           </p>
           <h2 className="font-heading font-medium tracking-tighter text-4xl sm:text-5xl md:text-7xl text-zinc-900 leading-[1.1]">
-            El sistema está diseñado
+            El impulso toma decisiones.
             <br />
             <span className="bg-gradient-to-r from-red-500 via-rose-500 to-orange-400 bg-clip-text text-transparent">
-              para que te endeudes.
+              Tú pagas las consecuencias.
             </span>
           </h2>
           <p className="mt-8 text-zinc-500 text-lg md:text-xl max-w-3xl mx-auto tracking-tight font-light leading-relaxed">
-            No es tu culpa. Las apps de compras, los bancos y las MSI están optimizados
-            para que gastes más de lo que deberías. Azkali pone eso en evidencia.
+            La mayoría de las decisiones financieras malas no se toman por falta de dinero,
+            sino en el momento exacto en que el impulso llega antes que el razonamiento. Azkali interviene ahí.
           </p>
         </motion.div>
 

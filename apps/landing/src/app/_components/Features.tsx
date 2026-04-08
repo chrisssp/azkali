@@ -207,20 +207,19 @@ export function Features() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-14"
+          className="flex flex-col sm:flex-row items-center justify-between gap-4 mt-20 pt-10 border-t border-zinc-100"
         >
-          {/* Kali text (not a button) */}
-          <div className="flex items-center gap-2 text-zinc-500 text-sm font-medium">
-            <span className="text-base">🐢</span>
+          {/* Kali text (left) */}
+          <div className="text-zinc-400 text-sm font-light tracking-wide italic">
             Kali aprende de tus hábitos y mejora contigo con el tiempo
           </div>
-          {/* Black CTA */}
+          {/* Black CTA (right) */}
           <a
-            href="/features"
-            className="inline-flex items-center gap-2 bg-zinc-900 text-white px-6 py-2.5 rounded-full text-sm font-semibold hover:bg-zinc-800 transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] shadow-sm"
+            href="/waitlist"
+            className="inline-flex items-center gap-2 bg-zinc-900 theme-transition text-white px-7 py-3 rounded-full text-sm font-semibold hover:bg-zinc-800 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] shadow-md shadow-zinc-900/10"
           >
             Ver todas las características
-            <svg viewBox="0 0 16 16" className="w-3.5 h-3.5 fill-none stroke-current" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <svg viewBox="0 0 16 16" className="w-3.5 h-3.5 fill-none stroke-current" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
               <path d="M3 8h10M9 4l4 4-4 4" />
             </svg>
           </a>

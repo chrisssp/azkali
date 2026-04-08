@@ -50,9 +50,9 @@ export function AIEngine() {
           className="grid grid-cols-1 lg:grid-cols-2 gap-10 mb-20 items-end"
         >
           <div>
-            <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-violet-50 border border-violet-100 text-violet-600 text-xs font-semibold tracking-widest uppercase mb-6">
+            <p className="text-xs font-bold tracking-[0.2em] uppercase text-zinc-400 mb-6">
               Bajo el capó
-            </span>
+            </p>
             <h2 className="font-heading font-medium tracking-tighter text-5xl sm:text-6xl lg:text-7xl text-zinc-900 leading-[1.0]">
               Kali no es
               <br />
@@ -72,7 +72,7 @@ export function AIEngine() {
         </motion.div>
 
         {/* Statement list */}
-        <div className="divide-y divide-zinc-200">
+        <div>
           {pillars.map((pillar, index) => (
             <motion.div
               key={pillar.number}
@@ -80,32 +80,39 @@ export function AIEngine() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-40px" }}
               transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: index * 0.07 }}
-              className="group py-10 grid grid-cols-1 lg:grid-cols-[80px_1fr_1fr] gap-6 lg:gap-10 items-start hover:bg-white/50 transition-colors duration-300 -mx-6 px-6 rounded-2xl"
+              className="group pb-10"
             >
-              {/* Number */}
-              <div className="flex items-center gap-4 lg:block">
-                <span className={`font-heading font-medium text-2xl ${pillar.accent} tabular-nums`}>
-                  {pillar.number}
-                </span>
-                <span className={`lg:hidden inline-flex px-2.5 py-1 rounded-full border text-[10px] font-semibold tracking-widest uppercase ${pillar.tagBg}`}>
-                  {pillar.tag}
-                </span>
+              <div className="pt-10 grid grid-cols-1 lg:grid-cols-[80px_1fr_1fr] gap-6 lg:gap-10 items-start">
+                {/* Number */}
+                <div className="flex items-center gap-4 lg:block">
+                  <span className={`font-heading font-medium text-2xl tabular-nums transition-colors duration-300 group-hover:text-[#006341] ${pillar.accent}`}>
+                    {pillar.number}
+                  </span>
+                  <span className={`lg:hidden text-[10px] font-bold tracking-[0.2em] uppercase text-zinc-400`}>
+                    {pillar.tag}
+                  </span>
+                </div>
+
+                {/* Title */}
+                <div>
+                  <h3 className="font-heading font-medium tracking-tight text-xl sm:text-2xl text-zinc-900 leading-snug">
+                    {pillar.title}
+                  </h3>
+                  <p className="hidden lg:block mt-3 text-[10px] font-bold tracking-[0.2em] uppercase text-zinc-400">
+                    {pillar.tag}
+                  </p>
+                </div>
+
+                {/* Body */}
+                <p className="text-zinc-400 font-light leading-relaxed text-base">
+                  {pillar.body}
+                </p>
               </div>
 
-              {/* Title */}
-              <div>
-                <h3 className="font-heading font-medium tracking-tight text-xl sm:text-2xl text-zinc-900 leading-snug">
-                  {pillar.title}
-                </h3>
-                <span className={`hidden lg:inline-flex mt-3 px-2.5 py-1 rounded-full border text-[10px] font-semibold tracking-widest uppercase ${pillar.tagBg}`}>
-                  {pillar.tag}
-                </span>
+              {/* Animated line */}
+              <div className="mt-10 h-px bg-zinc-200 relative overflow-hidden">
+                <div className="absolute inset-y-0 left-0 w-0 group-hover:w-full bg-[#006341] transition-all duration-500 ease-out" />
               </div>
-
-              {/* Body */}
-              <p className="text-zinc-400 font-light leading-relaxed text-base">
-                {pillar.body}
-              </p>
             </motion.div>
           ))}
         </div>
@@ -116,16 +123,10 @@ export function AIEngine() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
-          className="mt-14 bg-white rounded-[2rem] border border-zinc-100 p-8 lg:p-10 grid grid-cols-1 lg:grid-cols-[auto_1fr] gap-8 items-center"
+          className="mt-14 bg-white rounded-[2rem] border border-zinc-100 p-8 lg:p-10"
         >
-          <div className="flex items-center gap-5">
-            <span className="text-4xl">🐢</span>
-            <div className="lg:hidden">
-              <p className="text-sm font-semibold text-zinc-800">Nota técnica del equipo</p>
-            </div>
-          </div>
           <div>
-            <p className="hidden lg:block text-sm font-semibold text-zinc-800 mb-2">Nota técnica del equipo</p>
+            <p className="text-sm font-semibold text-zinc-800 mb-2">Nota técnica del equipo</p>
             <p className="text-sm text-zinc-400 font-light leading-relaxed max-w-2xl">
               Kali es agnóstica al modelo de lenguaje — funciona con cualquier LLM que soporte JSON Mode
               y system prompting. Para el MVP evaluamos <span className="text-zinc-600 font-medium">Claude Haiku</span> y{" "}

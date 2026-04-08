@@ -200,9 +200,9 @@ export function Hero() {
               className="flex items-center gap-8 mt-12 pt-10 border-t border-zinc-100"
             >
               {[
-                { value: "87%", label: "se arrepiente de compras impulsivas" },
-                { value: "$47K", label: "deuda promedio en tarjeta, jóvenes MX" },
-                { value: "3 de 4", label: "jóvenes sin educación financiera formal" },
+                { value: "87%", label: "se arrepiente de al menos una compra al mes" },
+                { value: "72%", label: "gasta más de lo planeado cuando compra en línea" },
+                { value: "3 de 4", label: "jóvenes sin hábitos financieros establecidos" },
               ].map((stat) => (
                 <div key={stat.label}>
                   <p className="font-heading font-medium tracking-tighter text-2xl text-zinc-900">{stat.value}</p>

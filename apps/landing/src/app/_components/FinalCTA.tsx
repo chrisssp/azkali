@@ -1,21 +1,21 @@
 "use client";
 import { motion } from "framer-motion";
-import { Star } from "lucide-react";
+
 import Image from "next/image";
 
 /* ─── Store Badges ────────────────────────────────────────────────── */
 function AppStoreBadge() {
   return (
     <a
-      href="#"
+      href="/waitlist"
       aria-label="Descargar en App Store"
-      className="inline-flex items-center gap-3.5 bg-white text-gray-900 px-6 py-4 rounded-2xl transition-all duration-300 hover:scale-[1.03] hover:shadow-[0_8px_32px_rgba(0,0,0,0.25)] active:scale-[0.98] group shadow-sm"
+      className="inline-flex items-center gap-3 bg-white text-gray-900 px-6 py-4 rounded-2xl transition-all duration-300 hover:scale-[1.03] hover:shadow-[0_12px_40px_rgba(0,0,0,0.3)] active:scale-[0.98] group shadow-sm flex-1 sm:flex-none border border-white/10"
     >
-      <svg viewBox="0 0 24 24" className="w-6 h-6 fill-gray-900 flex-shrink-0" aria-hidden="true">
-        <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" />
+      <svg viewBox="0 0 384 512" className="w-6 h-6 fill-gray-900 flex-shrink-0" aria-hidden="true">
+        <path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z" />
       </svg>
       <div className="text-left">
-        <p className="text-[10px] text-gray-500 leading-none font-medium uppercase tracking-widest">Próximamente en</p>
+        <p className="text-[10px] text-gray-400 leading-none font-medium uppercase tracking-[0.1em]">Próximamente en</p>
         <p className="text-sm font-bold leading-tight mt-1 tracking-tight">App Store</p>
       </div>
     </a>
@@ -25,15 +25,15 @@ function AppStoreBadge() {
 function PlayStoreBadge() {
   return (
     <a
-      href="#"
+      href="/waitlist"
       aria-label="Descargar en Google Play"
-      className="inline-flex items-center gap-3.5 bg-white/[0.10] hover:bg-white/[0.18] border border-white/[0.18] text-white px-6 py-4 rounded-2xl transition-all duration-300 hover:scale-[1.03] active:scale-[0.98] group backdrop-blur-sm"
+      className="inline-flex items-center gap-3 bg-white text-gray-900 px-6 py-4 rounded-2xl transition-all duration-300 hover:scale-[1.03] hover:shadow-[0_12px_40px_rgba(0,0,0,0.3)] active:scale-[0.98] group shadow-sm flex-1 sm:flex-none border border-white/10"
     >
-      <svg viewBox="0 0 24 24" className="w-6 h-6 flex-shrink-0" aria-hidden="true">
-        <path d="M3.18 23.76a2.1 2.1 0 0 1-.96-1.84V2.08C2.22 1.38 2.64.85 3.18.24l.1-.1L14.47 12l-11.2 11.86-.09-.1zm15.15-8.77-2.55-1.47-2.88 2.88 2.88 2.88 2.57-1.5a2.12 2.12 0 0 0 0-3.79zM4.34 1.12 15.6 12.4l-2.88 2.88L4.34 1.12z" fill="white" />
+      <svg viewBox="0 0 512 512" className="w-6 h-6 fill-gray-900 flex-shrink-0" aria-hidden="true">
+        <path d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z" />
       </svg>
       <div className="text-left">
-        <p className="text-[10px] text-white/50 leading-none font-medium uppercase tracking-widest">Próximamente en</p>
+        <p className="text-[10px] text-gray-400 leading-none font-medium uppercase tracking-[0.1em]">Próximamente en</p>
         <p className="text-sm font-bold leading-tight mt-1 tracking-tight">Google Play</p>
       </div>
     </a>
@@ -50,21 +50,16 @@ export function FinalCTA() {
       aria-label="Descarga Azkali"
     >
       {/* ── Background layers ── */}
-      {/* Deep orb — top center, richest light source */}
       <div className="absolute top-[-30%] left-1/2 -translate-x-1/2 w-[1000px] h-[700px] rounded-full pointer-events-none"
         style={{ background: "radial-gradient(ellipse at center, rgba(15,110,86,0.55) 0%, transparent 70%)" }}
       />
-      {/* Secondary orb bottom-right */}
       <div className="absolute bottom-[-20%] right-[-5%] w-[500px] h-[500px] rounded-full pointer-events-none"
         style={{ background: "radial-gradient(ellipse at center, rgba(52,211,153,0.12) 0%, transparent 70%)" }}
       />
-      {/* Tertiary accent — left */}
       <div className="absolute top-[40%] left-[-10%] w-[400px] h-[400px] rounded-full pointer-events-none"
         style={{ background: "radial-gradient(ellipse at center, rgba(6,78,59,0.6) 0%, transparent 70%)" }}
       />
-      {/* Fine dot grid */}
       <div className="absolute inset-0 bg-[radial-gradient(rgba(255,255,255,0.04)_1px,transparent_1px)] [background-size:28px_28px] pointer-events-none" />
-      {/* Subtle top edge shine */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-emerald-400/30 to-transparent" />
 
       {/* ── Content ── */}
@@ -113,12 +108,11 @@ export function FinalCTA() {
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
           className="font-heading font-medium tracking-tighter text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white leading-[1.1] mb-6"
         >
-          ¿Listo para dejar de<br className="hidden sm:block" />
-          {" "}regalarle tu{" "}
+          ¿Listo para que tu{" "}
           <span className="relative inline-block">
             <span className="bg-gradient-to-r from-emerald-300 to-emerald-400 bg-clip-text text-transparent">quincena</span>
           </span>
-          {" "}al banco?
+          {" "}llegue más lejos?
         </motion.h2>
 
         {/* Subtext */}
@@ -129,7 +123,7 @@ export function FinalCTA() {
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.16 }}
           className="text-white/55 text-lg md:text-xl mb-14 font-light leading-relaxed max-w-xl mx-auto tracking-tight"
         >
-          Descarga Azkali. Es gratis, es tuya y Kali no te va a juzgar.
+          Descarga Azkali. Es gratis, es tuya, y Kali te acompaña a tomar mejores decisiones — una compra a la vez.
         </motion.p>
 
         {/* Store badges */}
@@ -161,7 +155,6 @@ export function FinalCTA() {
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.32 }}
           className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-5"
         >
-          {/* Avatars + users */}
           <div className="inline-flex items-center gap-3 bg-white/[0.06] border border-white/[0.10] rounded-full px-5 py-2.5">
             <div className="flex -space-x-2">
               {[
@@ -176,20 +169,14 @@ export function FinalCTA() {
                 </div>
               ))}
             </div>
-            <span className="text-white/60 text-sm font-light">+10,000 usuarios te esperan</span>
+            <span className="text-white/60 text-sm font-light">+2,400 ya en la lista</span>
           </div>
 
-          {/* Rating */}
           <div className="inline-flex items-center gap-2 bg-white/[0.06] border border-white/[0.10] rounded-full px-5 py-2.5">
-            <div className="flex">
-              {[1,2,3,4,5].map(i => (
-                <Star key={i} size={11} className="fill-amber-400 text-amber-400" />
-              ))}
-            </div>
-            <span className="text-white/70 text-sm font-medium tracking-tight">4.8 · App Store</span>
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+            <span className="text-white/70 text-sm font-light tracking-tight">Lanzamiento próximo</span>
           </div>
 
-          {/* Respaldo */}
           <div className="inline-flex items-center gap-2 bg-white/[0.06] border border-white/[0.10] rounded-full px-5 py-2.5">
             <span className="text-white/35 text-[10px] font-medium uppercase tracking-widest">Respaldada por</span>
             <span className="text-white/75 text-sm font-semibold tracking-tight">Banco Azteca</span>

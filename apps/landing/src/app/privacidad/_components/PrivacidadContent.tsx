@@ -124,10 +124,10 @@ export function PrivacidadContent() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-40px" }}
                 transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: i * 0.04 }}
-                className="border-b border-zinc-100 pb-12 last:border-0"
+                className="group pb-12"
               >
                 <div className="flex items-start gap-4">
-                  <span className="font-heading text-sm font-medium text-zinc-300 tabular-nums mt-1 w-6 flex-shrink-0">
+                  <span className="font-heading text-sm font-medium text-zinc-300 group-hover:text-[#006341] tabular-nums mt-1 w-6 flex-shrink-0 transition-colors duration-300">
                     {String(i + 1).padStart(2, "0")}
                   </span>
                   <div>
@@ -138,6 +138,9 @@ export function PrivacidadContent() {
                       {section.content}
                     </p>
                   </div>
+                </div>
+                <div className="mt-10 h-px bg-zinc-100 relative overflow-hidden">
+                  <div className="absolute inset-y-0 left-0 w-0 group-hover:w-full bg-[#006341] transition-all duration-500 ease-out" />
                 </div>
               </motion.div>
             ))}

@@ -1,5 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 export function FeaturesCTA() {
   return (
@@ -10,9 +11,15 @@ export function FeaturesCTA() {
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="mb-6"
+          className="mb-6 flex justify-center"
         >
-          <span className="text-5xl">🐢</span>
+          <Image
+            src="/azkali_logo.png"
+            alt="Kali"
+            width={96}
+            height={96}
+            className="w-24 h-24 object-contain"
+          />
         </motion.div>
 
         <motion.h2
@@ -48,7 +55,7 @@ export function FeaturesCTA() {
           className="flex flex-col sm:flex-row gap-3 justify-center"
         >
           <a
-            href="/#descargar"
+            href="/waitlist"
             className="inline-flex items-center justify-center bg-[#006341] text-white px-8 py-3.5 rounded-full font-semibold text-sm hover:bg-[#003930] transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] shadow-md shadow-[#006341]/20"
           >
             Descarga gratis

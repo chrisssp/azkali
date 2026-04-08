@@ -12,10 +12,9 @@ export function RoadmapFeatures() {
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="mb-14 md:mb-16"
         >
-          <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-zinc-100 border border-zinc-200 text-zinc-500 text-xs font-semibold tracking-widest uppercase mb-5">
-            <span className="w-1.5 h-1.5 rounded-full bg-zinc-400" />
+          <p className="text-xs font-bold tracking-[0.2em] uppercase text-zinc-400 mb-5">
             Post-MVP — En desarrollo
-          </span>
+          </p>
           <h2 className="font-heading font-medium tracking-tighter text-4xl sm:text-5xl text-zinc-900 leading-tight max-w-2xl">
             El futuro de Azkali.
           </h2>

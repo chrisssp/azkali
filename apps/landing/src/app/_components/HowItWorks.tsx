@@ -261,10 +261,10 @@ export function HowItWorks() {
           className="text-center mt-20"
         >
           <a
-            href="#descargar"
-            className="inline-flex items-center gap-3 bg-gray-900 text-white px-8 py-4 rounded-full font-medium text-base hover:bg-gray-700 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] shadow-sm group"
+            href="/waitlist"
+            className="inline-flex items-center gap-3 bg-zinc-900 text-white px-8 py-4 rounded-full font-medium text-base hover:bg-zinc-800 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] shadow-sm group"
           >
-            Prueba el simulador gratis
+            Quiero ser el primero en usarlo
             <ArrowRight size={18} strokeWidth={1.5} className="group-hover:translate-x-1 transition-transform" />
           </a>
         </motion.div>
