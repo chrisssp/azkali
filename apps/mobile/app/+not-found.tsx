@@ -1,7 +1,7 @@
-import { Link } from 'expo-router';
-import { Box } from '@/components/ui/box';
-import { Text } from '@/components/ui/text';
-import { Button, ButtonText } from '@/components/ui/button';
+import { Box } from "@/components/ui/box";
+import { Button, ButtonText } from "@/components/ui/button";
+import { Text } from "@/components/ui/text";
+import { Link } from "expo-router";
 
 export default function NotFoundScreen() {
   return (

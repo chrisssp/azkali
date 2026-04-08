@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(\"/c/Program Files/nodejs/node_modules/corepack/shims/nodewin/pnpm.cmd\" add framer-motion lucide-react)",
+      "Bash(node \"/c/Program Files/nodejs/node_modules/corepack/dist/pnpm.js\" add framer-motion lucide-react)"
+    ]
+  }
+}
