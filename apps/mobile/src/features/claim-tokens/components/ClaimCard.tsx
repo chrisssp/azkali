@@ -1,108 +1,73 @@
 import React from 'react';
 import { Box } from '@/components/ui/box';
-import { Button, ButtonText } from '@/components/ui/button';
 import { Text } from '@/components/ui/text';
 import { VStack } from '@/components/ui/vstack';
 import { HStack } from '@/components/ui/hstack';
-import { Card } from '@/components/ui/card';
-import type { ClaimCardProps } from '../types';
+import { Button, ButtonText } from '@/components/ui/button';
+import { FontAwesome5 } from '@expo/vector-icons'; 
 
-const getReasonColor = (reason: string) => {
-  switch (reason) {
-    case 'streak':
-      return {
-        bg: 'bg-warning-50',
-        text: 'text-warning-800',
-      };
-    case 'welcome':
-      return {
-        bg: 'bg-success-50',
-        text: 'text-success-800',
-      };
-    case 'referral':
-      return {
-        bg: 'bg-info-50',
-        text: 'text-info-800',
-      };
-    case 'bonus':
-      return {
-        bg: 'bg-secondary-50',
-        text: 'text-secondary-800',
-      };
-    case 'milestone':
-      return {
-        bg: 'bg-primary-50',
-        text: 'text-primary-800',
-      };
-    default:
-      return {
-        bg: 'bg-background-50',
-        text: 'text-background-800',
-      };
-  }
-};
-
-const getReasonLabel = (reason: string) => {
-  switch (reason) {
-    case 'streak':
-      return 'RACHA';
-    case 'welcome':
-      return 'BIENVENIDA';
-    case 'referral':
-      return 'REFERRAL';
-    case 'bonus':
-      return 'BONUS';
-    case 'milestone':
-      return 'HITO';
-    default:
-      return reason.toUpperCase();
-  }
-};
+// Ajusta la interfaz según las propiedades reales de tu objeto "token"
+interface ClaimCardProps {
+  token: {
+    id: string;
+    amount: number;
+    category: string; // ej. "RACHA" o "BIENVENIDA"
+    description: string;
+  };
+  onClaim: (id: string) => Promise<void>;
+  isLoading: boolean;
+}
 
 export const ClaimCard: React.FC<ClaimCardProps> = ({ token, onClaim, isLoading }) => {
+  // Le damos color dinámico al badge para que se vea igual de pulido que las recompensas
+  const isRacha = token.category?.toUpperCase() === 'RACHA';
+  const badgeBg = isRacha ? 'bg-error-50' : 'bg-success-50'; // Fondo pastel
+  const badgeText = isRacha ? 'text-error-800' : 'text-success-800'; // Texto oscuro
+  const iconColor = isRacha ? '#E85562' : '#006341'; // Icono rojo para racha, verde corporativo para otros
+
   const handleClaim = async () => {
-    try {
-      await onClaim(token.id);
-    } catch (error) {
-      console.error('Error claiming token:', error);
-    }
+    await onClaim(token.id);
   };
 
-  const colors = getReasonColor(token.reason);
-
   return (
-    <Card className="bg-white rounded-2xl shadow-soft-2 border border-outline-100">
+    <Box className="bg-white rounded-2xl shadow-soft-2 border border-outline-100 overflow-hidden">
       <VStack space="md" className="p-6">
-        {/* Amount */}
-        <Text className="text-4xl font-extrablack text-primary-700">
-          +{token.amount}
-        </Text>
+        
+        {/* Fila superior: Ícono + Cantidad (Armonía con RewardCard) */}
+        <HStack space="md" className="items-center">
+          <FontAwesome5 name={isRacha ? "fire" : "star"} size={20} color={iconColor} />
+          <Text className="text-lg font-bold text-primary-900 flex-1">
+            +{token.amount} Tokens
+          </Text>
+        </HStack>
 
-        {/* Reason Badge */}
-        <Box className={`${colors.bg} ${colors.text} rounded-md self-start px-2 py-1`}>
-          <Text className="text-2xs font-bold uppercase tracking-wider">
-            {getReasonLabel(token.reason)}
+        {/* Badge de Categoría */}
+        <Box className={`${badgeBg} self-start rounded-md px-2 py-1`}>
+          <Text className={`text-2xs font-bold uppercase tracking-wider ${badgeText}`}>
+            {token.category || 'RECOMPENSA'}
           </Text>
         </Box>
 
-        {/* Description */}
+        {/* Descripción */}
         <Text className="text-sm text-typography-500">
           {token.description}
         </Text>
 
-        {/* Claim Button - Right aligned */}
-        <HStack className="justify-end mt-2">
+        {/* Fila inferior: Texto de ayuda y Botón oscuro */}
+        <HStack className="justify-between items-center mt-2">
+          <Text className="text-xs text-typography-400">Toca para reclamar</Text>
           <Button
-            className="bg-primary-500 rounded-full shadow-hard-5 px-8 py-2"
-            disabled={isLoading}
+            className="bg-primary-900 rounded-lg shadow-hard-5 px-8 py-2"
             onPress={handleClaim}
+            disabled={isLoading}
           >
-            <ButtonText className="text-typography-white font-bold">
-              {isLoading ? 'Canjeando...' : 'Canjear'}
+            <ButtonText className="text-typography-white font-bold text-sm">
+              {isLoading ? 'Cargando...' : 'Canjear'}
             </ButtonText>
           </Button>
         </HStack>
+
       </VStack>
-    </Card>
+    </Box>
   );
 };

@@ -21,35 +21,38 @@ export function ChatScreen() {
   } = useChatMessages();
 
   return (
-    <KeyboardAvoidingView
-      behavior={Platform.OS === 'ios' ? 'padding' : undefined}
-      className="flex-1 bg-background-light"
-    >
-      <ChatHeader />
+    <Box className="flex-1 bg-background-light">
+      {/* ¡Aquí faltaba llamar al Header! Lo ponemos en modo 'chat' */}
+      <ChatHeader mode="chat" />
 
-      {messages.length === 0 ? (
-        <Box className="flex-1 bg-background-light">
-          <WelcomeMessage />
-          <QuickActions
-            actions={quickActions}
-            onActionPress={handleQuickAction}
+      <KeyboardAvoidingView
+        behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+        className="flex-1 bg-background-light"
+      >
+        {messages.length === 0 ? (
+          <Box className="flex-1 bg-background-light">
+            <WelcomeMessage />
+            <QuickActions
+              actions={quickActions}
+              onActionPress={handleQuickAction}
+            />
+          </Box>
+        ) : (
+          <FlatList
+            data={messages}
+            renderItem={({ item }) => <MessageBubble message={item} />}
+            keyExtractor={(item) => item.id}
+            contentContainerStyle={{ paddingHorizontal: 16, paddingVertical: 12 }}
+            inverted
           />
-        </Box>
-      ) : (
-        <FlatList
-          data={messages}
-          renderItem={({ item }) => <MessageBubble message={item} />}
-          keyExtractor={(item) => item.id}
-          contentContainerStyle={{ paddingHorizontal: 16, paddingVertical: 12 }}
-          inverted
-        />
-      )}
+        )}
 
-      <MessageInput
-        value={inputValue}
-        onChangeText={setInputValue}
-        onSend={sendMessage}
-      />
-    </KeyboardAvoidingView>
+        <MessageInput
+          value={inputValue}
+          onChangeText={setInputValue}
+          onSend={sendMessage}
+        />
+      </KeyboardAvoidingView>
+    </Box>
   );
 }
