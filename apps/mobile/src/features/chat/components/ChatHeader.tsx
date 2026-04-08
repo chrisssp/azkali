@@ -13,13 +13,13 @@ export function ChatHeader({ userName = 'Usuario' }: ChatHeaderProps) {
   const router = useRouter();
 
   return (
-    <Box className="flex-row items-center justify-between px-6 py-4 bg-white border-b border-gray-200">
+    <Box className="flex-row items-center justify-between px-6 py-4 bg-primary-700 border-b border-primary-800">
       <Box>
-        <Text className="text-xl font-bold text-primary-700">Kali</Text>
-        <Text className="text-xs text-gray-500">Asistente IA</Text>
+        <Text className="text-xl font-bold text-white">Kali</Text>
+        <Text className="text-xs text-primary-100">Asistente IA</Text>
       </Box>
       <Pressable onPress={() => router.push('/(tabs)/settings')}>
-        <Ionicons name="settings-outline" size={24} color="#374151" />
+        <Ionicons name="settings-outline" size={24} color="#FFFFFF" />
       </Pressable>
     </Box>
   );
