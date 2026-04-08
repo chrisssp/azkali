@@ -35,7 +35,7 @@ export function WelcomeScreen() {
           size="xl"
           variant="outline"
           className="w-full border-black rounded-2xl bg-transparent"
-          onPress={() => router.replace('/(tabs)')}
+          onPress={() => router.push('/(auth)/register')}
         >
           <ButtonText className="text-black font-semibold text-base">
             Continuar sin conectarse
