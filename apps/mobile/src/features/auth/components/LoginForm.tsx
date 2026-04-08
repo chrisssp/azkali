@@ -1,8 +1,6 @@
-import React, { useState } from 'react';
-import { useRouter } from 'expo-router';
+import React, { useRef } from 'react';
 import { Box } from '@/components/ui/box';
 import { Text } from '@/components/ui/text';
-import { Button, ButtonText } from '@/components/ui/button';
 import { VStack } from '@/components/ui/vstack';
 import { Input, InputField } from '@/components/ui/input';
 import {
@@ -13,22 +11,26 @@ import {
 import { Pressable } from '@/components/ui/pressable';
 
 interface LoginFormProps {
-  onSubmit: (emailOrPhone: string, password: string) => void;
-  isLoading?: boolean;
+  emailOrPhone: string;
+  onChangeEmailOrPhone: (value: string) => void;
+  password: string;
+  onChangePassword: (value: string) => void;
   error?: string | null;
+  onSubmit?: () => void;
 }
 
 export const LoginForm: React.FC<LoginFormProps> = ({
-  onSubmit,
-  isLoading = false,
+  emailOrPhone,
+  onChangeEmailOrPhone,
+  password,
+  onChangePassword,
   error,
+  onSubmit,
 }) => {
-  const router = useRouter();
-  const [emailOrPhone, setEmailOrPhone] = useState('');
-  const [password, setPassword] = useState('');
+  const passwordRef = useRef<any>(null);
 
   return (
-    <VStack className="flex-1 px-6 pt-8" space="md">
+    <VStack className="px-6 pt-8" space="md">
       <Text className="text-3xl font-bold text-primary-700 mb-4">
         Bienvenido de vuelta
       </Text>
@@ -39,12 +41,15 @@ export const LoginForm: React.FC<LoginFormProps> = ({
             Correo o número
           </FormControlLabelText>
         </FormControlLabel>
-        <Input variant="outline" size="lg" className="rounded-xl mt-1">
+        <Input variant="outline" size="xl" className="rounded-xl mt-1">
           <InputField
             value={emailOrPhone}
-            onChangeText={setEmailOrPhone}
+            onChangeText={onChangeEmailOrPhone}
             autoCapitalize="none"
             keyboardType="email-address"
+            returnKeyType="next"
+            blurOnSubmit={false}
+            onSubmitEditing={() => passwordRef.current?.focus()}
           />
         </Input>
       </FormControl>
@@ -55,11 +60,14 @@ export const LoginForm: React.FC<LoginFormProps> = ({
             Contraseña
           </FormControlLabelText>
         </FormControlLabel>
-        <Input variant="outline" size="lg" className="rounded-xl mt-1">
+        <Input variant="outline" size="xl" className="rounded-xl mt-1">
           <InputField
+            ref={passwordRef}
             value={password}
-            onChangeText={setPassword}
+            onChangeText={onChangePassword}
             secureTextEntry
+            returnKeyType="done"
+            onSubmitEditing={onSubmit}
           />
         </Input>
         <Pressable className="mt-2 self-start">
@@ -74,25 +82,6 @@ export const LoginForm: React.FC<LoginFormProps> = ({
           <Text className="text-error-700 text-sm">{error}</Text>
         </Box>
       )}
-
-      <Button
-        onPress={() => onSubmit(emailOrPhone, password)}
-        isDisabled={isLoading}
-        className="w-full bg-primary-700 rounded-2xl mt-4"
-        size="xl"
-      >
-        <ButtonText className="text-white font-semibold">
-          {isLoading ? 'Cargando...' : 'Iniciar sesión'}
-        </ButtonText>
-      </Button>
-
-      <Box className="flex-1 justify-end items-center pb-8 pt-4">
-        <Pressable onPress={() => router.push('/signup' as never)}>
-          <Text className="text-sm text-typography-500 text-center">
-            ¿Aún no tienes una cuenta?
-          </Text>
-        </Pressable>
-      </Box>
     </VStack>
   );
 };

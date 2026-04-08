@@ -30,7 +30,7 @@ const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('window');
 // Mirror AnimatedHero constants exactly so the morph starts flush
 const WELCOME_HERO_HEIGHT = SCREEN_HEIGHT * 0.48;
 const WELCOME_CURVE_DEPTH = 40;
-const REGISTER_HEADER_HEIGHT = 130;
+const REGISTER_HEADER_HEIGHT = 90;
 const SVG_CANVAS_HEIGHT = WELCOME_HERO_HEIGHT + WELCOME_CURVE_DEPTH * 2;
 
 const SPRING = { damping: 26, stiffness: 130, mass: 1 };
@@ -65,6 +65,12 @@ export function RegisterLayout({
   const contentOpacity = useSharedValue(0);
 
   useEffect(() => {
+    // Explicitly reset to the starting position on every mount so that
+    // re-visits always animate correctly regardless of stale Reanimated state.
+    bandHeight.value = WELCOME_HERO_HEIGHT;
+    curveDepth.value = WELCOME_CURVE_DEPTH * 2;
+    contentOpacity.value = 0;
+
     bandHeight.value = withSpring(REGISTER_HEADER_HEIGHT, SPRING);
     curveDepth.value = withSpring(0, SPRING);
     contentOpacity.value = withDelay(
@@ -107,7 +113,7 @@ export function RegisterLayout({
         </Svg>
 
         <Animated.View
-          className="absolute top-0 left-0 right-0 px-5"
+          className="absolute top-0 left-0 right-0 px-5 flex-row items-center"
           style={[
             { paddingTop: insets.top + 10 },
             headerContentStyle,
@@ -119,7 +125,7 @@ export function RegisterLayout({
           >
             <ArrowLeft color="#fff" size={22} />
           </Pressable>
-          <Text className="text-2xl font-bold text-white mt-3">{title}</Text>
+          <Text className="text-2xl font-bold text-white ml-3">{title}</Text>
         </Animated.View>
       </Animated.View>
 

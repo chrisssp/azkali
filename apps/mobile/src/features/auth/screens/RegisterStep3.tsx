@@ -210,7 +210,7 @@ export function RegisterStep3({ form }: RegisterStepProps) {
           rules={{ required: 'La fecha de nacimiento es obligatoria' }}
           render={({ field: { onChange, value } }) => (
             <>
-              <Input variant="outline" size="lg" className="rounded-xl mt-1">
+              <Input variant="outline" size="xl" className="rounded-xl mt-1">
                 <InputField
                   value={value}
                   editable={false}
@@ -257,7 +257,7 @@ export function RegisterStep3({ form }: RegisterStepProps) {
           rules={{ required: 'Selecciona una opción' }}
           render={({ field: { onChange, value } }) => (
             <Select onValueChange={onChange} selectedValue={value}>
-              <SelectTrigger variant="outline" size="lg" className="rounded-xl mt-1">
+              <SelectTrigger variant="outline" size="xl" className="rounded-xl mt-1">
                 <SelectInput placeholder="Selecciona..." />
                 <SelectIcon className="mr-3" as={ChevronDownIcon} />
               </SelectTrigger>

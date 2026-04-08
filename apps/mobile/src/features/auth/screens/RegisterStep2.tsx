@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { Controller } from 'react-hook-form';
 import { Eye, EyeOff } from 'lucide-react-native';
 import { VStack } from '@/components/ui/vstack';
@@ -23,6 +23,9 @@ export function RegisterStep2({ form }: RegisterStepProps) {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
 
+  const passwordRef = useRef<any>(null);
+  const confirmRef = useRef<any>(null);
+
   const passwordValue = watch('password');
 
   return (
@@ -39,7 +42,7 @@ export function RegisterStep2({ form }: RegisterStepProps) {
           name="emailOrPhone"
           rules={{ required: 'El correo es obligatorio' }}
           render={({ field: { onChange, onBlur, value } }) => (
-            <Input variant="outline" size="lg" className="rounded-xl mt-1">
+            <Input variant="outline" size="xl" className="rounded-xl mt-1">
               <InputField
                 value={value}
                 onChangeText={onChange}
@@ -47,6 +50,9 @@ export function RegisterStep2({ form }: RegisterStepProps) {
                 placeholder="correo@ejemplo.com"
                 autoCapitalize="none"
                 keyboardType="email-address"
+                returnKeyType="next"
+                blurOnSubmit={false}
+                onSubmitEditing={() => passwordRef.current?.focus()}
               />
             </Input>
           )}
@@ -73,13 +79,17 @@ export function RegisterStep2({ form }: RegisterStepProps) {
             minLength: { value: 8, message: 'Mínimo 8 caracteres' },
           }}
           render={({ field: { onChange, onBlur, value } }) => (
-            <Input variant="outline" size="lg" className="rounded-xl mt-1">
+            <Input variant="outline" size="xl" className="rounded-xl mt-1">
               <InputField
+                ref={passwordRef}
                 value={value}
                 onChangeText={onChange}
                 onBlur={onBlur}
                 placeholder="Mínimo 8 caracteres"
                 secureTextEntry={!showPassword}
+                returnKeyType="next"
+                blurOnSubmit={false}
+                onSubmitEditing={() => confirmRef.current?.focus()}
               />
               <InputSlot className="pr-3" onPress={() => setShowPassword((v) => !v)}>
                 <InputIcon
@@ -113,13 +123,15 @@ export function RegisterStep2({ form }: RegisterStepProps) {
               val === passwordValue || 'Las contraseñas no coinciden',
           }}
           render={({ field: { onChange, onBlur, value } }) => (
-            <Input variant="outline" size="lg" className="rounded-xl mt-1">
+            <Input variant="outline" size="xl" className="rounded-xl mt-1">
               <InputField
+                ref={confirmRef}
                 value={value}
                 onChangeText={onChange}
                 onBlur={onBlur}
                 placeholder="Repite tu contraseña"
                 secureTextEntry={!showConfirm}
+                returnKeyType="done"
               />
               <InputSlot className="pr-3" onPress={() => setShowConfirm((v) => !v)}>
                 <InputIcon

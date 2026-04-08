@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { Controller } from 'react-hook-form';
 import { VStack } from '@/components/ui/vstack';
 import { Text } from '@/components/ui/text';
@@ -17,6 +17,9 @@ export function RegisterStep1({ form }: RegisterStepProps) {
     control,
     formState: { errors },
   } = form;
+
+  const paternalRef = useRef<any>(null);
+  const maternalRef = useRef<any>(null);
 
   return (
     <VStack space="md">
@@ -38,13 +41,16 @@ export function RegisterStep1({ form }: RegisterStepProps) {
           name="firstName"
           rules={{ required: 'El nombre es obligatorio' }}
           render={({ field: { onChange, onBlur, value } }) => (
-            <Input variant="outline" size="lg" className="rounded-xl mt-1">
+            <Input variant="outline" size="xl" className="rounded-xl mt-1">
               <InputField
                 value={value}
                 onChangeText={onChange}
                 onBlur={onBlur}
                 placeholder="Tu nombre"
                 autoCapitalize="words"
+                returnKeyType="next"
+                blurOnSubmit={false}
+                onSubmitEditing={() => paternalRef.current?.focus()}
               />
             </Input>
           )}
@@ -68,13 +74,17 @@ export function RegisterStep1({ form }: RegisterStepProps) {
           name="paternalLastName"
           rules={{ required: 'El apellido paterno es obligatorio' }}
           render={({ field: { onChange, onBlur, value } }) => (
-            <Input variant="outline" size="lg" className="rounded-xl mt-1">
+            <Input variant="outline" size="xl" className="rounded-xl mt-1">
               <InputField
+                ref={paternalRef}
                 value={value}
                 onChangeText={onChange}
                 onBlur={onBlur}
                 placeholder="Apellido paterno"
                 autoCapitalize="words"
+                returnKeyType="next"
+                blurOnSubmit={false}
+                onSubmitEditing={() => maternalRef.current?.focus()}
               />
             </Input>
           )}
@@ -100,13 +110,15 @@ export function RegisterStep1({ form }: RegisterStepProps) {
           name="maternalLastName"
           rules={{ required: 'El apellido materno es obligatorio' }}
           render={({ field: { onChange, onBlur, value } }) => (
-            <Input variant="outline" size="lg" className="rounded-xl mt-1">
+            <Input variant="outline" size="xl" className="rounded-xl mt-1">
               <InputField
+                ref={maternalRef}
                 value={value}
                 onChangeText={onChange}
                 onBlur={onBlur}
                 placeholder="Apellido materno"
                 autoCapitalize="words"
+                returnKeyType="done"
               />
             </Input>
           )}
