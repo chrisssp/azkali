@@ -27,24 +27,24 @@ export function RegisterStep2({ form }: RegisterStepProps) {
 
   return (
     <VStack space="md">
-      {/* Correo o número */}
+      {/* Correo */}
       <FormControl isInvalid={!!errors.emailOrPhone}>
         <FormControlLabel>
           <FormControlLabelText className="text-sm font-medium text-typography-700">
-            Correo o número
+            Correo
           </FormControlLabelText>
         </FormControlLabel>
         <Controller
           control={control}
           name="emailOrPhone"
-          rules={{ required: 'El correo o número es obligatorio' }}
+          rules={{ required: 'El correo es obligatorio' }}
           render={({ field: { onChange, onBlur, value } }) => (
             <Input variant="outline" size="lg" className="rounded-xl mt-1">
               <InputField
                 value={value}
                 onChangeText={onChange}
                 onBlur={onBlur}
-                placeholder="correo@ejemplo.com o 55 1234 5678"
+                placeholder="correo@ejemplo.com"
                 autoCapitalize="none"
                 keyboardType="email-address"
               />

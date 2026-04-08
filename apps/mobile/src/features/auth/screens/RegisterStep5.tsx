@@ -1,6 +1,7 @@
 import React from 'react';
 import { Controller } from 'react-hook-form';
 import { View } from 'react-native';
+import { Home, Plane, Shield, TrendingUp, type LucideIcon } from 'lucide-react-native';
 import { VStack } from '@/components/ui/vstack';
 import { Text } from '@/components/ui/text';
 import { Pressable } from '@/components/ui/pressable';
@@ -11,42 +12,42 @@ import {
 } from '@/components/ui/form-control';
 import type { RegisterStepProps } from '../types';
 
-const GOALS = [
+const GOALS: { value: string; label: string; icon: LucideIcon; description: string }[] = [
   {
     value: 'libertad_financiera',
     label: 'Libertad financiera',
-    emoji: '🚀',
+    icon: TrendingUp,
     description: 'Alcanzar independencia económica total',
   },
   {
     value: 'fondo_emergencia',
     label: 'Fondo de emergencia',
-    emoji: '🛡️',
+    icon: Shield,
     description: 'Tener un colchón para imprevistos',
   },
   {
     value: 'grandes_adquisiciones',
     label: 'Grandes adquisiciones',
-    emoji: '🏠',
+    icon: Home,
     description: 'Ahorrar para una compra importante',
   },
   {
     value: 'experiencias',
     label: 'Experiencias y estilo de vida',
-    emoji: '✈️',
+    icon: Plane,
     description: 'Viajes, cultura y vivir el presente',
   },
 ];
 
 interface GoalCardProps {
   label: string;
-  emoji: string;
+  icon: LucideIcon;
   description: string;
   isSelected: boolean;
   onPress: () => void;
 }
 
-function GoalCard({ label, emoji, description, isSelected, onPress }: GoalCardProps) {
+function GoalCard({ label, icon: IconComponent, description, isSelected, onPress }: GoalCardProps) {
   return (
     <Pressable
       onPress={onPress}
@@ -60,16 +61,16 @@ function GoalCard({ label, emoji, description, isSelected, onPress }: GoalCardPr
         alignItems: 'center',
         minHeight: 130,
         justifyContent: 'center',
+        gap: 8,
       }}
     >
-      <Text style={{ fontSize: 28, marginBottom: 8 }}>{emoji}</Text>
+      <IconComponent size={28} color={isSelected ? '#000' : '#6B7280'} strokeWidth={1.5} />
       <Text
         style={{
           fontSize: 13,
           fontWeight: isSelected ? '700' : '600',
           color: '#111',
           textAlign: 'center',
-          marginBottom: 4,
         }}
       >
         {label}
@@ -127,7 +128,7 @@ export function RegisterStep5({ form }: RegisterStepProps) {
                     <GoalCard
                       key={goal.value}
                       label={goal.label}
-                      emoji={goal.emoji}
+                      icon={goal.icon}
                       description={goal.description}
                       isSelected={selected.includes(goal.value)}
                       onPress={() => toggle(goal.value)}
@@ -140,7 +141,7 @@ export function RegisterStep5({ form }: RegisterStepProps) {
                     <GoalCard
                       key={goal.value}
                       label={goal.label}
-                      emoji={goal.emoji}
+                      icon={goal.icon}
                       description={goal.description}
                       isSelected={selected.includes(goal.value)}
                       onPress={() => toggle(goal.value)}
