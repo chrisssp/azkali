@@ -178,7 +178,7 @@ export function Hero() {
               className="flex flex-col sm:flex-row gap-3"
             >
               <a
-                href="#descargar"
+                href="/waitlist"
                 className="inline-flex items-center justify-center bg-[#006341] text-white px-7 py-3.5 rounded-full font-semibold text-sm hover:bg-[#003930] transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] shadow-md shadow-[#006341]/20"
               >
                 Descarga gratis

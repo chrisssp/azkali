@@ -35,7 +35,7 @@ import Image from "next/image";
 const navLinks = [
   { href: "#como-funciona", label: "Cómo funciona" },
   { href: "#features", label: "Features" },
-  { href: "#", label: "Privacidad" },
+  { href: "/privacidad", label: "Privacidad" },
   { href: "#", label: "Términos" },
   { href: "#", label: "Contacto" },
 ];
@@ -79,9 +79,10 @@ export function Footer() {
               <Image
                 src="/banco_azteca_logo.png"
                 alt="Banco Azteca"
-                width={72}
-                height={20}
-                className="h-4 w-auto object-contain brightness-0 invert opacity-60"
+                width={144}
+                height={40}
+                quality={100}
+                className="h-4 w-auto object-contain brightness-0 invert opacity-90"
               />
             </div>
           </div>
@@ -145,8 +146,9 @@ export function Footer() {
             <Image
               src="/grupo_salinas_logo.png"
               alt="Grupo Salinas"
-              width={100}
-              height={24}
+              width={200}
+              height={48}
+              quality={100}
               className="h-4 w-auto object-contain brightness-0 invert opacity-30"
             />
           </div>

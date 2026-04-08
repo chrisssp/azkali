@@ -1,11 +1,11 @@
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
-import { Hero } from "@/components/sections/Hero";
-import { Problem } from "@/components/sections/Problem";
-import { HowItWorks } from "@/components/sections/HowItWorks";
-import { Features } from "@/components/sections/Features";
-import { Testimonials } from "@/components/sections/Testimonials";
-import { FinalCTA } from "@/components/sections/FinalCTA";
+import { Hero } from "./_components/Hero";
+import { Problem } from "./_components/Problem";
+import { HowItWorks } from "./_components/HowItWorks";
+import { Features } from "./_components/Features";
+import { Testimonials } from "./_components/Testimonials";
+import { FinalCTA } from "./_components/FinalCTA";
 
 export default function Home() {
   return (

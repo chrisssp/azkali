@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
-import { FeaturesHero } from "@/components/features/FeaturesHero";
-import { CoreFeatures } from "@/components/features/CoreFeatures";
-import { RoadmapFeatures } from "@/components/features/RoadmapFeatures";
-import { AIEngine } from "@/components/features/AIEngine";
-import { FeaturesCTA } from "@/components/features/FeaturesCTA";
+import { FeaturesHero } from "./_components/FeaturesHero";
+import { CoreFeatures } from "./_components/CoreFeatures";
+import { RoadmapFeatures } from "./_components/RoadmapFeatures";
+import { AIEngine } from "./_components/AIEngine";
+import { FeaturesCTA } from "./_components/FeaturesCTA";
 
 export const metadata: Metadata = {
   title: "Características — Azkali",

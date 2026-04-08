@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import Image from "next/image";
@@ -13,6 +14,8 @@ const links = [
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const pathname = usePathname();
+  const forceLight = pathname === "/waitlist";
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -23,7 +26,7 @@ export function Navbar() {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled
+        scrolled || forceLight
           ? "bg-white/90 backdrop-blur-xl shadow-[0_1px_24px_rgba(0,0,0,0.06)]"
           : "bg-transparent"
       }`}
@@ -38,8 +41,9 @@ export function Navbar() {
           <Image
             src="/azkali_logo.png"
             alt="Azkali"
-            width={120}
-            height={36}
+            width={240}
+            height={72}
+            quality={100}
             className="h-8 w-auto object-contain"
             priority
           />
@@ -64,7 +68,7 @@ export function Navbar() {
         {/* CTA */}
         <div className="hidden md:flex items-center gap-3">
           <a
-            href="/#descargar"
+            href="/waitlist"
             className="inline-flex items-center gap-2 bg-zinc-900 text-white px-4 py-2 rounded-full text-sm font-semibold hover:bg-zinc-800 transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] shadow-sm"
           >
             Descargar gratis
@@ -104,7 +108,7 @@ export function Navbar() {
                 </a>
               ))}
               <a
-                href="/#descargar"
+                href="/waitlist"
                 onClick={() => setMobileOpen(false)}
                 className="mt-3 flex items-center justify-center bg-zinc-900 text-white py-3 rounded-full text-sm font-semibold"
               >
