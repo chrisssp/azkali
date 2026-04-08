@@ -54,14 +54,15 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 pb-10 border-b border-white/[0.06]">
           {/* Brand */}
           <div className="space-y-4">
-            <div className="flex items-center">
+            <div className="flex items-center gap-2.5">
               <Image
                 src="/azkali_logo.png"
                 alt="Azkali"
-                width={120}
-                height={36}
-                className="h-8 w-auto object-contain brightness-0 invert"
+                width={28}
+                height={28}
+                className="h-7 w-auto object-contain brightness-0 invert"
               />
+              <span className="font-semibold text-white text-lg tracking-tight">Azkali</span>
             </div>
             <p className="text-sm text-zinc-400 font-light leading-relaxed max-w-xs">
               Frena el impulso. Acelera tu futuro.
@@ -69,6 +70,20 @@ export function Footer() {
             <p className="text-xs text-zinc-600 leading-relaxed max-w-xs font-light">
               Tu copiloto financiero para tomar mejores decisiones, una compra a la vez.
             </p>
+
+            {/* Banco Azteca partnership */}
+            <div className="pt-2">
+              <p className="text-[10px] text-zinc-600 uppercase tracking-widest font-medium mb-3">
+                En alianza con
+              </p>
+              <Image
+                src="/banco_azteca_logo.png"
+                alt="Banco Azteca"
+                width={72}
+                height={20}
+                className="h-4 w-auto object-contain brightness-0 invert opacity-60"
+              />
+            </div>
           </div>
 
           {/* Navigation */}
@@ -117,11 +132,26 @@ export function Footer() {
         </div>
 
         {/* Bottom */}
-        <div className="pt-7 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+        <div className="pt-7 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <p className="text-xs text-zinc-700 font-light">
             &copy; {new Date().getFullYear()} Azkali. Todos los derechos reservados.
           </p>
-          <p className="text-xs text-zinc-700 max-w-md text-left sm:text-right font-light leading-relaxed">
+
+          {/* Grupo Salinas */}
+          <div className="flex items-center gap-2.5">
+            <p className="text-[10px] text-zinc-700 uppercase tracking-widest font-medium whitespace-nowrap">
+              Parte de
+            </p>
+            <Image
+              src="/grupo_salinas_logo.png"
+              alt="Grupo Salinas"
+              width={100}
+              height={24}
+              className="h-4 w-auto object-contain brightness-0 invert opacity-30"
+            />
+          </div>
+
+          <p className="text-xs text-zinc-700 max-w-xs text-left sm:text-right font-light leading-relaxed hidden lg:block">
             Azkali es una herramienta de educación financiera conductual. No es un servicio bancario regulado.
           </p>
         </div>

@@ -37,6 +37,9 @@ export const metadata: Metadata = {
     description:
       "La app que te hace pensar antes de gastar. Tu copiloto financiero para la Generación Z en México.",
   },
+  icons: {
+    icon: "/azkali_logo.png",
+  },
 };
 
 export default function RootLayout({

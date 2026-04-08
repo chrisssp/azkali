@@ -291,20 +291,7 @@ export function CoreFeatures() {
               })}
             </nav>
 
-            {/* Sticky mockup preview */}
-            <div className="mt-8">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={activeIndex}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
-                  transition={{ duration: 0.25, ease: "easeOut" }}
-                >
-                  {active.mockup}
-                </motion.div>
-              </AnimatePresence>
-            </div>
+            {/* Mockup removed from sidebar per request */}
           </div>
 
           {/* ── Scrollable content ── */}

@@ -5,10 +5,9 @@ import { Menu, X } from "lucide-react";
 import Image from "next/image";
 
 const links = [
-  { href: "#como-funciona", label: "Cómo funciona" },
-  { href: "#features", label: "Features" },
-  { href: "#testimonios", label: "Testimonios" },
-  { href: "#descargar", label: "Descargar" },
+  { href: "/#como-funciona", label: "Cómo funciona" },
+  { href: "/features", label: "Features" },
+  { href: "/#descargar", label: "Descargar" },
 ];
 
 export function Navbar() {
@@ -65,8 +64,8 @@ export function Navbar() {
         {/* CTA */}
         <div className="hidden md:flex items-center gap-3">
           <a
-            href="#descargar"
-            className="inline-flex items-center gap-2 bg-[#006341] text-white px-4 py-2 rounded-full text-sm font-semibold hover:bg-[#003930] transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] shadow-sm"
+            href="/#descargar"
+            className="inline-flex items-center gap-2 bg-zinc-900 text-white px-4 py-2 rounded-full text-sm font-semibold hover:bg-zinc-800 transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] shadow-sm"
           >
             Descargar gratis
           </a>
@@ -105,9 +104,9 @@ export function Navbar() {
                 </a>
               ))}
               <a
-                href="#descargar"
+                href="/#descargar"
                 onClick={() => setMobileOpen(false)}
-                className="mt-3 flex items-center justify-center bg-[#006341] text-white py-3 rounded-full text-sm font-semibold"
+                className="mt-3 flex items-center justify-center bg-zinc-900 text-white py-3 rounded-full text-sm font-semibold"
               >
                 Descargar gratis
               </a>

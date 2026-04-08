@@ -1,6 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 import { Star } from "lucide-react";
+import Image from "next/image";
 
 /* ─── Store Badges ────────────────────────────────────────────────── */
 function AppStoreBadge() {
@@ -14,7 +15,7 @@ function AppStoreBadge() {
         <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" />
       </svg>
       <div className="text-left">
-        <p className="text-[10px] text-gray-500 leading-none font-medium uppercase tracking-widest">Disponible en</p>
+        <p className="text-[10px] text-gray-500 leading-none font-medium uppercase tracking-widest">Próximamente en</p>
         <p className="text-sm font-bold leading-tight mt-1 tracking-tight">App Store</p>
       </div>
     </a>
@@ -32,7 +33,7 @@ function PlayStoreBadge() {
         <path d="M3.18 23.76a2.1 2.1 0 0 1-.96-1.84V2.08C2.22 1.38 2.64.85 3.18.24l.1-.1L14.47 12l-11.2 11.86-.09-.1zm15.15-8.77-2.55-1.47-2.88 2.88 2.88 2.88 2.57-1.5a2.12 2.12 0 0 0 0-3.79zM4.34 1.12 15.6 12.4l-2.88 2.88L4.34 1.12z" fill="white" />
       </svg>
       <div className="text-left">
-        <p className="text-[10px] text-white/50 leading-none font-medium uppercase tracking-widest">Disponible en</p>
+        <p className="text-[10px] text-white/50 leading-none font-medium uppercase tracking-widest">Próximamente en</p>
         <p className="text-sm font-bold leading-tight mt-1 tracking-tight">Google Play</p>
       </div>
     </a>
@@ -80,7 +81,13 @@ export function FinalCTA() {
           <div className="relative">
             <div className="absolute inset-0 rounded-full bg-emerald-400/20 blur-2xl scale-150" />
             <div className="relative w-20 h-20 rounded-full bg-white/[0.08] border border-white/[0.15] flex items-center justify-center backdrop-blur-sm shadow-[0_0_40px_rgba(52,211,153,0.2)]">
-              <span className="text-4xl select-none" role="img" aria-label="Kali la tortuga">🐢</span>
+              <Image
+                src="/azkali_logo.png"
+                alt="Kali"
+                width={48}
+                height={48}
+                className="w-11 h-11 object-contain brightness-0 invert"
+              />
             </div>
           </div>
         </motion.div>
