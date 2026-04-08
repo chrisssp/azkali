@@ -1,0 +1,1 @@
+export { PulsingLogo } from './PulsingLogo';

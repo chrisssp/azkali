@@ -21,5 +21,11 @@
 		"npm": "please-use-pnpm",
 		"yarn": "please-use-pnpm",
 		"pnpm": ">=9.0.0"
+	},
+	"pnpm": {
+		"overrides": {
+			"react": "19.1.0",
+			"react-dom": "19.1.0"
+		}
 	}
 }

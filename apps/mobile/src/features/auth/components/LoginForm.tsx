@@ -1,78 +1,87 @@
-import React, { useState } from 'react';
+import React, { useRef } from 'react';
 import { Box } from '@/components/ui/box';
 import { Text } from '@/components/ui/text';
-import { Button, ButtonText } from '@/components/ui/button';
 import { VStack } from '@/components/ui/vstack';
 import { Input, InputField } from '@/components/ui/input';
+import {
+  FormControl,
+  FormControlLabel,
+  FormControlLabelText,
+} from '@/components/ui/form-control';
+import { Pressable } from '@/components/ui/pressable';
 
 interface LoginFormProps {
-  onSubmit: (email: string, password: string) => void;
-  isLoading?: boolean;
+  emailOrPhone: string;
+  onChangeEmailOrPhone: (value: string) => void;
+  password: string;
+  onChangePassword: (value: string) => void;
   error?: string | null;
+  onSubmit?: () => void;
 }
 
 export const LoginForm: React.FC<LoginFormProps> = ({
-  onSubmit,
-  isLoading = false,
+  emailOrPhone,
+  onChangeEmailOrPhone,
+  password,
+  onChangePassword,
   error,
+  onSubmit,
 }) => {
-  const [email, setEmail] = useState('demo@example.com');
-  const [password, setPassword] = useState('password');
-
-  const handleSubmit = () => {
-    onSubmit(email, password);
-  };
+  const passwordRef = useRef<any>(null);
 
   return (
-    <VStack space="lg" className="w-full">
-      <Box>
-        <Text className="mb-2 font-medium">Email</Text>
-        <Input>
+    <VStack className="px-6 pt-8" space="md">
+      <Text className="text-3xl font-bold text-primary-700 mb-4">
+        Bienvenido de vuelta
+      </Text>
+
+      <FormControl>
+        <FormControlLabel>
+          <FormControlLabelText className="text-sm font-medium text-typography-700">
+            Correo o número
+          </FormControlLabelText>
+        </FormControlLabel>
+        <Input variant="outline" size="xl" className="rounded-xl mt-1">
           <InputField
-            value={email}
-            onChangeText={setEmail}
-            placeholder="tu@email.com"
+            value={emailOrPhone}
+            onChangeText={onChangeEmailOrPhone}
             autoCapitalize="none"
             keyboardType="email-address"
+            returnKeyType="next"
+            blurOnSubmit={false}
+            onSubmitEditing={() => passwordRef.current?.focus()}
           />
         </Input>
-      </Box>
+      </FormControl>
 
-      <Box>
-        <Text className="mb-2 font-medium">Contraseña</Text>
-        <Input>
+      <FormControl>
+        <FormControlLabel>
+          <FormControlLabelText className="text-sm font-medium text-typography-700">
+            Contraseña
+          </FormControlLabelText>
+        </FormControlLabel>
+        <Input variant="outline" size="xl" className="rounded-xl mt-1">
           <InputField
+            ref={passwordRef}
             value={password}
-            onChangeText={setPassword}
-            placeholder="••••••••"
+            onChangeText={onChangePassword}
             secureTextEntry
+            returnKeyType="done"
+            onSubmitEditing={onSubmit}
           />
         </Input>
-      </Box>
+        <Pressable className="mt-2 self-start">
+          <Text className="text-sm text-typography-500">
+            ¿Olvidaste tu contraseña?
+          </Text>
+        </Pressable>
+      </FormControl>
 
       {error && (
-        <Box className="bg-red-50 p-3 rounded-lg">
-          <Text className="text-red-600">{error}</Text>
+        <Box className="bg-error-50 p-3 rounded-xl">
+          <Text className="text-error-700 text-sm">{error}</Text>
         </Box>
       )}
-
-      <Button
-        onPress={handleSubmit}
-        isDisabled={isLoading}
-        className="mt-4"
-      >
-        <ButtonText>
-          {isLoading ? 'Iniciando sesión...' : 'Iniciar sesión'}
-        </ButtonText>
-      </Button>
-
-      <Box className="mt-4 p-3 bg-gray-100 rounded-lg">
-        <Text className="text-sm text-gray-600 text-center">
-          Credenciales de prueba:{'\n'}
-          Email: demo@example.com{'\n'}
-          Contraseña: password
-        </Text>
-      </Box>
     </VStack>
   );
 };
