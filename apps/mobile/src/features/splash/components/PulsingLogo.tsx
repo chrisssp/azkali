@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { Image } from 'react-native';
+import React, { useEffect } from "react";
+import { Image } from "react-native";
 import Animated, {
   Easing,
   useAnimatedStyle,
@@ -7,7 +7,7 @@ import Animated, {
   withRepeat,
   withSequence,
   withTiming,
-} from 'react-native-reanimated';
+} from "react-native-reanimated";
 
 export function PulsingLogo() {
   const scale = useSharedValue(1);
@@ -30,8 +30,8 @@ export function PulsingLogo() {
   return (
     <Animated.View style={animatedStyle}>
       <Image
-        source={require('@/assets/icon.png')}
-        style={{ width: 120, height: 120 }}
+        source={require("@/assets/icon.png")}
+        className="w-20 h-20"
         resizeMode="contain"
         accessibilityLabel="Azkali logo"
       />

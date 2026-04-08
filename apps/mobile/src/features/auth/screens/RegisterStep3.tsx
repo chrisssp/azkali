@@ -123,16 +123,16 @@ function CalendarPicker({ value, onChange, onClose }: CalendarPickerProps) {
       </HStack>
 
       {/* Weekday headers */}
-      <View style={{ flexDirection: 'row' }}>
+      <View className="flex-row">
         {WEEKDAYS.map(w => (
-          <View key={w} style={{ flex: 1, alignItems: 'center', paddingVertical: 2 }}>
-            <Text style={{ fontSize: 11, color: '#9CA3AF', fontWeight: '600' }}>{w}</Text>
+          <View key={w} className="flex-1 items-center py-0.5">
+            <Text className="text-xs font-semibold text-gray-400">{w}</Text>
           </View>
         ))}
       </View>
 
       {/* Day grid */}
-      <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
+      <View className="flex-row flex-wrap">
         {cells.map((day, idx) => {
           if (!day) {
             return <View key={`e${idx}`} style={{ width: '14.2857%', height: 38 }} />;
@@ -149,22 +149,16 @@ function CalendarPicker({ value, onChange, onClose }: CalendarPickerProps) {
             <View key={day} style={{ width: '14.2857%', alignItems: 'center', marginBottom: 2 }}>
               <Pressable
                 onPress={() => { if (!isFuture) setSelected(thisDate); }}
-                style={{
-                  width: 34,
-                  height: 34,
-                  borderRadius: 17,
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  backgroundColor: isSelected ? '#000' : 'transparent',
-                  opacity: isFuture ? 0.25 : 1,
-                }}
+                className={`w-8.5 h-8.5 rounded-full items-center justify-center ${
+                  isSelected ? 'bg-primary-700' : 'bg-transparent'
+                } ${isFuture ? 'opacity-25' : 'opacity-100'}`}
               >
                 <Text
-                  style={{
-                    fontSize: 13,
-                    color: isSelected ? '#fff' : '#111827',
-                    fontWeight: isSelected ? '700' : '400',
-                  }}
+                  className={`text-xs ${
+                    isSelected
+                      ? 'text-white font-bold'
+                      : 'text-gray-900 font-normal'
+                  }`}
                 >
                   {day}
                 </Text>
@@ -181,7 +175,7 @@ function CalendarPicker({ value, onChange, onClose }: CalendarPickerProps) {
         </Button>
         <Button
           size="sm"
-          className="bg-black rounded-xl"
+          className="bg-primary-700 rounded-xl"
           onPress={handleConfirm}
           isDisabled={!selected}
         >

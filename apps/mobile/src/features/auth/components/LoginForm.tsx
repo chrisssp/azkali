@@ -29,7 +29,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({
 
   return (
     <VStack className="flex-1 px-6 pt-8" space="md">
-      <Text className="text-3xl font-bold text-black mb-4">
+      <Text className="text-3xl font-bold text-primary-700 mb-4">
         Bienvenido de vuelta
       </Text>
 
@@ -78,7 +78,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({
       <Button
         onPress={() => onSubmit(emailOrPhone, password)}
         isDisabled={isLoading}
-        className="w-full bg-black rounded-2xl mt-4"
+        className="w-full bg-primary-700 rounded-2xl mt-4"
         size="xl"
       >
         <ButtonText className="text-white font-semibold">

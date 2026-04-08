@@ -75,7 +75,12 @@ Gluestack UI utiliza un patrón de componentes compuestos para mayor flexibilida
 </Button>
 ```
 
-### 3. Estilos con Tailwind/NativeWind
+### 3. Estilos con Tailwind/NativeWind - SIEMPRE preferir Tailwind
+
+**REGLA CRÍTICA**: Utiliza **SOLO clases de Tailwind** (`className`) para estilos. Evita completamente:
+- `StyleSheet.create()` 
+- Estilos inline con `style={{ }}`
+- Props de estilo nativas de React Native
 
 Todos los componentes aceptan clases de Tailwind CSS a través de la prop `className`:
 
@@ -485,18 +490,88 @@ Cuando crees componentes personalizados, documenta:
 
 3. **Implementa siguiendo patrones**
    - Usa ejemplos de este documento
-   - Aplica clases Tailwind para estilos
+   - Aplica **SOLO clases Tailwind** para estilos (nunca StyleSheet ni inline)
    - Mantén accesibilidad
 
-4. **Crea custom solo si es necesario**
+4. **Verifica los colores**
+   - ¿Estoy usando colores de la paleta Banco Azteca?
+   - ¿Evito hardcodear valores hex?
+   - ¿Los grises son dinámicos (gray-100, gray-600)?
+
+5. **Crea custom solo si es necesario**
    - Documenta el componente custom
    - Ubícalo en `src/components/custom/`
    - Reutiliza componentes base de Gluestack
 
-5. **Valida el resultado**
+6. **Valida el resultado**
    - ¿Es responsive?
    - ¿Es accesible?
    - ¿Sigue los patrones del proyecto?
+   - ¿Todos los estilos usan Tailwind?
+
+---
+
+## ⚠️ RESTRICCIÓN: Estilos Tailwind únicamente
+
+### Por qué NO usar StyleSheet.create() o estilos inline
+
+1. **Inconsistencia**: Los estilos inline no benefician del sistema de diseño (colores, espaciado, tipografía)
+2. **Mantenimiento**: Cambios globales en el design system no se reflejan automáticamente
+3. **Performance**: Tailwind preprocesa y optimiza estilos; inline no
+4. **Accesibilidad**: Las clases Tailwind están probadas para accesibilidad
+
+### Ejemplo INCORRECTO ❌
+
+```tsx
+// ❌ NO HAGAS ESTO
+const styles = StyleSheet.create({
+  container: {
+    padding: 16,
+    borderRadius: 8,
+    backgroundColor: '#f3f4f6',
+  }
+});
+
+<View style={styles.container}>
+  <Text style={{ fontSize: 14, color: '#6b7280' }}>Texto</Text>
+</View>
+```
+
+### Ejemplo CORRECTO ✅
+
+```tsx
+// ✅ USA TAILWIND
+<View className="p-4 rounded-lg bg-gray-100">
+  <Text className="text-sm text-gray-500">Texto</Text>
+</View>
+```
+
+### Excepciones: Únicamente para animaciones
+
+Las **únicas excepciones** donde se permite `style={{ }}` son:
+- Propiedades de **Reanimated**: `useAnimatedStyle()`, `useAnimatedProps()`
+- Valores dinámicos calculados en tiempo real
+- Transformaciones complejas que no tienen equivalente en Tailwind
+
+```tsx
+// ✅ PERMITIDO: Animaciones con Reanimated
+const animatedStyle = useAnimatedStyle(() => ({
+  transform: [{ scale: scale.value }],
+  opacity: opacity.value,
+}));
+
+<Animated.View style={animatedStyle} className="bg-primary-700 rounded-lg" />
+```
+
+### Paleta de colores Banco Azteca - Siempre usar
+
+- **Primary (Verde)**: `bg-primary-*`, `text-primary-*` (desde 50 hasta 950)
+- **Secondary (Rojo)**: `bg-secondary-*`, `text-secondary-*`
+- **Success (Verde)**: `bg-success-*`, `text-success-*`
+- **Error (Rojo)**: `bg-error-*`, `text-error-*`
+- **Grises (sistema)**: `bg-gray-*`, `text-gray-*` para contenido neutro
+
+**Nunca hardcodear colores como**: `#000`, `#fff`, `#f3f4f6`, etc.
 
 ---
 
@@ -523,6 +598,13 @@ Si necesitas componentes que no están disponibles, crea versiones personalizada
 ## Resumen ejecutivo
 
 **Para agentes IA que generan código para este proyecto:**
+
+1. **Usa Gluestack UI** para todos los componentes visuales
+2. **Importa desde** `@/components/ui/*`
+3. **Estilos = Tailwind classes** ÚNICAMENTE (nunca StyleSheet, nunca inline style)
+4. **Colores = Paleta Banco Azteca** (primary, secondary, error, success, info, warning, gray)
+5. **Animaciones = Reanimated** (única excepción donde `style={{}}` es permitido)
+6. **Accesibilidad = Props accesibles** (`accessibilityLabel`, `accessibilityRole`, etc.)
 
 1. ✅ **USA componentes de Gluestack UI** de `components/ui/` como primera opción
 2. ✅ **COMPÓN componentes** antes de crear nuevos

@@ -4,7 +4,6 @@ import {
   KeyboardAvoidingView,
   Platform,
   ScrollView,
-  StyleSheet,
   View,
 } from 'react-native';
 import Animated, {
@@ -97,19 +96,19 @@ export function RegisterLayout({
 
   return (
     <Box className="flex-1 bg-white">
-      {/* ── Animated black header — morphs from welcome curve ── */}
+      {/* ── Animated green header — morphs from welcome curve ── */}
       <Animated.View style={containerStyle}>
         <Svg
           width={SCREEN_WIDTH}
           height={SVG_CANVAS_HEIGHT}
-          style={StyleSheet.absoluteFill}
+          style={{position: 'absolute', top: 0, left: 0, right: 0, bottom: 0}}
         >
-          <AnimatedPath animatedProps={animatedPathProps} fill="black" />
+          <AnimatedPath animatedProps={animatedPathProps} fill="#006341" />
         </Svg>
 
         <Animated.View
+          className="absolute top-0 left-0 right-0 px-5"
           style={[
-            styles.headerContent,
             { paddingTop: insets.top + 10 },
             headerContentStyle,
           ]}
@@ -127,18 +126,21 @@ export function RegisterLayout({
       {/* ── White content area ── */}
       <KeyboardAvoidingView
         behavior={Platform.OS === 'ios' ? 'padding' : undefined}
-        style={styles.formWrapper}
+        className="flex-1"
       >
         {/* Progress bar — gray track + green fill, no circle, no label */}
         <Box className="px-6 pt-5 pb-2">
-          <View style={styles.progressTrack}>
-            <View style={[styles.progressFill, { width: `${progress * 100}%` }]} />
+          <View className="h-2 bg-gray-200 rounded overflow-hidden">
+            <View 
+              className="h-full bg-success-600 rounded"
+              style={{ width: `${progress * 100}%` }} 
+            />
           </View>
         </Box>
 
         <ScrollView
-          style={styles.scrollView}
-          contentContainerStyle={styles.scrollContent}
+          className="flex-1"
+          contentContainerStyle={{ paddingHorizontal: 24, paddingTop: 8, paddingBottom: 12 }}
           keyboardShouldPersistTaps="handled"
           showsVerticalScrollIndicator={false}
         >
@@ -150,7 +152,7 @@ export function RegisterLayout({
           style={{ paddingBottom: Math.max(insets.bottom + 8, 24) }}
         >
           <Button
-            className="w-full bg-black rounded-2xl"
+            className="w-full bg-primary-700 rounded-2xl"
             size="xl"
             onPress={onContinue}
             isDisabled={isContinueDisabled}
@@ -165,34 +167,3 @@ export function RegisterLayout({
   );
 }
 
-const styles = StyleSheet.create({
-  headerContent: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    paddingHorizontal: 20,
-  },
-  formWrapper: {
-    flex: 1,
-  },
-  scrollView: {
-    flex: 1,
-  },
-  scrollContent: {
-    paddingHorizontal: 24,
-    paddingTop: 8,
-    paddingBottom: 12,
-  },
-  progressTrack: {
-    height: 8,
-    backgroundColor: '#E5E7EB',
-    borderRadius: 4,
-    overflow: 'hidden',
-  },
-  progressFill: {
-    height: '100%',
-    backgroundColor: '#22C55E',
-    borderRadius: 4,
-  },
-});

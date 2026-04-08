@@ -1,15 +1,15 @@
-import React, { useEffect } from 'react';
-import { Dimensions, Image, StyleSheet } from 'react-native';
+import React, { useEffect } from "react";
+import { Dimensions, Image } from "react-native";
 import Animated, {
   Easing,
   useAnimatedStyle,
   useSharedValue,
   withDelay,
   withTiming,
-} from 'react-native-reanimated';
-import Svg, { Path } from 'react-native-svg';
+} from "react-native-reanimated";
+import Svg, { Path } from "react-native-svg";
 
-const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('window');
+const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get("window");
 
 /** Visual height of the black section before the curve starts */
 const HERO_HEIGHT = SCREEN_HEIGHT * 0.48;
@@ -35,8 +35,8 @@ const svgPath = [
   `L ${SCREEN_WIDTH} 0`,
   `L ${SCREEN_WIDTH} ${HERO_HEIGHT}`,
   `Q ${SCREEN_WIDTH / 2} ${HERO_HEIGHT + CURVE_DEPTH * 2} 0 ${HERO_HEIGHT}`,
-  'Z',
-].join(' ');
+  "Z",
+].join(" ");
 
 export function AnimatedHero() {
   const translateY = useSharedValue(-HERO_HEIGHT * 0.45);
@@ -57,7 +57,7 @@ export function AnimatedHero() {
         easing: Easing.out(Easing.ease),
       }),
     );
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const panelStyle = useAnimatedStyle(() => ({
@@ -69,21 +69,27 @@ export function AnimatedHero() {
   }));
 
   return (
-    <Animated.View style={[styles.container, panelStyle]}>
-      {/* Black shape rendered via SVG so the concave curve is pixel-perfect */}
+    <Animated.View
+      style={[panelStyle, { width: SCREEN_WIDTH, height: CONTAINER_HEIGHT }]}
+      className="overflow-visible"
+    >
+      {/* Green shape rendered via SVG so the concave curve is pixel-perfect */}
       <Svg
         width={SCREEN_WIDTH}
         height={CONTAINER_HEIGHT}
-        style={StyleSheet.absoluteFill}
+        style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0 }}
       >
-        <Path d={svgPath} fill="black" />
+        <Path d={svgPath} fill="#006341" />
       </Svg>
 
-      {/* Logo centered in the flat black portion, above the curve */}
-      <Animated.View style={[styles.logoContainer, logoStyle]}>
+      {/* Logo centered in the flat green portion, above the curve */}
+      <Animated.View
+        style={[logoStyle]}
+        className="absolute top-0 left-0 right-0 h-full items-center justify-center"
+      >
         <Image
-          source={require('@/assets/icon.png')}
-          style={styles.logo}
+          source={require("@/assets/logotipo-white.png")}
+          className="w-20 h-20"
           resizeMode="contain"
           accessibilityLabel="Azkali icon"
         />
@@ -91,24 +97,3 @@ export function AnimatedHero() {
     </Animated.View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    width: SCREEN_WIDTH,
-    height: CONTAINER_HEIGHT,
-    overflow: 'visible',
-  },
-  logoContainer: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    height: HERO_HEIGHT,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  logo: {
-    width: 110,
-    height: 110,
-  },
-});

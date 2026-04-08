@@ -4,7 +4,6 @@ import {
   KeyboardAvoidingView,
   Platform,
   ScrollView,
-  StyleSheet,
 } from 'react-native';
 import Animated, {
   Easing,
@@ -96,19 +95,19 @@ export const LoginScreen: React.FC = () => {
 
   return (
     <Box className="flex-1 bg-white">
-      {/* ── Animated black header — morphs from welcome curve ─────── */}
+      {/* ── Animated green header — morphs from welcome curve ─────── */}
       <Animated.View style={containerStyle}>
         <Svg
           width={SCREEN_WIDTH}
           height={SVG_CANVAS_HEIGHT}
-          style={StyleSheet.absoluteFill}
+          style={{position: 'absolute', top: 0, left: 0, right: 0, bottom: 0}}
         >
-          <AnimatedPath animatedProps={animatedPathProps} fill="black" />
+          <AnimatedPath animatedProps={animatedPathProps} fill="#006341" />
         </Svg>
 
         <Animated.View
+          className="absolute top-0 left-0 right-0 px-5"
           style={[
-            styles.headerContent,
             { paddingTop: insets.top + 10 },
             contentStyle,
           ]}
@@ -129,10 +128,10 @@ export const LoginScreen: React.FC = () => {
       {/* ── Form body ────────────────────────────────────────────── */}
       <KeyboardAvoidingView
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-        style={styles.formWrapper}
+        className="flex-1"
       >
         <ScrollView
-          contentContainerStyle={styles.scrollContent}
+          contentContainerStyle={{ flexGrow: 1 }}
           keyboardShouldPersistTaps="handled"
           showsVerticalScrollIndicator={false}
         >
@@ -146,20 +145,4 @@ export const LoginScreen: React.FC = () => {
     </Box>
   );
 };
-
-const styles = StyleSheet.create({
-  headerContent: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    paddingHorizontal: 20,
-  },
-  formWrapper: {
-    flex: 1,
-  },
-  scrollContent: {
-    flexGrow: 1,
-  },
-});
 
