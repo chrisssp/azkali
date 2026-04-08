@@ -21,7 +21,7 @@ export function MessageInput({
   const isDisabled = value.trim().length === 0 || isLoading === true;
   
   return (
-    <Box className="px-4 pb-4 bg-white border-t border-gray-200">
+    <Box className="px-4 pb-4 bg-white border-t border-outline-100">
       <Box className="flex-row items-end gap-2">
         <Input className="flex-1 rounded-2xl" variant="outline" size="lg">
           <InputField

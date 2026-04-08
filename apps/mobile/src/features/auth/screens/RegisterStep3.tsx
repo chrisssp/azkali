@@ -126,7 +126,7 @@ function CalendarPicker({ value, onChange, onClose }: CalendarPickerProps) {
       <View className="flex-row">
         {WEEKDAYS.map(w => (
           <View key={w} className="flex-1 items-center py-0.5">
-            <Text className="text-xs font-semibold text-gray-400">{w}</Text>
+            <Text className="text-xs font-semibold text-typography-300">{w}</Text>
           </View>
         ))}
       </View>
