@@ -89,7 +89,7 @@ export function AnimatedHero() {
       >
         <Image
           source={require("@/assets/logotipo-white.png")}
-          className="w-20 h-20"
+          style={{ width: 250, height: 250 }}
           resizeMode="contain"
           accessibilityLabel="Azkali icon"
         />
