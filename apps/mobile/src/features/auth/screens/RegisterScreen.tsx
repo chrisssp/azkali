@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useRouter } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
-import { View } from 'react-native';
 import { RegisterLayout } from '../components/RegisterLayout';
 import { RegisterStep1 } from './RegisterStep1';
 import { RegisterStep2 } from './RegisterStep2';
@@ -89,7 +88,7 @@ export function RegisterScreen() {
   };
 
   return (
-    <View style={{ flex: 1, backgroundColor: '#000' }}>
+    <>
       <StatusBar style="light" />
       <RegisterLayout
         title={STEP_TITLES[currentStep]}
@@ -99,6 +98,6 @@ export function RegisterScreen() {
       >
         {renderStep()}
       </RegisterLayout>
-    </View>
+    </>
   );
 }
