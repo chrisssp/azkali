@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import {
   Dimensions,
   KeyboardAvoidingView,
+  Platform,
   ScrollView,
 } from 'react-native';
 import Animated, {
@@ -34,7 +35,7 @@ const WELCOME_HERO_HEIGHT = SCREEN_HEIGHT * 0.48;
 const WELCOME_CURVE_DEPTH = 40; // same as AnimatedHero's CURVE_DEPTH
 
 // Target (resting) state of the login header
-const LOGIN_HEADER_HEIGHT = 130;
+const LOGIN_HEADER_HEIGHT = 90;
 
 // Spring config: enough damping to avoid visible bounce, natural settle
 const SPRING = { damping: 26, stiffness: 130, mass: 1 };
@@ -56,6 +57,13 @@ export const LoginScreen: React.FC = () => {
   const contentOpacity = useSharedValue(0);
 
   useEffect(() => {
+    // Explicitly reset to the starting position on every mount so that
+    // re-visits (e.g. welcome → login → welcome → login) always animate
+    // correctly regardless of any stale Reanimated state.
+    bandHeight.value = WELCOME_HERO_HEIGHT;
+    curveDepth.value = WELCOME_CURVE_DEPTH * 2;
+    contentOpacity.value = 0;
+
     // Morph the band height and curve simultaneously
     bandHeight.value = withSpring(LOGIN_HEADER_HEIGHT, SPRING);
     curveDepth.value = withSpring(0, SPRING);
@@ -130,7 +138,7 @@ export const LoginScreen: React.FC = () => {
 
       {/* ── Form body ────────────────────────────────────────────── */}
       <KeyboardAvoidingView
-        behavior="padding"
+        behavior={Platform.OS === 'ios' ? 'padding' : undefined}
         className="flex-1"
       >
         <ScrollView
@@ -144,6 +152,7 @@ export const LoginScreen: React.FC = () => {
             password={password}
             onChangePassword={setPassword}
             error={error?.message}
+            onSubmit={() => handleLogin(emailOrPhone, password)}
           />
         </ScrollView>
 

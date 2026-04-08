@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { Box } from '@/components/ui/box';
 import { Text } from '@/components/ui/text';
 import { VStack } from '@/components/ui/vstack';
@@ -16,6 +16,7 @@ interface LoginFormProps {
   password: string;
   onChangePassword: (value: string) => void;
   error?: string | null;
+  onSubmit?: () => void;
 }
 
 export const LoginForm: React.FC<LoginFormProps> = ({
@@ -24,7 +25,10 @@ export const LoginForm: React.FC<LoginFormProps> = ({
   password,
   onChangePassword,
   error,
+  onSubmit,
 }) => {
+  const passwordRef = useRef<any>(null);
+
   return (
     <VStack className="px-6 pt-8" space="md">
       <Text className="text-3xl font-bold text-primary-700 mb-4">
@@ -43,6 +47,9 @@ export const LoginForm: React.FC<LoginFormProps> = ({
             onChangeText={onChangeEmailOrPhone}
             autoCapitalize="none"
             keyboardType="email-address"
+            returnKeyType="next"
+            blurOnSubmit={false}
+            onSubmitEditing={() => passwordRef.current?.focus()}
           />
         </Input>
       </FormControl>
@@ -55,9 +62,12 @@ export const LoginForm: React.FC<LoginFormProps> = ({
         </FormControlLabel>
         <Input variant="outline" size="xl" className="rounded-xl mt-1">
           <InputField
+            ref={passwordRef}
             value={password}
             onChangeText={onChangePassword}
             secureTextEntry
+            returnKeyType="done"
+            onSubmitEditing={onSubmit}
           />
         </Input>
         <Pressable className="mt-2 self-start">

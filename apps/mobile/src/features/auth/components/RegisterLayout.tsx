@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import {
   Dimensions,
   KeyboardAvoidingView,
+  Platform,
   ScrollView,
   View,
 } from 'react-native';
@@ -29,7 +30,7 @@ const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('window');
 // Mirror AnimatedHero constants exactly so the morph starts flush
 const WELCOME_HERO_HEIGHT = SCREEN_HEIGHT * 0.48;
 const WELCOME_CURVE_DEPTH = 40;
-const REGISTER_HEADER_HEIGHT = 130;
+const REGISTER_HEADER_HEIGHT = 90;
 const SVG_CANVAS_HEIGHT = WELCOME_HERO_HEIGHT + WELCOME_CURVE_DEPTH * 2;
 
 const SPRING = { damping: 26, stiffness: 130, mass: 1 };
@@ -64,6 +65,12 @@ export function RegisterLayout({
   const contentOpacity = useSharedValue(0);
 
   useEffect(() => {
+    // Explicitly reset to the starting position on every mount so that
+    // re-visits always animate correctly regardless of stale Reanimated state.
+    bandHeight.value = WELCOME_HERO_HEIGHT;
+    curveDepth.value = WELCOME_CURVE_DEPTH * 2;
+    contentOpacity.value = 0;
+
     bandHeight.value = withSpring(REGISTER_HEADER_HEIGHT, SPRING);
     curveDepth.value = withSpring(0, SPRING);
     contentOpacity.value = withDelay(
@@ -124,7 +131,7 @@ export function RegisterLayout({
 
       {/* ── White content area ── */}
       <KeyboardAvoidingView
-        behavior="padding"
+        behavior={Platform.OS === 'ios' ? 'padding' : undefined}
         className="flex-1"
       >
         {/* Progress bar — gray track + green fill, no circle, no label */}
