@@ -127,7 +127,7 @@ export const LoginScreen: React.FC = () => {
 						<ArrowLeft color="#fff" size={22} />
 					</Pressable>
 
-					<Text className="text-2xl font-bold text-white ml-3">
+					<Text className="text-xl font-bold text-white ml-3">
 						Iniciar sesión
 					</Text>
 				</Animated.View>
