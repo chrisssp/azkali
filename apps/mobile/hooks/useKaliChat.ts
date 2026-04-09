@@ -253,7 +253,7 @@ export function useKaliChat(userContext: KaliUserContext): UseKaliChatResult {
         }
 
         const result = await ImagePicker.launchImageLibraryAsync({
-          mediaTypes: ImagePicker.MediaTypeOptions.Images,
+          mediaTypes: ['images'],
           allowsEditing: false,
           quality: 0.85,
           base64: true,
