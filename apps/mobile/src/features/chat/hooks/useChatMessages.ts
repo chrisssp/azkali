@@ -2,10 +2,10 @@ import { useState, useCallback } from 'react';
 import { Message, QuickAction } from '../types';
 
 export const QUICK_ACTIONS: QuickAction[] = [
-  { id: '1', label: 'Crear recordatorio', iconName: 'alarm' },
-  { id: '2', label: 'Analizar documento', iconName: 'document-text' },
-  { id: '3', label: 'Hacer seguimiento', iconName: 'analytics' },
-  { id: '4', label: 'Generar reporte', iconName: 'clipboard' },
+  { id: '1', label: 'Recuérdame mi próximo pago', iconName: 'alarm' },
+  { id: '2', label: '¿En qué gasté más este mes?', iconName: 'pie-chart' },
+  { id: '3', label: 'Ayúdame a ajustar mi presupuesto', iconName: 'wallet' },
+  { id: '4', label: 'Arma un plan para mi meta de ahorro', iconName: 'flag' },
 ];
 
 export function useChatMessages() {
