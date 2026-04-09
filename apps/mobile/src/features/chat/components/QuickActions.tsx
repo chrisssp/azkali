@@ -12,7 +12,7 @@ interface QuickActionsProps {
 
 export function QuickActions({ actions, onActionPress }: QuickActionsProps) {
   return (
-    <Box className="px-4 py-2">
+    <Box className="px-4 pb-3 pt-1">
       <Box className="flex-row flex-wrap gap-2 justify-center">
         {actions.map((action) => (
           <Pressable
