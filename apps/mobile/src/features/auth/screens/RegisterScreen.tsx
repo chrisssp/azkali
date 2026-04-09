@@ -7,8 +7,8 @@ import type { RegisterFormData, RegisterStep } from "../types";
 import { RegisterStep1 } from "./RegisterStep1";
 import { RegisterStep2 } from "./RegisterStep2";
 import { RegisterStep3 } from "./RegisterStep3";
-import { RegisterStep4 as RegisterStepPersonalizame } from "./RegisterStep4";
-import { RegisterStep5 as RegisterStepFinancial } from "./RegisterStep5";
+import { RegisterStep5 as RegisterStepPersonalizame } from "./RegisterStep4";
+import { RegisterStep6 as RegisterStepFinancial } from "./RegisterStep5";
 const STEP_TITLES: Record<RegisterStep, string> = {
 	1: "Registrarse",
 	2: "Registrarse",
