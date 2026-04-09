@@ -4,6 +4,7 @@ import { Hero } from "./_components/Hero";
 import { Problem } from "./_components/Problem";
 import { HowItWorks } from "./_components/HowItWorks";
 import { Features } from "./_components/Features";
+import { DemoVideo } from "./_components/DemoVideo";
 import { Testimonials } from "./_components/Testimonials";
 import { FinalCTA } from "./_components/FinalCTA";
 
@@ -16,6 +17,7 @@ export default function Home() {
         <Problem />
         <HowItWorks />
         <Features />
+        <DemoVideo />
         <Testimonials />
         <FinalCTA />
       </main>
