@@ -1,15 +1,18 @@
 import { Tabs } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { ChatHeader } from '@/src/features/chat';
 
 const tabBarColors = {
-  background: '#006341',
-  border: '#003930',
-  active: '#FEF5F6',
-  inactive: '#B3D8C6',
+  background: '#FFFFFF',
+  border: '#D4D4D4',
+  active: '#006341',
+  inactive: '#D4D4D4',
 };
 
 export default function TabsLayout() {
+  const insets = useSafeAreaInsets();
+
   return (
     <Tabs
       screenOptions={{
@@ -19,9 +22,9 @@ export default function TabsLayout() {
           backgroundColor: tabBarColors.background,
           borderTopColor: tabBarColors.border,
           borderTopWidth: 1,
-          height: 72,
+          height: 60 + insets.bottom,
           paddingTop: 8,
-          paddingBottom: 10,
+          paddingBottom: 10 + insets.bottom,
         },
         tabBarLabelStyle: {
           fontSize: 12,
