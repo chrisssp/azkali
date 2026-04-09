@@ -1,7 +1,6 @@
 import React, { useRef } from 'react';
 import { Controller } from 'react-hook-form';
 import { VStack } from '@/components/ui/vstack';
-import { Text } from '@/components/ui/text';
 import {
   FormControl,
   FormControlLabel,
@@ -23,12 +22,6 @@ export function RegisterStep1({ form }: RegisterStepProps) {
 
   return (
     <VStack space="md">
-      <VStack space="xs" className="mb-2">
-        <Text className="text-typography-500 text-sm">
-          Tu futuro financiero empieza aquí
-        </Text>
-      </VStack>
-
       {/* Nombre */}
       <FormControl isInvalid={!!errors.firstName}>
         <FormControlLabel>

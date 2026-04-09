@@ -223,7 +223,7 @@ export function RegisterStep5({ form }: RegisterStepProps) {
 
   return (
     <VStack space="lg">
-      <Text className="text-sm text-typography-500">
+      <Text className="text-sm text-typography-500 text-center">
         Ajusta el sistema a tu perfil para una experiencia completamente adaptada a ti.
       </Text>
 

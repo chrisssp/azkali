@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import {
-  Dimensions,
+  Image,
   KeyboardAvoidingView,
   Platform,
   ScrollView,
@@ -18,33 +18,39 @@ import { Text } from '@/components/ui/text';
 import { VStack } from '@/components/ui/vstack';
 import { HStack } from '@/components/ui/hstack';
 import { useRouter } from 'expo-router';
-import { ScreenWrapper, GlobalHeader } from '@/components/layout';
+import { ScreenWrapper, AuthHeader } from '@/components/layout';
 
 export function LoginScreen() {
   const router = useRouter();
   const insets = useSafeAreaInsets();
 
   return (
-    <ScreenWrapper header={<GlobalHeader mode="back" title="Iniciar sesión" onBackPress={() => router.replace('/welcome')} />}>
+    <ScreenWrapper header={<AuthHeader mode="back" title="Iniciar sesión" onBackPress={() => router.replace('/welcome')} />}>
       <KeyboardAvoidingView
         behavior={Platform.OS === 'ios' ? 'padding' : undefined}
         className="flex-1"
       >
         <ScrollView
           className="flex-1"
-          contentContainerStyle={{ paddingBottom: 12 }}
+          contentContainerStyle={{ paddingBottom: 12, flex: 1, justifyContent: 'center' }}
           keyboardShouldPersistTaps="handled"
           showsVerticalScrollIndicator={false}
         >
-          <VStack space="md" className="flex-1 mt-6">
-            <VStack space="xs">
-              <Text className="text-3xl font-bold text-primary-700">
+          <VStack space="md">
+            <VStack space="xs" className="items-center">
+              <Text className="text-3xl font-bold text-primary-700 text-center">
                 Bienvenido de vuelta
               </Text>
-              <Text className="text-sm text-typography-500">
+              <Text className="text-sm text-typography-500 text-center">
                 Accede a tu cuenta para continuar
               </Text>
             </VStack>
+
+            <Image
+              source={require('@/assets/sprites/kali-login.png')}
+              style={{ width: 160, height: 160, alignSelf: 'center' }}
+              resizeMode="contain"
+            />
 
             <FormControl className="mt-6">
               <FormControlLabel>
@@ -77,24 +83,21 @@ export function LoginScreen() {
                 ¿Olvidaste tu contraseña?
               </Text>
             </HStack>
+
+            <Button
+              onPress={() => router.replace('/chat')}
+              className="w-full bg-primary-700 rounded-2xl mt-2"
+              size="xl"
+            >
+              <ButtonText className="text-white font-semibold">
+                Iniciar sesión
+              </ButtonText>
+            </Button>
           </VStack>
         </ScrollView>
 
-        <Box
-          className="pt-3"
-          style={{ paddingBottom: Math.max(insets.bottom + 8, 24) }}
-        >
-          <Button
-            onPress={() => router.replace('/chat')}
-            className="w-full bg-primary-700 rounded-2xl"
-            size="xl"
-          >
-            <ButtonText className="text-white font-semibold">
-              Iniciar sesión
-            </ButtonText>
-          </Button>
-
-          <HStack className="items-center justify-center mt-4">
+        <Box style={{ paddingBottom: Math.max(insets.bottom + 8, 24) }}>
+          <HStack className="items-center justify-center">
             <Text className="text-sm text-typography-600">
               ¿No tienes cuenta?{' '}
             </Text>

@@ -106,7 +106,7 @@ export function ChatScreen() {
       header={
         <GlobalHeader
           mode={headerMode}
-          tokens={10}
+          tokens={0}
           title="Chat"
           onBackPress={clearChat}
         />
