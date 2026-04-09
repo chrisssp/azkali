@@ -8,14 +8,14 @@ import { RegisterStep1 } from "./RegisterStep1";
 import { RegisterStep2 } from "./RegisterStep2";
 import { RegisterStep3 } from "./RegisterStep3";
 import { RegisterStep4 } from "./RegisterStep4";
-import { RegisterStep5 } from "./RegisterStep5";
-
+import { RegisterStep5 } from "./RegisterStep5";import { RegisterStep6 } from './RegisterStep6';
 const STEP_TITLES: Record<RegisterStep, string> = {
 	1: "Registrarse",
 	2: "Registrarse",
 	3: "Datos personales",
 	4: "Datos económicos",
-	5: "Meta financiera",
+	5: "Descríbete",
+	6: "Meta financiera",
 };
 
 // Fields that must pass validation before advancing each step
@@ -24,7 +24,8 @@ const STEP_FIELDS: Record<RegisterStep, (keyof RegisterFormData)[]> = {
 	2: ["emailOrPhone", "password", "confirmPassword"],
 	3: ["birthDate", "sex"],
 	4: ["monthlyIncome", "occupation"],
-	5: ["financialGoals"],
+	5: ["profileType", "personality"],
+	6: ["financialGoals"],
 };
 
 export function RegisterScreen() {
@@ -43,6 +44,8 @@ export function RegisterScreen() {
 			sex: "",
 			monthlyIncome: "",
 			occupation: "",
+			profileType: "",
+			personality: "",
 			financialGoals: [],
 		},
 		mode: "onTouched",
@@ -62,7 +65,7 @@ export function RegisterScreen() {
 
 		if (!isValid) return;
 
-		if (currentStep < 5) {
+		if (currentStep < 6) {
 			setCurrentStep((prev) => (prev + 1) as RegisterStep);
 		} else {
 			// All steps complete — form data available in form.getValues()
@@ -84,6 +87,8 @@ export function RegisterScreen() {
 				return <RegisterStep4 form={form} />;
 			case 5:
 				return <RegisterStep5 form={form} />;
+			case 6:
+				return <RegisterStep6 form={form} />;
 		}
 	};
 
@@ -95,6 +100,7 @@ export function RegisterScreen() {
 				currentStep={currentStep}
 				onBack={handleBack}
 				onContinue={handleContinue}
+				totalSteps={6}
 			>
 				{renderStep()}
 			</RegisterLayout>

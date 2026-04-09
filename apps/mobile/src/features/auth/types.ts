@@ -37,11 +37,14 @@ export interface RegisterFormData {
   // Step 4 – Economic Data
   monthlyIncome: string;
   occupation: string;
-  // Step 5 – Financial Goals
+  // Step 5 – Self-description
+  profileType: string;
+  personality: string;
+  // Step 6 – Financial Goals
   financialGoals: string[];
 }
 
-export type RegisterStep = 1 | 2 | 3 | 4 | 5;
+export type RegisterStep = 1 | 2 | 3 | 4 | 5 | 6;
 
 export interface RegisterStepProps {
   form: import('react-hook-form').UseFormReturn<RegisterFormData>;
