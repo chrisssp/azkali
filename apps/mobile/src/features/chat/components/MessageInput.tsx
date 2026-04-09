@@ -25,7 +25,7 @@ export function MessageInput({
     <Box className="px-4 py-2">
       <Box className="flex-row items-center gap-3">
         <Input
-          className="flex-1 rounded-2xl border-primary-200 h-12" // Forzamos altura similar al botón
+          className="flex-1 rounded-2xl border border-primary-200 h-12" // Forzamos altura similar al botón
           variant="outline"
           size="lg"
         >

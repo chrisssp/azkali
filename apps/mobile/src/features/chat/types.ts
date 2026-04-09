@@ -8,7 +8,7 @@ export interface Message {
 export interface QuickAction {
   id: string;
   label: string;
-  emoji: string;
+  iconName: string;
 }
 
 export interface ChatContextType {
