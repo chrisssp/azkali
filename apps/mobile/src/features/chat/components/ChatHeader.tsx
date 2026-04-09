@@ -21,7 +21,7 @@ export const ChatHeader: React.FC<ChatHeaderProps> = ({
 }) => {
   const router = useRouter();
 
-  // Modo Chat: Sin flecha, con ícono de cerrar sesión
+  // Modo Chat: Sin flecha, con ícono de configuración
   if (mode === 'chat') {
     return (
       <HStack className="items-center justify-between px-6 pt-14 pb-5 bg-primary-700 border-b border-primary-800">
@@ -29,8 +29,8 @@ export const ChatHeader: React.FC<ChatHeaderProps> = ({
           <Text className="text-xl font-bold text-white">Kali</Text>
           <Text className="text-xs text-primary-100 mt-0.5">Asistente IA</Text>
         </Box>
-        <Pressable className="p-2 rounded-full bg-primary-800" onPress={() => router.replace('/')}>
-          <Ionicons name="log-out-outline" size={24} color="#FFFFFF" />
+        <Pressable className="p-2 rounded-full bg-primary-800" onPress={() => router.push('/settings')}>
+          <Ionicons name="settings-outline" size={24} color="#FFFFFF" />
         </Pressable>
       </HStack>
     );
