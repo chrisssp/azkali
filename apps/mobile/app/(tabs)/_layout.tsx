@@ -1,13 +1,13 @@
-import { Tabs } from 'expo-router';
-import { Ionicons } from '@expo/vector-icons';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { GlobalHeader } from '@/components/layout';
+import { Tabs } from "expo-router";
+import { Ionicons } from "@expo/vector-icons";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { GlobalHeader } from "@/components/layout";
 
 const tabBarColors = {
-  background: '#FFFFFF',
-  border: '#D4D4D4',
-  active: '#006341',
-  inactive: '#D4D4D4',
+  background: "#FFFFFF",
+  border: "#D4D4D4",
+  active: "#006341",
+  inactive: "#D4D4D4",
 };
 
 export default function TabsLayout() {
@@ -22,13 +22,13 @@ export default function TabsLayout() {
           backgroundColor: tabBarColors.background,
           borderTopColor: tabBarColors.border,
           borderTopWidth: 1,
-          height: 70 + insets.bottom,
+          height: 80 + insets.bottom,
           paddingTop: 8,
           paddingBottom: 10 + insets.bottom,
         },
         tabBarLabelStyle: {
           fontSize: 12,
-          fontWeight: '700',
+          fontWeight: "700",
           marginTop: 2,
         },
         tabBarIconStyle: {
@@ -40,7 +40,7 @@ export default function TabsLayout() {
       <Tabs.Screen
         name="chat"
         options={{
-          title: 'Chat',
+          title: "Chat",
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="chatbubble-outline" size={size} color={color} />
           ),
@@ -49,7 +49,7 @@ export default function TabsLayout() {
       <Tabs.Screen
         name="rewards"
         options={{
-          title: 'Recompensas',
+          title: "Recompensas",
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="gift-outline" size={size} color={color} />
           ),
@@ -58,7 +58,7 @@ export default function TabsLayout() {
       <Tabs.Screen
         name="claim-tokens"
         options={{
-          title: 'Kalis',
+          title: "Kalis",
           header: () => <GlobalHeader mode="settings" tokens={10} />,
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="star-outline" size={size} color={color} />
