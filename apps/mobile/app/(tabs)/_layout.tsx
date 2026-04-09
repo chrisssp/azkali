@@ -1,7 +1,7 @@
 import { Tabs } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { ChatHeader } from '@/src/features/chat';
+import { GlobalHeader } from '@/components/layout';
 
 const tabBarColors = {
   background: '#FFFFFF',
@@ -34,13 +34,13 @@ export default function TabsLayout() {
         tabBarIconStyle: {
           marginTop: 2,
         },
+        headerShown: false,
       }}
     >
       <Tabs.Screen
         name="chat"
         options={{
           title: 'Chat',
-          headerShown: false,
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="chatbubble-outline" size={size} color={color} />
           ),
@@ -50,7 +50,6 @@ export default function TabsLayout() {
         name="rewards"
         options={{
           title: 'Recompensas',
-          header: () => <ChatHeader mode="main" userName="Christian" tokens={10} progress={50} />,
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="gift-outline" size={size} color={color} />
           ),
@@ -59,8 +58,8 @@ export default function TabsLayout() {
       <Tabs.Screen
         name="claim-tokens"
         options={{
-          title: 'Tokens',
-          header: () => <ChatHeader mode="main" userName="Christian" tokens={10} progress={50} />,
+          title: 'Kalis',
+          header: () => <GlobalHeader mode="settings" tokens={10} />,
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="star-outline" size={size} color={color} />
           ),

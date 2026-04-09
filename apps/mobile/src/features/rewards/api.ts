@@ -1,143 +1,111 @@
-import { supabase } from '@/config/supabase';
-import type { Reward } from './types';
+import type { RedeemedReward, Reward } from './types';
 
-/**
- * Fetch disponible rewards from rewards_catalog
- */
-export const fetchRewardsData = async (): Promise<{ rewards: Reward[]; total: number }> => {
+export const fetchRedeemedRewards = async (): Promise<{ items: RedeemedReward[]; totalTokens: number }> => {
   try {
-    // For now, return mock data since user auth is not required
-    // When auth is integrated, replace with real Supabase query
-    const mockRewards: Reward[] = [
+    const mockItems: RedeemedReward[] = [
       {
         id: '1',
-        title: '5% Descuento en Elektra',
-        description: '¡Felicidades! 5% en tu próxima compra en la tienda Elektra. Válido por 30 días.',
-        cost: 200,
-        category: 'shopping',
+        merchant: 'Elektra',
+        merchantCategory: 'retail',
+        amountSpent: 2499,
+        tokensEarned: 12.50,
+        cardType: 'tarjeta_azteca',
+        redeemedAt: '2026-04-08T14:23:00Z',
       },
       {
         id: '2',
-        title: '10% Cashback en Venta Online',
-        description: '¡Obtén 10% de cashback en tu próxima compra online. Se transferirá a tu cuenta en 24 horas.',
-        cost: 500,
-        category: 'cashback',
+        merchant: 'Totalplay',
+        merchantCategory: 'telecom',
+        amountSpent: 499,
+        tokensEarned: 1.25,
+        cardType: 'guardadito_go',
+        redeemedAt: '2026-04-06T10:15:00Z',
       },
       {
         id: '3',
-        title: '500 Pesos en tu Cuenta',
-        description: '¡Recibe 500 pesos directamente en tu cuenta de ahorros. Sin requisitos adicionales.',
-        cost: 300,
-        category: 'transfer',
+        merchant: 'Banco Azteca',
+        merchantCategory: 'banking',
+        amountSpent: 1000,
+        tokensEarned: 8.00,
+        cardType: 'tarjeta_vas',
+        redeemedAt: '2026-04-03T09:00:00Z',
+      },
+      {
+        id: '4',
+        merchant: 'Italika',
+        merchantCategory: 'retail',
+        amountSpent: 5800,
+        tokensEarned: 69.60,
+        cardType: 'oro_garantizada',
+        redeemedAt: '2026-03-29T16:45:00Z',
+      },
+      {
+        id: '5',
+        merchant: 'Elektra',
+        merchantCategory: 'retail',
+        amountSpent: 899,
+        tokensEarned: 1.80,
+        cardType: 'debito_guardadito',
+        redeemedAt: '2026-03-25T11:30:00Z',
+      },
+      {
+        id: '6',
+        merchant: 'Coppel',
+        merchantCategory: 'retail',
+        amountSpent: 350,
+        tokensEarned: 0.88,
+        cardType: 'guardadito_go',
+        redeemedAt: '2026-03-20T13:00:00Z',
       },
     ];
 
-    return {
-      rewards: mockRewards,
-      total: mockRewards.length,
-    };
+    const totalTokens = mockItems.reduce((acc, item) => acc + item.tokensEarned, 0);
+
+    return { items: mockItems, totalTokens };
   } catch (error) {
-    console.error('Error fetching rewards:', error);
+    console.error('Error fetching redeemed rewards:', error);
     throw error;
   }
 };
 
-/**
- * Claim a reward by creating a redemption record
- */
-export const claimReward = async (rewardId: string, userId: string = ''): Promise<{ success: boolean; message: string }> => {
-  try {
-    // For now, return mock success since user auth is not fully integrated
-    // When auth is integrated, uncomment the Supabase logic below
+export const fetchAvailableRewards = async (): Promise<Reward[]> => {
+  const mockRewards: Reward[] = [
+    {
+      id: 'r1',
+      title: '5% Descuento en Elektra',
+      description: '¡Felicidades! 5% en tu próxima compra en la tienda Elektra. Válido por 30 días.',
+      category: 'shopping',
+      cost: 200,
+    },
+    {
+      id: 'r2',
+      title: '10% Cashback en Venta Online',
+      description: '¡Obtén 10% de cashback en tu próxima compra online. Se transferirá a tu cuenta en 24 horas.',
+      category: 'cashback',
+      cost: 500,
+    },
+    {
+      id: 'r3',
+      title: '500 Pesos en tu Cuenta',
+      description: 'Recibe $500 MXN directamente en tu cuenta Banco Azteca. Disponibles en menos de 24 horas.',
+      category: 'transfer',
+      cost: 1000,
+    },
+    {
+      id: 'r4',
+      title: 'Mes gratis en Totalplay',
+      description: 'Un mes sin costo en tu plan Totalplay contratado. Aplica en la siguiente facturación.',
+      category: 'discount',
+      cost: 750,
+    },
+    {
+      id: 'r5',
+      title: '15% de Descuento en Italika',
+      description: 'Obtén 15% de descuento en accesorios y refacciones Italika. Válido por 15 días.',
+      category: 'shopping',
+      cost: 350,
+    },
+  ];
 
-    return {
-      success: true,
-      message: 'Recompensa canjeada exitosamente. Verifica tu cuenta en 24 horas.',
-    };
-
-    /* TODO: Uncomment when user auth is integrated
-    if (!userId) {
-      return {
-        success: false,
-        message: 'Usuario no autenticado. Por favor, inicia sesión.',
-      };
-    }
-
-    // Obtener el reward para saber su costo
-    const { data: rewardData, error: rewardError } = await supabase
-      .from('rewards_catalog')
-      .select('token_cost, name')
-      .eq('id', rewardId)
-      .single();
-
-    if (rewardError) throw rewardError;
-
-    const tokenCost = rewardData.token_cost;
-    const rewardName = rewardData.name;
-
-    // Verificar que el usuario tenga suficientes tokens
-    const { data: tokenData, error: tokenError } = await supabase
-      .from('tokens')
-      .select('balance')
-      .eq('user_id', userId)
-      .single();
-
-    if (tokenError) throw tokenError;
-
-    if ((tokenData?.balance || 0) < tokenCost) {
-      return {
-        success: false,
-        message: 'No tienes suficientes tokens para este canje.',
-      };
-    }
-
-    // Crear redemption record
-    const { error: redemptionError } = await supabase
-      .from('redemptions')
-      .insert({
-        user_id: userId,
-        reward_id: rewardId,
-        tokens_spent: tokenCost,
-        status: 'pending',
-      });
-
-    if (redemptionError) throw redemptionError;
-
-    // Crear transacción de redeem
-    const { error: txError } = await supabase
-      .from('token_transactions')
-      .insert({
-        user_id: userId,
-        reason: `Canje: ${rewardName}`,
-        amount: tokenCost,
-        type: 'redeem',
-      });
-
-    if (txError) throw txError;
-
-    return {
-      success: true,
-      message: 'Recompensa canjeada exitosamente. Verifica tu cuenta en 24 horas.',
-    };
-    */
-  } catch (error) {
-    console.error('Error claiming reward:', error);
-    throw error;
-  }
+  return mockRewards;
 };
-
-/**
- * Helper: Map reward_type from DB to RewardCategory
- */
-function mapRewardTypeToCategory(rewardType: string): 'shopping' | 'cashback' | 'transfer' | 'discount' {
-  switch (rewardType.toLowerCase()) {
-    case 'physical':
-      return 'shopping';
-    case 'virtual':
-      return 'cashback';
-    case 'financial':
-      return 'transfer';
-    default:
-      return 'discount';
-  }
-}

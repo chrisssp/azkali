@@ -1,18 +1,20 @@
 import { useState, useEffect } from 'react';
-import type { Reward } from './types';
-import { fetchRewardsData, claimReward } from './api';
+import type { RedeemedReward, Reward } from './types';
+import { fetchRedeemedRewards, fetchAvailableRewards } from './api';
 
-export const useRewards = () => {
-  const [rewards, setRewards] = useState<Reward[]>([]);
+export const useRedeemedRewards = () => {
+  const [items, setItems] = useState<RedeemedReward[]>([]);
+  const [totalTokens, setTotalTokens] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<Error | null>(null);
 
-  const loadRewards = async () => {
+  const load = async () => {
     setIsLoading(true);
     setError(null);
     try {
-      const result = await fetchRewardsData();
-      setRewards(result.rewards);
+      const result = await fetchRedeemedRewards();
+      setItems(result.items);
+      setTotalTokens(result.totalTokens);
     } catch (err) {
       setError(err instanceof Error ? err : new Error('Error desconocido'));
     } finally {
@@ -21,42 +23,44 @@ export const useRewards = () => {
   };
 
   useEffect(() => {
-    loadRewards();
+    load();
   }, []);
 
-  return {
-    rewards,
-    isLoading,
-    error,
-    refetch: loadRewards,
-  };
+  return { items, totalTokens, isLoading, error, refetch: load };
 };
 
-export const useClaimReward = () => {
+export const useAvailableRewards = () => {
+  const [rewards, setRewards] = useState<Reward[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<Error | null>(null);
+  const [claimingId, setClaimingId] = useState<string | null>(null);
 
-  const claim = async (rewardId: string, userId?: string) => {
+  const load = async () => {
     setIsLoading(true);
     setError(null);
     try {
-      const result = await claimReward(rewardId, userId || '');
-      if (!result.success) {
-        throw new Error(result.message);
-      }
-      return result;
+      const data = await fetchAvailableRewards();
+      setRewards(data);
     } catch (err) {
-      const error = err instanceof Error ? err : new Error('Error desconocido');
-      setError(error);
-      throw error;
+      setError(err instanceof Error ? err : new Error('Error desconocido'));
     } finally {
       setIsLoading(false);
     }
   };
 
-  return {
-    claim,
-    isLoading,
-    error,
+  const claimReward = async (id: string) => {
+    setClaimingId(id);
+    try {
+      // TODO: call real claim endpoint
+      await new Promise((resolve) => setTimeout(resolve, 800));
+    } finally {
+      setClaimingId(null);
+    }
   };
+
+  useEffect(() => {
+    load();
+  }, []);
+
+  return { rewards, isLoading, error, claimingId, claimReward };
 };

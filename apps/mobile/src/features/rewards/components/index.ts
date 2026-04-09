@@ -1,1 +1,1 @@
-export { RewardCard } from './RewardCard';
+export { RedeemedRewardCard, RewardCard } from './RewardCard';

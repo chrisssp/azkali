@@ -1,3 +1,3 @@
-import { ClaimTokensScreen } from '@/src/features/claim-tokens/screens/ClaimTokensScreen';
+import { KalisScreen } from '@/src/features/kalis/screens/KalisScreen';
 
-export default ClaimTokensScreen;
+export default KalisScreen;
