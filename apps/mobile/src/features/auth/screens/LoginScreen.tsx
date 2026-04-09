@@ -1,6 +1,5 @@
 import { Box } from "@/components/ui/box";
 import { Button, ButtonText } from "@/components/ui/button";
-import { Icon } from "@/components/ui/icon";
 import { Pressable } from "@/components/ui/pressable";
 import { Text } from "@/components/ui/text";
 import { useRouter } from "expo-router";
@@ -125,7 +124,7 @@ export const LoginScreen: React.FC = () => {
 						onPress={() => router.replace("/welcome")}
 						hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}
 					>
-						<Icon as={ArrowLeft} size="xl" className="text-white" />
+						<ArrowLeft color="#fff" size={22} />
 					</Pressable>
 
 					<Text className="text-2xl font-bold text-white ml-3">
