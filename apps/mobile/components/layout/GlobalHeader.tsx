@@ -25,7 +25,7 @@ const AnimatedPath = Animated.createAnimatedComponent(Path);
 const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('window');
 const WELCOME_HERO_HEIGHT = SCREEN_HEIGHT * 0.48;
 const WELCOME_CURVE_DEPTH = 40;
-const ANIMATED_HEADER_HEIGHT = 90;
+const ANIMATED_HEADER_HEIGHT = 130;
 const SVG_CANVAS_HEIGHT = WELCOME_HERO_HEIGHT + WELCOME_CURVE_DEPTH * 2;
 const SPRING = { damping: 26, stiffness: 130, mass: 1 };
 
@@ -139,24 +139,23 @@ export const GlobalHeader: React.FC<GlobalHeaderProps> = ({
           <AnimatedPath animatedProps={animatedPathProps} fill="#006341" />
         </Svg>
 
-        <Animated.View
-          className="absolute top-0 left-0 right-0 px-6 flex-row items-center"
-          style={[{ paddingTop: insets.top + 56, paddingBottom: 20 }, contentStyle]}
-        >
-          <Pressable 
-            className="p-2 rounded-full bg-primary-800 mr-4" 
-            onPress={handleBackPress}
-            hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}
-          >
-            <Ionicons name="chevron-back" size={24} color="#FFFFFF" />
-          </Pressable>
+        <Animated.View style={[{ overflow: 'hidden' }, contentStyle]}>
+          <HStack className="items-center px-6 pt-14 pb-5 bg-primary-700 border-b border-primary-800">
+            <Pressable 
+              className="p-2 rounded-full bg-primary-800 mr-4" 
+              onPress={handleBackPress}
+              hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}
+            >
+              <Ionicons name="chevron-back" size={24} color="#FFFFFF" />
+            </Pressable>
 
-          <Box>
-            <Text className="text-xl font-bold text-white">{headerTitle}</Text>
-            {subtitle && (
-              <Text className="text-xs text-primary-100 mt-0.5">{subtitle}</Text>
-            )}
-          </Box>
+            <Box>
+              <Text className="text-xl font-bold text-white">{headerTitle}</Text>
+              {subtitle && (
+                <Text className="text-xs text-primary-100 mt-0.5">{subtitle}</Text>
+              )}
+            </Box>
+          </HStack>
         </Animated.View>
       </Animated.View>
     );
