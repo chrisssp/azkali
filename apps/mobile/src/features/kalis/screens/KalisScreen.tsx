@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ActivityIndicator, ScrollView } from 'react-native';
+import { ActivityIndicator, ScrollView, Dimensions } from 'react-native';
 import { InfoIcon, CoinsIcon, XIcon } from 'lucide-react-native';
 import { VStack } from '@/components/ui/vstack';
 import { HStack } from '@/components/ui/hstack';
@@ -119,7 +119,7 @@ export const KalisScreen: React.FC = () => {
                 <ModalBackdrop />
                 <ModalContent
                     className="bg-white rounded-3xl mx-4"
-                    style={{ maxHeight: '85%' }}
+                    style={{ maxHeight: Dimensions.get('window').height * 0.85 }}
                 >
                     <ModalHeader className="px-5 pt-5 pb-3">
                         <HStack className="flex-1 items-center" space="sm">
@@ -135,7 +135,7 @@ export const KalisScreen: React.FC = () => {
                         </ModalCloseButton>
                     </ModalHeader>
 
-                    <ModalBody className="px-5" style={{ flex: 1 }}>
+                    <ModalBody className="px-5" style={{ flexShrink: 1 }}>
                         <ScrollView showsVerticalScrollIndicator={false} nestedScrollEnabled>
                             <Text className="text-sm text-typography-600 mb-4 leading-6">
                                 Cada vez que pagas con tu tarjeta Banco Azteca en establecimientos participantes, obtienes kalis según la siguiente tabla:
