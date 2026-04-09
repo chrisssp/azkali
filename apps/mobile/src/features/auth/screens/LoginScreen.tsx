@@ -3,45 +3,17 @@ import { Button, ButtonText } from "@/components/ui/button";
 import { Pressable } from "@/components/ui/pressable";
 import { Text } from "@/components/ui/text";
 import { useRouter } from "expo-router";
-import { ArrowLeft } from "lucide-react-native";
 import type React from "react";
 import { useEffect, useState } from "react";
 import {
-	Dimensions,
 	KeyboardAvoidingView,
 	Platform,
 	ScrollView,
 } from "react-native";
-import Animated, {
-	Easing,
-	useAnimatedProps,
-	useAnimatedStyle,
-	useSharedValue,
-	withDelay,
-	withSpring,
-	withTiming,
-} from "react-native-reanimated";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import Svg, { Path } from "react-native-svg";
 import { LoginForm } from "../components/LoginForm";
 import { useAuth } from "../hooks";
-
-const AnimatedPath = Animated.createAnimatedComponent(Path);
-
-const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get("window");
-
-// Must mirror AnimatedHero constants exactly so the morph starts flush
-const WELCOME_HERO_HEIGHT = SCREEN_HEIGHT * 0.48;
-const WELCOME_CURVE_DEPTH = 40; // same as AnimatedHero's CURVE_DEPTH
-
-// Target (resting) state of the login header
-const LOGIN_HEADER_HEIGHT = 90;
-
-// Spring config: enough damping to avoid visible bounce, natural settle
-const SPRING = { damping: 26, stiffness: 130, mass: 1 };
-
-// Max SVG canvas height — covers the full starting artwork
-const SVG_CANVAS_HEIGHT = WELCOME_HERO_HEIGHT + WELCOME_CURVE_DEPTH * 2;
+import { ScreenWrapper, GlobalHeader } from "@/components/layout";
 
 export const LoginScreen: React.FC = () => {
 	const router = useRouter();
@@ -50,50 +22,6 @@ export const LoginScreen: React.FC = () => {
 
 	const [emailOrPhone, setEmailOrPhone] = useState("");
 	const [password, setPassword] = useState("");
-
-	// Start from the exact size/curve that AnimatedHero leaves behind
-	const bandHeight = useSharedValue(WELCOME_HERO_HEIGHT);
-	const curveDepth = useSharedValue(WELCOME_CURVE_DEPTH * 2);
-	const contentOpacity = useSharedValue(0);
-
-	useEffect(() => {
-		// Explicitly reset to the starting position on every mount so that
-		// re-visits (e.g. welcome → login → welcome → login) always animate
-		// correctly regardless of any stale Reanimated state.
-		bandHeight.value = WELCOME_HERO_HEIGHT;
-		curveDepth.value = WELCOME_CURVE_DEPTH * 2;
-		contentOpacity.value = 0;
-
-		// Morph the band height and curve simultaneously
-		bandHeight.value = withSpring(LOGIN_HEADER_HEIGHT, SPRING);
-		curveDepth.value = withSpring(0, SPRING);
-
-		// Reveal the header content once the morph is well underway
-		contentOpacity.value = withDelay(
-			260,
-			withTiming(1, { duration: 320, easing: Easing.out(Easing.ease) }),
-		);
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
-
-	// Container shrinks with the band — form body slides up naturally
-	const containerStyle = useAnimatedStyle(() => ({
-		height: bandHeight.value + curveDepth.value,
-	}));
-
-	const animatedPathProps = useAnimatedProps(() => ({
-		d: [
-			`M 0 0`,
-			`L ${SCREEN_WIDTH} 0`,
-			`L ${SCREEN_WIDTH} ${bandHeight.value}`,
-			`Q ${SCREEN_WIDTH / 2} ${bandHeight.value + curveDepth.value} 0 ${bandHeight.value}`,
-			"Z",
-		].join(" "),
-	}));
-
-	const contentStyle = useAnimatedStyle(() => ({
-		opacity: contentOpacity.value,
-	}));
 
 	const handleLogin = async (emailOrPhone: string, password: string) => {
 		try {
@@ -105,34 +33,7 @@ export const LoginScreen: React.FC = () => {
 	};
 
 	return (
-		<Box className="flex-1 bg-white">
-			{/* ── Animated green header — morphs from welcome curve ─────── */}
-			<Animated.View style={containerStyle}>
-				<Svg
-					width={SCREEN_WIDTH}
-					height={SVG_CANVAS_HEIGHT}
-					style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0 }}
-				>
-					<AnimatedPath animatedProps={animatedPathProps} fill="#006341" />
-				</Svg>
-
-				<Animated.View
-					className="absolute top-0 left-0 right-0 px-5 flex-row items-center"
-					style={[{ paddingTop: insets.top + 10 }, contentStyle]}
-				>
-					<Pressable
-						onPress={() => router.replace("/welcome")}
-						hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}
-					>
-						<ArrowLeft color="#fff" size={22} />
-					</Pressable>
-
-					<Text className="text-xl font-bold text-white ml-3">
-						Iniciar sesión
-					</Text>
-				</Animated.View>
-			</Animated.View>
-
+		<ScreenWrapper header={<GlobalHeader mode="animated-login" onBackPress={() => router.replace('/welcome')} />}>
 			{/* ── Form body ────────────────────────────────────────────── */}
 			<KeyboardAvoidingView
 				behavior={Platform.OS === "ios" ? "padding" : undefined}
@@ -154,7 +55,7 @@ export const LoginScreen: React.FC = () => {
 				</ScrollView>
 
 				<Box
-					className="px-6 pt-3 bg-white"
+					className="pt-3"
 					style={{ paddingBottom: Math.max(insets.bottom + 8, 24) }}
 				>
 					<Button
@@ -178,6 +79,6 @@ export const LoginScreen: React.FC = () => {
 					</Pressable>
 				</Box>
 			</KeyboardAvoidingView>
-		</Box>
+		</ScreenWrapper>
 	);
 };

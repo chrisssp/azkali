@@ -2,12 +2,12 @@ import React, { useCallback, useMemo, useState } from 'react';
 import { FlatList, KeyboardAvoidingView, Platform } from 'react-native';
 import { Box } from '@/components/ui/box';
 import {
-  ChatHeader,
   MessageBubble,
   MessageInput,
   QuickActions,
   WelcomeMessage,
 } from '../components';
+import { GlobalHeader } from '@/components/layout';
 import { QUICK_ACTIONS } from '../hooks/useChatMessages';
 import type { Message, QuickAction } from '../types';
 import { useKaliChat, type KaliShortcut } from '@/hooks/useKaliChat';
@@ -81,7 +81,7 @@ export function AIChat() {
 
   return (
     <Box className="flex-1 bg-background-light">
-      <ChatHeader mode="chat" />
+      <GlobalHeader mode="tokens" />
 
       <KeyboardAvoidingView
         behavior={Platform.OS === 'ios' ? 'padding' : undefined}

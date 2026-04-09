@@ -1,5 +1,5 @@
 import React from 'react';
-import { ScrollView, Alert, View } from 'react-native';
+import { ScrollView, Alert } from 'react-native';
 import { useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import { Box } from '@/components/ui/box';
@@ -8,7 +8,7 @@ import { Pressable } from '@/components/ui/pressable';
 import { HStack } from '@/components/ui/hstack';
 import { VStack } from '@/components/ui/vstack';
 import { Divider } from '@/components/ui/divider';
-import { SettingsHeader } from '../components/SettingsHeader';
+import { GlobalHeader, ScreenWrapper } from '@/components/layout';
 
 // ─── Types ─────────────────────────────────────────────────────────────────────
 
@@ -72,8 +72,7 @@ export function SettingsScreen() {
   };
 
   return (
-    <View style={{ flex: 1, backgroundColor: '#fff' }}>
-      <SettingsHeader title="Configuración" />
+    <ScreenWrapper header={<GlobalHeader mode="back" title="Configuración" />}>
       <ScrollView className="flex-1 bg-white" showsVerticalScrollIndicator={false}>
       {/* ── Cuenta ────────────────────────────────────────── */}
       <SectionLabel text="Cuenta" />
@@ -142,6 +141,6 @@ export function SettingsScreen() {
 
       <Box style={{ height: 40 }} />
       </ScrollView>
-    </View>
+    </ScreenWrapper>
   );
 }

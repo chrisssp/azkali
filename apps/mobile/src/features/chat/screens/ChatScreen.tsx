@@ -2,7 +2,6 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { FlatList, KeyboardAvoidingView, Platform } from 'react-native';
 import { Box } from '@/components/ui/box';
 import {
-  ChatHeader,
   MessageBubble,
   MessageInput,
   QuickActions,
@@ -13,6 +12,7 @@ import { QUICK_ACTIONS } from '../hooks/useChatMessages';
 import type { Message, QuickAction } from '../types';
 import { useKaliChat, type KaliShortcut } from '@/hooks/useKaliChat';
 import { useGlobalStore } from '@/src/store/useGlobalStore';
+import { GlobalHeader } from '@/components/layout';
 
 function quickActionIdToShortcut(id: string): KaliShortcut | null {
   switch (id) {
@@ -83,7 +83,7 @@ export function ChatScreen() {
 
   return (
     <Box className="flex-1 bg-background-light">
-      <ChatHeader mode="chat" />
+      <GlobalHeader mode="tokens" />
 
       <KeyboardAvoidingView
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
