@@ -19,7 +19,6 @@ import Animated, {
 } from 'react-native-reanimated';
 import Svg, { Path } from 'react-native-svg';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { ArrowLeft } from 'lucide-react-native';
 
 const AnimatedPath = Animated.createAnimatedComponent(Path);
 
@@ -141,23 +140,23 @@ export const GlobalHeader: React.FC<GlobalHeaderProps> = ({
         </Svg>
 
         <Animated.View
-          className="absolute top-0 left-0 right-0 px-5 flex-row items-center"
-          style={[{ paddingTop: insets.top + 10 }, contentStyle]}
+          className="absolute top-0 left-0 right-0 px-6 flex-row items-center"
+          style={[{ paddingTop: insets.top + 56, paddingBottom: 20 }, contentStyle]}
         >
-          <Pressable
+          <Pressable 
+            className="p-2 rounded-full bg-primary-800 mr-4" 
             onPress={handleBackPress}
             hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}
           >
-            <ArrowLeft color="#fff" size={22} />
+            <Ionicons name="chevron-back" size={24} color="#FFFFFF" />
           </Pressable>
 
-          <Text 
-            className={`font-bold text-white ml-3 ${
-              mode === 'animated-register' ? 'text-2xl' : 'text-xl'
-            }`}
-          >
-            {headerTitle}
-          </Text>
+          <Box>
+            <Text className="text-xl font-bold text-white">{headerTitle}</Text>
+            {subtitle && (
+              <Text className="text-xs text-primary-100 mt-0.5">{subtitle}</Text>
+            )}
+          </Box>
         </Animated.View>
       </Animated.View>
     );
