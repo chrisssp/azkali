@@ -11,7 +11,7 @@ export default function NotFoundScreen() {
       <Text className="text-typography-500 mb-8 text-center">
         La pantalla que buscas no existe
       </Text>
-      <Link href="/(tabs)/feature1" asChild>
+      <Link href="/chat" asChild>
         <Button>
           <ButtonText>Volver al inicio</ButtonText>
         </Button>
