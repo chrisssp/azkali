@@ -16,9 +16,9 @@ import { HStack } from '@/components/ui/hstack';
 import { Text } from '@/components/ui/text';
 import { Box } from '@/components/ui/box';
 import { Button, ButtonText } from '@/components/ui/button';
-import { CONVERSION_RATES, type RedeemedRewardCardProps, type RewardCardProps } from '../types';
+import { CONVERSION_RATES, type RedeemedKaliCardProps, type KaliCardProps } from '../types';
 
-const categoryConfig = {
+const merchantCategoryConfig = {
     retail: {
         icon: ShoppingBagIcon,
         label: 'COMERCIO',
@@ -56,62 +56,7 @@ const categoryConfig = {
     },
 };
 
-function formatDate(isoString: string): string {
-    const date = new Date(isoString);
-    return date.toLocaleDateString('es-MX', { day: '2-digit', month: 'short', year: 'numeric' });
-}
-
-function formatMXN(amount: number): string {
-    return new Intl.NumberFormat('es-MX', { style: 'currency', currency: 'MXN', maximumFractionDigits: 0 }).format(amount);
-}
-
-export const RedeemedRewardCard: React.FC<RedeemedRewardCardProps> = ({ item }) => {
-    const config = categoryConfig[item.merchantCategory];
-    const IconComponent = config.icon;
-    const cardLabel = CONVERSION_RATES.find((r) => r.cardType === item.cardType)?.label ?? item.cardType;
-
-    return (
-        <Card className="bg-white rounded-2xl shadow-soft-2 border border-outline-100">
-            <HStack space="md" className="p-4 items-center">
-                {/* Category icon */}
-                <Box className="w-10 h-10 rounded-full bg-background-50 items-center justify-center">
-                    <IconComponent size={20} color={config.iconColor} />
-                </Box>
-
-                {/* Main info */}
-                <VStack className="flex-1" space="xs">
-                    <HStack className="items-center justify-between">
-                        <Text className="text-base font-bold text-primary-900">{item.merchant}</Text>
-                        <HStack space="xs" className="items-center">
-                            <CoinsIcon size={14} color="#B45309" />
-                            <Text className="text-sm font-extrabold text-warning-700">
-                                +{item.tokensEarned.toFixed(2)}
-                            </Text>
-                        </HStack>
-                    </HStack>
-
-                    <HStack className="items-center justify-between">
-                        <Box className={`${config.badgeBg} rounded px-2 py-0.5 self-start`}>
-                            <Text className={`text-2xs font-bold uppercase tracking-wider ${config.badgeText}`}>
-                                {config.label}
-                            </Text>
-                        </Box>
-                        <Text className="text-xs text-typography-400">{formatDate(item.redeemedAt)}</Text>
-                    </HStack>
-
-                    <HStack className="items-center justify-between mt-0.5">
-                        <Text className="text-xs text-typography-500">{cardLabel}</Text>
-                        <Text className="text-xs text-typography-500">
-                            {formatMXN(item.amountSpent)} gastados
-                        </Text>
-                    </HStack>
-                </VStack>
-            </HStack>
-        </Card>
-    );
-};
-
-const rewardCategoryConfig = {
+const kaliCategoryConfig = {
     shopping: {
         badgeBg: 'bg-success-50',
         badgeText: 'text-success-800',
@@ -138,26 +83,78 @@ const rewardCategoryConfig = {
     },
 };
 
-export const RewardCard: React.FC<RewardCardProps> = ({
+function formatDate(isoString: string): string {
+    const date = new Date(isoString);
+    return date.toLocaleDateString('es-MX', { day: '2-digit', month: 'short', year: 'numeric' });
+}
+
+function formatMXN(amount: number): string {
+    return new Intl.NumberFormat('es-MX', { style: 'currency', currency: 'MXN', maximumFractionDigits: 0 }).format(amount);
+}
+
+export const RedeemedKaliCard: React.FC<RedeemedKaliCardProps> = ({ item }) => {
+    const config = merchantCategoryConfig[item.merchantCategory];
+    const IconComponent = config.icon;
+    const cardLabel = CONVERSION_RATES.find((r) => r.cardType === item.cardType)?.label ?? item.cardType;
+
+    return (
+        <Card className="bg-white rounded-2xl shadow-soft-2 border border-outline-100">
+            <HStack space="md" className="p-4 items-center">
+                <Box className="w-10 h-10 rounded-full bg-background-50 items-center justify-center">
+                    <IconComponent size={20} color={config.iconColor} />
+                </Box>
+
+                <VStack className="flex-1" space="xs">
+                    <HStack className="items-center justify-between">
+                        <Text className="text-base font-bold text-primary-900">{item.merchant}</Text>
+                        <HStack space="xs" className="items-center">
+                            <CoinsIcon size={14} color="#B45309" />
+                            <Text className="text-sm font-extrabold text-warning-700">
+                                +{item.kalisEarned.toFixed(2)} K
+                            </Text>
+                        </HStack>
+                    </HStack>
+
+                    <HStack className="items-center justify-between">
+                        <Box className={`${config.badgeBg} rounded px-2 py-0.5 self-start`}>
+                            <Text className={`text-xs font-bold uppercase tracking-wider ${config.badgeText}`}>
+                                {config.label}
+                            </Text>
+                        </Box>
+                        <Text className="text-xs text-typography-400">{formatDate(item.redeemedAt)}</Text>
+                    </HStack>
+
+                    <HStack className="items-center justify-between mt-0.5">
+                        <Text className="text-xs text-typography-500">{cardLabel}</Text>
+                        <Text className="text-xs text-typography-500">
+                            {formatMXN(item.amountSpent)} gastados
+                        </Text>
+                    </HStack>
+                </VStack>
+            </HStack>
+        </Card>
+    );
+};
+
+export const KaliCard: React.FC<KaliCardProps> = ({
     reward,
     onClaim,
     isLoading = false,
 }) => {
-    const config = rewardCategoryConfig[reward.category];
+    const config = kaliCategoryConfig[reward.category];
     const IconComponent = config.icon;
 
     const handleClaim = async () => {
         try {
             await onClaim(reward.id);
         } catch (error) {
-            console.error('Error claiming reward:', error);
+            console.error('Error claiming kali:', error);
         }
     };
 
     return (
         <Card className="bg-white rounded-2xl shadow-soft-2 border border-outline-100">
             <VStack space="md" className="p-6">
-                {/* Title with Icon */}
                 <HStack space="md" className="items-center">
                     <IconComponent size={24} color="#006341" />
                     <Text className="text-lg font-bold text-primary-900 flex-1">
@@ -165,21 +162,16 @@ export const RewardCard: React.FC<RewardCardProps> = ({
                     </Text>
                 </HStack>
 
-                {/* Category Badge */}
-                <Box
-                    className={`${config.badgeBg} ${config.badgeText} self-start rounded-md px-2 py-1`}
-                >
-                    <Text className="text-2xs font-bold uppercase tracking-wider">
+                <Box className={`${config.badgeBg} ${config.badgeText} self-start rounded-md px-2 py-1`}>
+                    <Text className="text-xs font-bold uppercase tracking-wider">
                         {config.label}
                     </Text>
                 </Box>
 
-                {/* Description */}
                 <Text className="text-sm text-typography-500">
                     {reward.description}
                 </Text>
 
-                {/* Claim Button - Alineado a la derecha */}
                 <HStack className="justify-between items-center mt-4">
                     <Text className="text-xs text-typography-400">Toca para reclamar</Text>
                     <Button
@@ -188,7 +180,7 @@ export const RewardCard: React.FC<RewardCardProps> = ({
                         disabled={isLoading}
                     >
                         <ButtonText className="text-typography-white font-bold text-sm">
-                            {isLoading ? 'Canjeando...' : `${reward.cost} tokens`}
+                            {isLoading ? 'Canjeando...' : `${reward.cost} kalis`}
                         </ButtonText>
                     </Button>
                 </HStack>

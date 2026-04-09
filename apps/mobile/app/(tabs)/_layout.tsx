@@ -54,7 +54,8 @@ export default function TabsLayout() {
       <Tabs.Screen
         name="claim-tokens"
         options={{
-          title: 'Tokens',
+          title: 'Kalis',
+          header: () => <ChatHeader mode="main" userName="Christian" tokens={10} progress={50} />,
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="star-outline" size={size} color={color} />
           ),

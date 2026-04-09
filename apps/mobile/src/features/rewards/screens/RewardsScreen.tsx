@@ -9,16 +9,7 @@ import { RewardCard } from '../components/RewardCard';
 import { useRewards, useClaimReward } from '../hooks';
 
 export const RewardsScreen: React.FC = () => {
-    const { rewards, isLoading, error } = useRewards();
-    const { claim: claimReward, isLoading: isClaimingReward } = useClaimReward();
-
-    const handleClaimReward = async (rewardId: string) => {
-        try {
-            await claimReward(rewardId);
-        } catch (error) {
-            console.error('Error claiming reward:', error);
-        }
-    };
+    const { rewards, isLoading, error, claimingId, claimReward } = useAvailableRewards();
 
     if (isLoading && !rewards.length) {
         return (
@@ -68,3 +59,4 @@ export const RewardsScreen: React.FC = () => {
         </ScreenWrapper>
     );
 };
+
