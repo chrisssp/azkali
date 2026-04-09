@@ -180,8 +180,7 @@ export const RewardCard: React.FC<RewardCardProps> = ({
                 </Text>
 
                 {/* Claim Button - Alineado a la derecha */}
-                <HStack className="justify-between items-center mt-4">
-                    <Text className="text-xs text-typography-400">Toca para reclamar</Text>
+                <HStack className="justify-end items-center mt-4">
                     <Button
                         className="bg-primary-900 rounded-lg shadow-hard-5 px-6 py-2"
                         onPress={handleClaim}
