@@ -1,8 +1,8 @@
 {
 	"expo": {
-		"name": "frontend",
-		"slug": "frontend",
-		"scheme": "frontend",
+		"name": "Azkali",
+		"slug": "Azkali",
+		"scheme": "Azkali",
 		"version": "1.0.0",
 		"orientation": "portrait",
 		"icon": "./assets/icon.png",
@@ -29,10 +29,15 @@
 		},
 		"extra": {
 			"eas": {
-				"projectId": "542d86e0-26f5-4f0d-bd59-612774df7682"
+				"projectId": "542d86e0-26f5-4f0d-bd59-612774df7682",
+				"shortName": "Azkali",
+				"name": "Azkali"
 			}
 		},
 		"owner": "chrisdev.ts",
-		"plugins": ["expo-router", "expo-font"]
+		"plugins": [
+			"expo-router",
+			"expo-font"
+		]
 	}
 }
