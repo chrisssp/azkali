@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Bot, Flame, Users, Award } from "lucide-react";
+import { Bot, ScanSearch, CreditCard, Award } from "lucide-react";
 
 const features = [
   {
@@ -40,43 +40,45 @@ const features = [
     ),
   },
   {
-    id: "rachas",
-    icon: Flame,
-    title: "Rachas de Disciplina",
-    tagline: "El hábito que sí se vuelve adictivo.",
-    iconBg: "bg-orange-50 border border-orange-100",
-    iconColor: "text-orange-500",
-    accentColor: "bg-orange-500",
-    borderAccent: "border-t-orange-400",
+    id: "escaner",
+    icon: ScanSearch,
+    title: "Escáner de Impulsividad",
+    tagline: "Tu veredicto financiero antes de cada compra.",
+    iconBg: "bg-red-50 border border-red-100",
+    iconColor: "text-red-500",
+    accentColor: "bg-red-500",
+    borderAccent: "border-t-red-400",
     details: [
-      { heading: "Streaks diarios, no de capital", body: "Tu racha se mide en días de disciplina — no en cuánto dinero tienes. Un estudiante y un profesionista compiten en igualdad de condiciones." },
-      { heading: "Interacción diaria obligatoria", body: "Para mantener la racha debes abrir la app cada día. Es el mecanismo de retención más honesto: si usas Azkali, Azkali funciona." },
-      { heading: "Penalización real por romperla", body: "Romper una racha borra el progreso visible y activa una notificación de Kali. El costo emocional de perder una racha larga es el mejor disuasivo." },
-      { heading: "Rachas visibles para tus amigos", body: "Tu racha es pública para tus contactos dentro de la app. La presión social positiva es uno de los motivadores conductuales más potentes." },
+      { heading: "Micro-chat de contexto financiero", body: "Cuando deseas comprar algo, la IA te hace preguntas de contexto rápidas para evaluar tu situación actual: liquidez, ingresos y prioridades." },
+      { heading: "Porcentaje de riesgo de impulsividad", body: "El escáner calcula un porcentaje preciso de impulsividad cruzando el costo del artículo contra tu perfil financiero completo." },
+      { heading: "Costo de oportunidad tangible", body: "Te muestra en qué más podrías usar ese dinero: horas de trabajo equivalentes, días de ahorro, o meses de servicios." },
+      { heading: "Congelar o ignorar", body: "Después del veredicto, decides: pausar la compra (acumulas tokens) o comprar igual. Sin bloqueos ni juicios." },
     ],
     mockup: (
       <div className="bg-white rounded-2xl border border-zinc-100 shadow-sm p-5">
-        <div className="flex items-center justify-between mb-4">
-          <p className="text-xs font-semibold text-zinc-400 uppercase tracking-widest">Tu racha</p>
-          <span className="text-xs font-bold text-orange-500">Récord personal 🏆</span>
+        <div className="flex items-center justify-between mb-3">
+          <p className="text-xs font-semibold text-zinc-400 uppercase tracking-widest">Veredicto Kali</p>
+          <span className="text-[10px] bg-red-50 border border-red-100 text-red-500 px-2 py-0.5 rounded-full font-bold uppercase tracking-wider">89% Impulsiva</span>
         </div>
-        <div className="flex items-center gap-3 mb-5">
-          <div className="w-16 h-16 rounded-2xl bg-orange-50 border border-orange-100 flex flex-col items-center justify-center flex-shrink-0">
-            <span className="text-2xl font-heading font-bold text-orange-500 leading-none">45</span>
-            <span className="text-[9px] text-orange-400 font-semibold mt-0.5">días</span>
-          </div>
-          <div className="flex-1">
-            <p className="text-sm font-semibold text-zinc-900">Nivel: Disciplinado</p>
-            <p className="text-xs text-zinc-400 mt-0.5">15 días para Nivel Estoico</p>
-            <div className="mt-2 h-1.5 bg-zinc-100 rounded-full overflow-hidden">
-              <div className="h-full w-3/4 bg-orange-400 rounded-full" />
+        <div className="flex justify-center mb-3">
+          <div className="relative w-16 h-16">
+            <svg viewBox="0 0 64 64" className="w-full h-full -rotate-90">
+              <circle cx="32" cy="32" r="26" fill="none" stroke="#f3f4f6" strokeWidth="6" />
+              <circle cx="32" cy="32" r="26" fill="none" stroke="#8B1A1A" strokeWidth="6" strokeDasharray="163" strokeDashoffset="18" strokeLinecap="round" />
+            </svg>
+            <div className="absolute inset-0 flex flex-col items-center justify-center">
+              <span className="font-heading font-bold text-lg text-[#8B1A1A] leading-none">89%</span>
             </div>
           </div>
         </div>
-        <div className="flex gap-1">
-          {Array.from({ length: 7 }).map((_, i) => (
-            <div key={i} className={`flex-1 h-7 rounded-lg flex items-center justify-center text-xs ${i < 6 ? "bg-orange-100 text-orange-500" : "bg-zinc-100 text-zinc-300"}`}>
-              {i < 6 ? "✓" : "·"}
+        <div className="grid grid-cols-2 gap-2">
+          {[
+            { label: "Hrs trabajadas", val: "14.2 hrs" },
+            { label: "Días ahorro", val: "3 días" },
+          ].map((m) => (
+            <div key={m.label} className="bg-zinc-50 rounded-xl p-2 text-center">
+              <p className="text-sm font-heading font-bold text-[#006341]">{m.val}</p>
+              <p className="text-[9px] text-zinc-400 mt-0.5 font-medium">{m.label}</p>
             </div>
           ))}
         </div>
@@ -84,58 +86,57 @@ const features = [
     ),
   },
   {
-    id: "social",
-    icon: Users,
-    title: "Retos Grupales",
-    tagline: "Ahorrar con amigos es más fácil que solo.",
+    id: "lealtad",
+    icon: CreditCard,
+    title: "Lealtad Transaccional",
+    tagline: "Tus compras responsables te premian en automático.",
     iconBg: "bg-violet-50 border border-violet-100",
     iconColor: "text-violet-500",
     accentColor: "bg-violet-500",
     borderAccent: "border-t-violet-400",
     details: [
-      { heading: "Metas compartidas", body: "Crea un reto con una meta específica — vacaciones, fondo de emergencia, gadget — e invita a tus amigos a competir por llegar primero." },
-      { heading: "Bóveda colectiva", body: "Todos los participantes contribuyen a una bóveda visible en tiempo real. Ver el dinero de tu grupo crecer es uno de los motivadores más poderosos." },
-      { heading: "Leaderboard colaborativo", body: "Un ranking en tiempo real que muestra el progreso de cada participante. La competencia sana entre amigos es el combustible del ahorro." },
-      { heading: "Visibilidad total del progreso", body: "Cada miembro puede ver cuánto ha aportado cada quien, cuántos días llevan de racha y quién va ganando." },
+      { heading: "Tokens por cada transacción", body: "Cada compra con tu tarjeta de Banco Azteca acumula tokens automáticamente. Sin pasos extra, sin formularios. Solo usa tu plástico." },
+      { heading: "Tasa según producto financiero", body: "Guardadito te da 2 tokens/$1,000. TAZ te da 5. ABCredit Básica te da 8. Oro Garantizada te da 12. La app te muestra cómo multiplicar tus beneficios." },
+      { heading: "Incentivo al upselling natural", body: "Verás claramente que migrar de débito a crédito responsable multiplica tus recompensas, gamificando tu madurez financiera." },
+      { heading: "Monitoreo en tiempo real", body: "La app lee tu volumen de transacciones y actualiza tu balance de tokens al instante, fomentando la fidelización con Banco Azteca." },
     ],
     mockup: (
       <div className="bg-white rounded-2xl border border-zinc-100 shadow-sm p-5">
         <div className="flex items-center justify-between mb-3">
-          <p className="text-xs font-semibold text-zinc-400 uppercase tracking-widest">Reto activo</p>
-          <span className="text-xs font-bold text-violet-500">15 días restantes</span>
+          <p className="text-xs font-semibold text-zinc-400 uppercase tracking-widest">Tus plásticos</p>
+          <span className="text-xs font-bold text-violet-500">Tokens activos</span>
         </div>
-        <div className="bg-violet-50 border border-violet-100 rounded-xl p-3 mb-4 text-center">
-          <p className="text-xs text-violet-500 font-semibold uppercase tracking-widest mb-1">Meta del grupo</p>
-          <p className="text-xl font-heading font-bold text-violet-700">$12,000 MXN</p>
-          <p className="text-xs text-violet-400">Vacaciones Cancún 🏖️</p>
-        </div>
-        {[
-          { name: "Tú", pct: 78, color: "bg-[#006341]", amt: "$3,120" },
-          { name: "Abigail", pct: 64, color: "bg-violet-400", amt: "$2,560" },
-          { name: "Diego", pct: 51, color: "bg-amber-400", amt: "$2,040" },
-        ].map(p => (
-          <div key={p.name} className="flex items-center gap-2 mb-2">
-            <span className="text-[10px] text-zinc-400 w-12 flex-shrink-0">{p.name}</span>
-            <div className="flex-1 h-2 bg-zinc-100 rounded-full overflow-hidden">
-              <div className={`h-full ${p.color} rounded-full`} style={{ width: `${p.pct}%` }} />
+        <div className="space-y-2">
+          {[
+            { name: "Guardadito", rate: "2.0 T", pct: 20 },
+            { name: "Tarjeta Azteca", rate: "5.0 T", pct: 50 },
+            { name: "ABCredit", rate: "8.0 T", pct: 70 },
+            { name: "Oro Garantizada", rate: "12.0 T", pct: 100 },
+          ].map(p => (
+            <div key={p.name} className="flex items-center gap-2">
+              <span className="text-[10px] text-zinc-500 w-20 flex-shrink-0 font-medium">{p.name}</span>
+              <div className="flex-1 h-2 bg-zinc-100 rounded-full overflow-hidden">
+                <div className="h-full bg-violet-400 rounded-full" style={{ width: `${p.pct}%` }} />
+              </div>
+              <span className="text-[10px] font-bold text-violet-600 w-8 text-right">{p.rate}</span>
             </div>
-            <span className="text-[10px] font-semibold text-zinc-600 w-10 text-right">{p.amt}</span>
-          </div>
-        ))}
+          ))}
+        </div>
+        <p className="text-[9px] text-zinc-400 mt-3 text-center">Tokens por cada $1,000 MXN gastados</p>
       </div>
     ),
   },
   {
     id: "tokens",
     icon: Award,
-    title: "Tokens de Disciplina",
+    title: "Tokens de Resiliencia",
     tagline: "Cada buen hábito tiene su recompensa real.",
     iconBg: "bg-amber-50 border border-amber-100",
     iconColor: "text-amber-500",
     accentColor: "bg-amber-500",
     borderAccent: "border-t-amber-400",
     details: [
-      { heading: "Tokens por comportamiento, no por saldo", body: "Ganas tokens cada vez que congelas una compra, mantienes tu racha o cumples una meta. No importa cuánto tengas en la cuenta." },
+      { heading: "Tokens por comportamiento, no por saldo", body: "Ganas tokens cada vez que congelas una compra impulsiva basándote en el análisis de Kali. También acumulas por cada transacción con tus plásticos de Banco Azteca." },
       { heading: "Marketplace de recompensas reales", body: "Los tokens se canjean por cafés gratis, meses de streaming, descuentos en retail y beneficios en el ecosistema Grupo Salinas: Elektra, Italika, Totalplay." },
       { heading: "Beneficios directos en Banco Azteca", body: "Con suficientes tokens puedes acceder a reducción de tasa de interés en créditos o rendimiento extra en productos de inversión." },
       { heading: "Sistema de niveles", body: "Aprendiz → Disciplinado → Estoico → Maestro. Cada nivel desbloquea beneficios exclusivos y mayor visibilidad en el leaderboard." },
@@ -148,7 +149,7 @@ const features = [
         </div>
         <div className="text-center mb-4">
           <p className="text-4xl font-heading font-bold text-zinc-900 tracking-tighter">240</p>
-          <p className="text-xs text-zinc-400 font-medium">Tokens de Disciplina</p>
+          <p className="text-xs text-zinc-400 font-medium">Tokens de Resiliencia</p>
         </div>
         <div className="grid grid-cols-2 gap-2">
           {[

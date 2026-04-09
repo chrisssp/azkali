@@ -65,8 +65,8 @@ export function AIEngine() {
               en el momento exacto correcto, con la respuesta correcta, sin fallar nunca.
             </p>
             <p className="text-sm text-zinc-400 font-light leading-relaxed">
-              Agnóstica al modelo de lenguaje — funciona con cualquier LLM que soporte JSON Mode
-              y system prompting. Para el MVP: Claude Haiku y GPT-4o mini.
+              Potenciada por Gemini 2.5 Flash-Lite con Dynamic System Prompting y visión artificial
+              para analizar tickets y estados de cuenta en tiempo real.
             </p>
           </div>
         </motion.div>
@@ -128,10 +128,10 @@ export function AIEngine() {
           <div>
             <p className="text-sm font-semibold text-zinc-800 mb-2">Nota técnica del equipo</p>
             <p className="text-sm text-zinc-400 font-light leading-relaxed max-w-2xl">
-              Kali es agnóstica al modelo de lenguaje — funciona con cualquier LLM que soporte JSON Mode
-              y system prompting. Para el MVP evaluamos <span className="text-zinc-600 font-medium">Claude Haiku</span> y{" "}
-              <span className="text-zinc-600 font-medium">GPT-4o mini</span> como proveedores principales
-              por su balance entre latencia y calidad de razonamiento conductual.
+              Kali cobra vida mediante <span className="text-zinc-600 font-medium">Gemini 2.5 Flash-Lite</span> con
+              una arquitectura de <span className="text-zinc-600 font-medium">Dynamic System Prompting</span> que inyecta
+              contexto financiero del usuario en tiempo real (nombre, ingresos, saldo actual) para respuestas
+              hiper-personalizadas. Incluye visión artificial para procesar capturas de tickets vía Base64.
             </p>
           </div>
         </motion.div>

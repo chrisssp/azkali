@@ -47,7 +47,7 @@ export function FeaturesHero() {
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.25 }}
           className="flex flex-wrap items-center justify-center gap-2 mt-8"
         >
-          {["MVP disponible", "IA conductual", "Gamificación", "Finanzas sociales", "Banco Azteca"].map((tag) => (
+          {["MVP disponible", "IA conductual", "Gamificación", "Escáner de Impulsividad", "Banco Azteca"].map((tag) => (
             <span
               key={tag}
               className="px-3 py-1.5 rounded-full bg-zinc-50 border border-zinc-200 text-zinc-500 text-xs font-medium"
