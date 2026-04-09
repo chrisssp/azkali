@@ -2,7 +2,6 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { Image, ScrollView } from 'react-native';
 import { useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
-import { ArrowLeft } from 'lucide-react-native';
 import * as ImagePicker from 'expo-image-picker';
 import { GoogleGenerativeAI } from '@google/generative-ai';
 import { Box } from '@/components/ui/box';
@@ -430,17 +429,21 @@ Reglas:
   return (
     <Box className="flex-1 bg-background-light">
       <HStack className="items-center px-4 pt-14 pb-4 bg-primary-700 border-b border-primary-800">
-        <Pressable
-          onPress={() => router.back()}
-          hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}
-          className="pr-2 py-1"
-        >
-          <ArrowLeft color="#FFFFFF" size={22} />
+        <Pressable onPress={() => router.back()} className="p-2 rounded-full bg-primary-800">
+          <Ionicons name="arrow-back" size={20} color="#FFFFFF" />
         </Pressable>
         <Text className="text-white text-lg font-semibold ml-3">Analiza tu compra</Text>
       </HStack>
 
-      <ScrollView className="flex-1" contentContainerStyle={{ padding: 16, paddingBottom: 24 }}>
+      <ScrollView
+        className="flex-1"
+        contentContainerStyle={{
+          padding: 16,
+          paddingBottom: 24,
+          flexGrow: 1,
+          justifyContent: step === 3 ? 'center' : 'flex-start',
+        }}
+      >
         {step === 1 && (
           <>
             <Text className="text-xl font-semibold text-typography-900 mb-1">¿Qué quieres comprar?</Text>
@@ -586,15 +589,15 @@ Reglas:
           <Box className="items-center justify-center py-10">
             <Image
               source={require('@/assets/isotipo.png')}
-              style={{ width: 120, height: 120 }}
+              style={{ width: 168, height: 168 }}
               resizeMode="contain"
             />
             <Text className="text-sm text-typography-700 text-center mt-5 px-2">
               {aiFlowData?.loadingMessage ?? educationMessage}
             </Text>
 
-            <Box className="w-full mt-6">
-              <Box className="h-2 rounded-full bg-primary-100 overflow-hidden">
+            <Box className="w-[72%] mt-6">
+              <Box className="h-2.5 rounded-full bg-primary-100 overflow-hidden">
                 <Box className="h-full bg-primary-600 rounded-full" style={{ width: `${progress}%` }} />
               </Box>
               <Text className="text-center text-sm font-semibold text-primary-700 mt-2">{progress}%</Text>
