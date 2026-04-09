@@ -130,16 +130,16 @@ export const GlobalHeader: React.FC<GlobalHeaderProps> = ({
     const headerTitle = headerTitles[mode] || title;
 
     return (
-      <Animated.View style={containerStyle}>
+      <Animated.View style={[containerStyle, { overflow: 'hidden' }]}>
         <Svg
           width={SCREEN_WIDTH}
           height={SVG_CANVAS_HEIGHT}
-          style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }}
+          style={{ position: 'absolute', top: 0, left: 0, right: 0 }}
         >
           <AnimatedPath animatedProps={animatedPathProps} fill="#006341" />
         </Svg>
 
-        <Animated.View style={[{ overflow: 'hidden' }, contentStyle]}>
+        <Animated.View style={contentStyle}>
           <HStack className="items-center px-6 pt-14 pb-5 bg-primary-700 border-b border-primary-800">
             <Pressable 
               className="p-2 rounded-full bg-primary-800 mr-4" 
