@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import type { RedeemedReward, Reward } from './types';
-import { fetchRedeemedRewards, fetchAvailableRewards } from './api';
+import type { ClaimedReward, RedeemedReward, Reward } from './types';
+import { fetchRedeemedRewards, fetchAvailableRewards, fetchClaimedRewards } from './api';
 
 export const useRedeemedRewards = () => {
   const [items, setItems] = useState<RedeemedReward[]>([]);
@@ -63,4 +63,29 @@ export const useAvailableRewards = () => {
   }, []);
 
   return { rewards, isLoading, error, claimingId, claimReward };
+};
+
+export const useClaimedRewards = () => {
+  const [items, setItems] = useState<ClaimedReward[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<Error | null>(null);
+
+  const load = async () => {
+    setIsLoading(true);
+    setError(null);
+    try {
+      const data = await fetchClaimedRewards();
+      setItems(data);
+    } catch (err) {
+      setError(err instanceof Error ? err : new Error('Error desconocido'));
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    load();
+  }, []);
+
+  return { items, isLoading, error };
 };

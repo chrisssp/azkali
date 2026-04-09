@@ -37,6 +37,16 @@ export interface RewardCardProps {
   isLoading?: boolean;
 }
 
+export interface ClaimedReward {
+  id: string;
+  reward: Reward;
+  claimedAt: string;
+}
+
+export interface ClaimedRewardCardProps {
+  item: ClaimedReward;
+}
+
 export interface CardConversionRate {
   cardType: CardType;
   label: string;

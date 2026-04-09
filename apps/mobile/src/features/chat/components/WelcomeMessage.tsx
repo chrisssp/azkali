@@ -11,7 +11,7 @@ export function WelcomeMessage({ userName = 'Usuario' }: WelcomeMessageProps) {
   return (
     <Box className="flex-1 items-center justify-center px-6">
       <Image
-        source={require("@/assets/isotipo.png")}
+        source={require("@/assets/sprites/Kali-wave.png")}
         style={{ width: 100, height: 100, marginBottom: 16 }}
         resizeMode="contain"
         accessibilityLabel="Kali - Asistente IA"

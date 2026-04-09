@@ -110,7 +110,7 @@ export const RedeemedKaliCard: React.FC<RedeemedKaliCardProps> = ({ item }) => {
                         <HStack space="xs" className="items-center">
                             <CoinsIcon size={14} color="#B45309" />
                             <Text className="text-sm font-extrabold text-warning-700">
-                                +{item.kalisEarned.toFixed(2)} K
+                                +{item.kalisEarned.toFixed(2)} Kalis
                             </Text>
                         </HStack>
                     </HStack>
