@@ -92,10 +92,10 @@ function PhoneMockup() {
             {/* CTA row */}
             <div className="flex gap-2 pb-1">
               <button className="flex-1 bg-[#006341] text-white text-[10px] py-2.5 rounded-xl font-semibold">
-                Congelar en la nevera
+                Ver análisis completo
               </button>
               <button className="flex-1 bg-zinc-100 text-zinc-400 text-[10px] py-2.5 rounded-xl font-medium">
-                Ignorar
+                Cerrar
               </button>
             </div>
           </div>

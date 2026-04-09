@@ -125,7 +125,7 @@ export function RoadmapFeatures() {
             <div className="mt-auto space-y-2">
               {[
                 { label: "Disciplina (45 días)", w: "85%" },
-                { label: "Compras congeladas", w: "72%" },
+                { label: "Decisiones conscientes", w: "72%" },
                 { label: "Metas cumplidas", w: "60%" },
               ].map((b) => (
                 <div key={b.label} className="flex items-center gap-2">

@@ -52,7 +52,7 @@ const features = [
       { heading: "Micro-chat de contexto financiero", body: "Cuando deseas comprar algo, la IA te hace preguntas de contexto rápidas para evaluar tu situación actual: liquidez, ingresos y prioridades." },
       { heading: "Porcentaje de riesgo de impulsividad", body: "El escáner calcula un porcentaje preciso de impulsividad cruzando el costo del artículo contra tu perfil financiero completo." },
       { heading: "Costo de oportunidad tangible", body: "Te muestra en qué más podrías usar ese dinero: horas de trabajo equivalentes, días de ahorro, o meses de servicios." },
-      { heading: "Congelar o ignorar", body: "Después del veredicto, decides: pausar la compra (acumulas tokens) o comprar igual. Sin bloqueos ni juicios." },
+      { heading: "Veredicto, no restricción", body: "El Escáner entrega un análisis de riesgo claro y objetivo. Kali no bloquea ni juzga — la decisión final siempre es tuya." },
     ],
     mockup: (
       <div className="bg-white rounded-2xl border border-zinc-100 shadow-sm p-5">
@@ -136,7 +136,7 @@ const features = [
     accentColor: "bg-amber-500",
     borderAccent: "border-t-amber-400",
     details: [
-      { heading: "Tokens por comportamiento, no por saldo", body: "Ganas tokens cada vez que congelas una compra impulsiva basándote en el análisis de Kali. También acumulas por cada transacción con tus plásticos de Banco Azteca." },
+      { heading: "Tokens por transacción consciente", body: "Acumulas tokens automáticamente por cada transacción con tus plásticos de Banco Azteca. La tasa de acumulación escala según el producto financiero que uses." },
       { heading: "Marketplace de recompensas reales", body: "Los tokens se canjean por cafés gratis, meses de streaming, descuentos en retail y beneficios en el ecosistema Grupo Salinas: Elektra, Italika, Totalplay." },
       { heading: "Beneficios directos en Banco Azteca", body: "Con suficientes tokens puedes acceder a reducción de tasa de interés en créditos o rendimiento extra en productos de inversión." },
       { heading: "Sistema de niveles", body: "Aprendiz → Disciplinado → Estoico → Maestro. Cada nivel desbloquea beneficios exclusivos y mayor visibilidad en el leaderboard." },
