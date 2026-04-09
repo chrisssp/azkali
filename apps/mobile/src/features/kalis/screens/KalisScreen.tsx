@@ -144,7 +144,7 @@ export const KalisScreen: React.FC = () => {
               nestedScrollEnabled
             >
               <Text className="text-sm text-typography-600 mb-4 leading-6">
-                Cada veclassName="px-5"z que pagas con tu tarjeta Banco Azteca
+                Cada vez que pagas con tu tarjeta Banco Azteca
                 en establecimientos participantes, obtienes kalis según la
                 siguiente tabla:
               </Text>

@@ -16,7 +16,7 @@ import { HStack } from '@/components/ui/hstack';
 import { Text } from '@/components/ui/text';
 import { Box } from '@/components/ui/box';
 import { Button, ButtonText } from '@/components/ui/button';
-import { CONVERSION_RATES, type RedeemedRewardCardProps, type RewardCardProps } from '../types';
+import { CONVERSION_RATES, type ClaimedRewardCardProps, type RedeemedRewardCardProps, type RewardCardProps } from '../types';
 
 const categoryConfig = {
     retail: {
@@ -156,7 +156,7 @@ export const RewardCard: React.FC<RewardCardProps> = ({
 
     return (
         <Card className="bg-white rounded-2xl shadow-soft-2 border border-outline-100">
-            <VStack space="md" className="p-6">
+            <VStack space="md" className="p-4">
                 {/* Title with Icon */}
                 <HStack space="md" className="items-center">
                     <IconComponent size={24} color="#006341" />
@@ -186,10 +186,65 @@ export const RewardCard: React.FC<RewardCardProps> = ({
                         onPress={handleClaim}
                         disabled={isLoading}
                     >
+                        {!isLoading && <CoinsIcon size={14} color="#F59E0B" style={{ marginRight: 4 }} />}
                         <ButtonText className="text-typography-white font-bold text-sm">
-                            {isLoading ? 'Canjeando...' : `${reward.cost} tokens`}
+                            {isLoading ? 'Canjeando...' : `${reward.cost} Kalis`}
                         </ButtonText>
                     </Button>
+                </HStack>
+            </VStack>
+        </Card>
+    );
+};
+
+export const ClaimedRewardCard: React.FC<ClaimedRewardCardProps> = ({ item }) => {
+    const config = rewardCategoryConfig[item.reward.category];
+    const IconComponent = config.icon;
+
+    function formatDate(isoString: string): string {
+        const date = new Date(isoString);
+        return date.toLocaleDateString('es-MX', { day: '2-digit', month: 'short', year: 'numeric' });
+    }
+
+    return (
+        <Card className="bg-white rounded-2xl shadow-soft-2 border border-outline-100">
+            <VStack space="md" className="p-4">
+                {/* Title with Icon */}
+                <HStack space="md" className="items-center justify-between">
+                    <HStack space="md" className="items-center flex-1">
+                        <IconComponent size={24} color="#006341" />
+                        <Text className="text-lg font-bold text-primary-900 flex-1">
+                            {item.reward.title}
+                        </Text>
+                    </HStack>
+                    <Box className="bg-success-50 rounded-full px-3 py-1">
+                        <Text className="text-2xs font-bold uppercase tracking-wider text-success-700">
+                            Reclamada
+                        </Text>
+                    </Box>
+                </HStack>
+
+                {/* Category Badge */}
+                <Box className={`${config.badgeBg} ${config.badgeText} self-start rounded-md px-2 py-1`}>
+                    <Text className="text-2xs font-bold uppercase tracking-wider">
+                        {config.label}
+                    </Text>
+                </Box>
+
+                {/* Description */}
+                <Text className="text-sm text-typography-500">
+                    {item.reward.description}
+                </Text>
+
+                {/* Footer */}
+                <HStack className="justify-between items-center mt-2">
+                    <HStack space="xs" className="items-center">
+                        <CoinsIcon size={13} color="#B45309" />
+                        <Text className="text-xs font-semibold text-warning-700">
+                            {item.reward.cost} Kalis
+                        </Text>
+                    </HStack>
+                    <Text className="text-xs text-typography-400">{formatDate(item.claimedAt)}</Text>
                 </HStack>
             </VStack>
         </Card>

@@ -4,11 +4,11 @@ import { Box } from '@/components/ui/box';
 import { Text } from '@/components/ui/text';
 import { ScreenWrapper } from '@/components/layout/ScreenWrapper';
 import { GlobalHeader } from '@/components/layout';
-import { RedeemedRewardCard } from '../components/RewardCard';
-import { useRedeemedRewards } from '../hooks';
+import { ClaimedRewardCard } from '../components/RewardCard';
+import { useClaimedRewards } from '../hooks';
 
 export const RewardsHistoryScreen: React.FC = () => {
-    const { items, isLoading, error } = useRedeemedRewards();
+    const { items, isLoading, error } = useClaimedRewards();
 
     if (isLoading && !items.length) {
         return (
@@ -37,7 +37,7 @@ export const RewardsHistoryScreen: React.FC = () => {
                 <FlatList
                     data={items}
                     keyExtractor={(item) => item.id}
-                    renderItem={({ item }) => <RedeemedRewardCard item={item} />}
+                    renderItem={({ item }) => <ClaimedRewardCard item={item} />}
                     ItemSeparatorComponent={() => <Box className="h-3" />}
                     contentContainerStyle={{ paddingBottom: 24 }}
                     showsVerticalScrollIndicator={false}

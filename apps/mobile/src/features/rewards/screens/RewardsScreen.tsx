@@ -39,15 +39,16 @@ export const RewardsScreen: React.FC = () => {
         <ScreenWrapper header={<GlobalHeader mode="settings" />}>
             <VStack className="flex-1">
                 <Button
+                    size="xl"
                     className="bg-white border border-outline-200 rounded-xl mb-4 shadow-soft-1"
                     onPress={() => router.push('/rewards-history')}
                 >
-                    <ButtonText className="text-primary-900 font-semibold text-sm">
+                    <ButtonText className="text-primary-900 font-semibold">
                         Historial de recompensas
                     </ButtonText>
                 </Button>
                 <ScrollView className="flex-1">
-                    <VStack className="py-4" space="md">
+                    <VStack className="pb-4" space="md">
                         {rewards.length > 0 ? (
                             rewards.map((reward) => (
                                 <RewardCard
