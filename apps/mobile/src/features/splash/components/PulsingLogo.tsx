@@ -31,7 +31,7 @@ export function PulsingLogo() {
     <Animated.View style={animatedStyle}>
       <Image
         source={require("@/assets/icon.png")}
-        style={{ width: 250, height: 250 }}
+        style={{ width: 225, height: 225 }}
         resizeMode="contain"
         accessibilityLabel="Azkali logo"
       />
