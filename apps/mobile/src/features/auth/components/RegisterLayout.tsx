@@ -1,15 +1,14 @@
 import React from 'react';
 import {
+  Image,
   KeyboardAvoidingView,
   Platform,
   ScrollView,
+  View,
 } from 'react-native';
-import { Box } from '@/components/ui/box';
 import { Button, ButtonText } from '@/components/ui/button';
-import { Text } from '@/components/ui/text';
 import { VStack } from '@/components/ui/vstack';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { ScreenWrapper, GlobalHeader } from '@/components/layout';
+import { ScreenWrapper, AuthHeader } from '@/components/layout';
 
 interface RegisterLayoutProps {
   title: string;
@@ -30,10 +29,10 @@ export const RegisterLayout: React.FC<RegisterLayoutProps> = ({
   onNext,
   onContinue,
   nextButtonText = 'Siguiente',
+  currentStep,
+  totalSteps,
   children,
 }) => {
-  const insets = useSafeAreaInsets();
-
   const handlePress = async () => {
     if (onContinue) {
       await onContinue();
@@ -42,37 +41,46 @@ export const RegisterLayout: React.FC<RegisterLayoutProps> = ({
     }
   };
 
+  const progress =
+    currentStep !== undefined && totalSteps !== undefined
+      ? currentStep / totalSteps
+      : 0;
+
   return (
-    <ScreenWrapper header={<GlobalHeader mode="back" title={title} subtitle={subtitle} onBackPress={onBack} />}>
+    <ScreenWrapper header={<AuthHeader mode="back" title={title} subtitle={subtitle} onBackPress={onBack} />}>
+      {currentStep !== undefined && totalSteps !== undefined && (
+        <View style={{ height: 6, borderRadius: 999, backgroundColor: '#d1d5db', overflow: 'hidden', marginBottom: 8 }}>
+          <View style={{ height: 6, borderRadius: 999, backgroundColor: '#16a34a', width: `${progress * 100}%` }} />
+        </View>
+      )}
       <KeyboardAvoidingView
         behavior={Platform.OS === 'ios' ? 'padding' : undefined}
         className="flex-1"
       >
         <ScrollView
           className="flex-1"
-          contentContainerStyle={{ paddingBottom: 12 }}
+          contentContainerStyle={{ paddingBottom: 24, flexGrow: 1, justifyContent: 'center' }}
           keyboardShouldPersistTaps="handled"
           showsVerticalScrollIndicator={false}
         >
-          <VStack space="md" className="flex-1 mt-6">
+          <VStack space="md" className="mt-6">
+            <Image
+              source={require('@/assets/sprites/kali-register.png')}
+              style={{ width: 140, height: 140, alignSelf: 'center' }}
+              resizeMode="contain"
+            />
             {children}
+            <Button
+              onPress={handlePress}
+              className="w-full bg-primary-700 rounded-2xl mt-2"
+              size="xl"
+            >
+              <ButtonText className="text-white font-semibold">
+                {nextButtonText}
+              </ButtonText>
+            </Button>
           </VStack>
         </ScrollView>
-
-        <Box
-          className="pt-3"
-          style={{ paddingBottom: Math.max(insets.bottom + 8, 24) }}
-        >
-          <Button
-            onPress={handlePress}
-            className="w-full bg-primary-700 rounded-2xl"
-            size="xl"
-          >
-            <ButtonText className="text-white font-semibold">
-              {nextButtonText}
-            </ButtonText>
-          </Button>
-        </Box>
       </KeyboardAvoidingView>
     </ScreenWrapper>
   );

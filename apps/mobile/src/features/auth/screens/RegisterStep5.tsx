@@ -87,7 +87,7 @@ export function RegisterStep6({ form }: RegisterStepProps) {
 
   return (
     <VStack space="lg">
-      <Text className="text-sm text-typography-500">
+      <Text className="text-sm text-typography-500 text-center">
         Elige la meta que mejor te representa. Esto guiará cómo el sistema te ayudará.
       </Text>
 
