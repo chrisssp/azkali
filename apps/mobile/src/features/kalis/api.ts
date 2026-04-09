@@ -1,14 +1,14 @@
-import type { RedeemedReward } from './types';
+import type { RedeemedKali } from './types';
 
-export const fetchRedeemedRewards = async (): Promise<{ items: RedeemedReward[]; totalTokens: number }> => {
+export const fetchRedeemedKalis = async (): Promise<{ items: RedeemedKali[]; totalKalis: number }> => {
   try {
-    const mockItems: RedeemedReward[] = [
+    const mockItems: RedeemedKali[] = [
       {
         id: '1',
         merchant: 'Elektra',
         merchantCategory: 'retail',
         amountSpent: 2499,
-        tokensEarned: 12.50,
+        kalisEarned: 12.50,
         cardType: 'tarjeta_azteca',
         redeemedAt: '2026-04-08T14:23:00Z',
       },
@@ -17,7 +17,7 @@ export const fetchRedeemedRewards = async (): Promise<{ items: RedeemedReward[];
         merchant: 'Totalplay',
         merchantCategory: 'telecom',
         amountSpent: 499,
-        tokensEarned: 1.25,
+        kalisEarned: 1.25,
         cardType: 'guardadito_go',
         redeemedAt: '2026-04-06T10:15:00Z',
       },
@@ -26,7 +26,7 @@ export const fetchRedeemedRewards = async (): Promise<{ items: RedeemedReward[];
         merchant: 'Banco Azteca',
         merchantCategory: 'banking',
         amountSpent: 1000,
-        tokensEarned: 8.00,
+        kalisEarned: 8.00,
         cardType: 'tarjeta_vas',
         redeemedAt: '2026-04-03T09:00:00Z',
       },
@@ -35,7 +35,7 @@ export const fetchRedeemedRewards = async (): Promise<{ items: RedeemedReward[];
         merchant: 'Italika',
         merchantCategory: 'retail',
         amountSpent: 5800,
-        tokensEarned: 69.60,
+        kalisEarned: 69.60,
         cardType: 'oro_garantizada',
         redeemedAt: '2026-03-29T16:45:00Z',
       },
@@ -44,7 +44,7 @@ export const fetchRedeemedRewards = async (): Promise<{ items: RedeemedReward[];
         merchant: 'Elektra',
         merchantCategory: 'retail',
         amountSpent: 899,
-        tokensEarned: 1.80,
+        kalisEarned: 1.80,
         cardType: 'debito_guardadito',
         redeemedAt: '2026-03-25T11:30:00Z',
       },
@@ -53,17 +53,17 @@ export const fetchRedeemedRewards = async (): Promise<{ items: RedeemedReward[];
         merchant: 'Coppel',
         merchantCategory: 'retail',
         amountSpent: 350,
-        tokensEarned: 0.88,
+        kalisEarned: 0.88,
         cardType: 'guardadito_go',
         redeemedAt: '2026-03-20T13:00:00Z',
       },
     ];
 
-    const totalTokens = mockItems.reduce((acc, item) => acc + item.tokensEarned, 0);
+    const totalKalis = mockItems.reduce((acc, item) => acc + item.kalisEarned, 0);
 
-    return { items: mockItems, totalTokens };
+    return { items: mockItems, totalKalis };
   } catch (error) {
-    console.error('Error fetching redeemed rewards:', error);
+    console.error('Error fetching redeemed kalis:', error);
     throw error;
   }
 };

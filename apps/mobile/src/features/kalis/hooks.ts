@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
-import type { RedeemedReward } from './types';
-import { fetchRedeemedRewards } from './api';
+import type { RedeemedKali } from './types';
+import { fetchRedeemedKalis } from './api';
 
-export const useRedeemedRewards = () => {
-  const [items, setItems] = useState<RedeemedReward[]>([]);
-  const [totalTokens, setTotalTokens] = useState(0);
+export const useRedeemedKalis = () => {
+  const [items, setItems] = useState<RedeemedKali[]>([]);
+  const [totalKalis, setTotalKalis] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<Error | null>(null);
 
@@ -12,9 +12,9 @@ export const useRedeemedRewards = () => {
     setIsLoading(true);
     setError(null);
     try {
-      const result = await fetchRedeemedRewards();
+      const result = await fetchRedeemedKalis();
       setItems(result.items);
-      setTotalTokens(result.totalTokens);
+      setTotalKalis(result.totalKalis);
     } catch (err) {
       setError(err instanceof Error ? err : new Error('Error desconocido'));
     } finally {
@@ -26,5 +26,5 @@ export const useRedeemedRewards = () => {
     load();
   }, []);
 
-  return { items, totalTokens, isLoading, error, refetch: load };
+  return { items, totalKalis, isLoading, error, refetch: load };
 };
