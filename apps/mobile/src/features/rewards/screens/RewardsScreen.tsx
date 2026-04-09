@@ -6,7 +6,7 @@ import { Text } from '@/components/ui/text';
 import { ScreenWrapper } from '@/components/layout/ScreenWrapper';
 import { GlobalHeader } from '@/components/layout';
 import { RewardCard } from '../components/RewardCard';
-import { useRewards, useClaimReward } from '../hooks';
+import { useAvailableRewards } from '../hooks';
 
 export const RewardsScreen: React.FC = () => {
     const { rewards, isLoading, error, claimingId, claimReward } = useAvailableRewards();
@@ -42,8 +42,8 @@ export const RewardsScreen: React.FC = () => {
                                 <RewardCard
                                     key={reward.id}
                                     reward={reward}
-                                    onClaim={handleClaimReward}
-                                    isLoading={isClaimingReward}
+                                    onClaim={claimReward}
+                                    isLoading={claimingId === reward.id}
                                 />
                             ))
                         ) : (
