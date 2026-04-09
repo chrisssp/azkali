@@ -1,5 +1,6 @@
 import { Tabs } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
+import { GlobalHeader } from '@/components/layout';
 
 const tabBarColors = {
   background: '#006341',
@@ -55,7 +56,7 @@ export default function TabsLayout() {
         name="claim-tokens"
         options={{
           title: 'Kalis',
-          header: () => <ChatHeader mode="main" userName="Christian" tokens={10} progress={50} />,
+          header: () => <GlobalHeader mode="settings" tokens={10} />,
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="star-outline" size={size} color={color} />
           ),
