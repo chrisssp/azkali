@@ -1,7 +1,7 @@
 import { useState, useCallback } from 'react';
 import { Message, QuickAction } from '../types';
 
-const QUICK_ACTIONS: QuickAction[] = [
+export const QUICK_ACTIONS: QuickAction[] = [
   { id: '1', label: 'Crear recordatorio', emoji: '⏰' },
   { id: '2', label: 'Analizar documento', emoji: '📄' },
   { id: '3', label: 'Hacer seguimiento', emoji: '📊' },

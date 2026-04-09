@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
+import { Animated } from 'react-native';
 import { Box } from '@/components/ui/box';
 import { Text } from '@/components/ui/text';
 import { Message } from '../types';
@@ -9,10 +10,32 @@ interface MessageBubbleProps {
 
 export function MessageBubble({ message }: MessageBubbleProps) {
   const isUser = message.sender === 'user';
+  const opacity = useRef(new Animated.Value(0)).current;
+  const translateY = useRef(new Animated.Value(12)).current;
+
+  useEffect(() => {
+    Animated.parallel([
+      Animated.timing(opacity, {
+        toValue: 1,
+        duration: 250,
+        useNativeDriver: true,
+      }),
+      Animated.timing(translateY, {
+        toValue: 0,
+        duration: 250,
+        useNativeDriver: true,
+      }),
+    ]).start();
+  }, []);
 
   return (
-    <Box
-      className={`flex mb-4 ${isUser ? 'justify-end' : 'justify-start'}`}
+    <Animated.View
+      style={{
+        opacity,
+        transform: [{ translateY }],
+        alignItems: isUser ? 'flex-end' : 'flex-start',
+        marginBottom: 16,
+      }}
     >
       <Box
         className={`max-w-xs px-4 py-3 rounded-2xl ${
@@ -39,6 +62,6 @@ export function MessageBubble({ message }: MessageBubbleProps) {
           })}
         </Text>
       </Box>
-    </Box>
+    </Animated.View>
   );
 }
