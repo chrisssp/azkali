@@ -38,7 +38,6 @@ function quickActionIdToShortcut(id: string): KaliShortcut | null {
 }
 
 export function ChatScreen() {
-  const router = useRouter();
   const user = useGlobalStore((s) => s.user);
 
   const userContext = useMemo(
@@ -56,6 +55,7 @@ export function ChatScreen() {
     messages: geminiMessages,
     sendMessage,
     isLoading,
+    clearChat,
     runShortcut,
     messagesDisplayText,
   } = useKaliChat(userContext);
@@ -108,7 +108,7 @@ export function ChatScreen() {
           mode={headerMode}
           tokens={10}
           title="Chat"
-          onBackPress={() => router.back()}
+          onBackPress={clearChat}
         />
       }
     >

@@ -31,7 +31,6 @@ function quickActionIdToShortcut(id: string): KaliShortcut | null {
 
 /** Pantalla principal del chat con Kali (atajos + Gemini). */
 export function AIChat() {
-  const router = useRouter();
   const user = useGlobalStore((s) => s.user);
 
   const userContext = useMemo(
@@ -49,6 +48,7 @@ export function AIChat() {
     messages: geminiMessages,
     sendMessage,
     isLoading,
+    clearChat,
     runShortcut,
     messagesDisplayText,
   } = useKaliChat(userContext);
@@ -91,7 +91,7 @@ export function AIChat() {
           mode={headerMode}
           tokens={10}
           title="Chat"
-          onBackPress={() => router.back()}
+          onBackPress={clearChat}
         />
       }
     >
