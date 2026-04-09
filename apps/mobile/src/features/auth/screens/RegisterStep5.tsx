@@ -17,25 +17,25 @@ const GOALS: { value: string; label: string; icon: LucideIcon; description: stri
     value: 'libertad_financiera',
     label: 'Libertad financiera',
     icon: TrendingUp,
-    description: 'Alcanzar independencia económica total',
+    description: 'Construir activos y flujos de ingreso pasivo que te permitan vivir sin depender de un empleo. El sistema optimizará tus hábitos hacia la independencia económica a largo plazo.',
   },
   {
     value: 'fondo_emergencia',
     label: 'Fondo de emergencia',
     icon: Shield,
-    description: 'Tener un colchón para imprevistos',
+    description: 'Acumular entre 3 y 6 meses de tus gastos fijos para cubrir imprevistos sin endeudarte. La estabilidad empieza aquí.',
   },
   {
     value: 'grandes_adquisiciones',
     label: 'Grandes adquisiciones',
     icon: Home,
-    description: 'Ahorrar para una compra importante',
+    description: 'Planificar y ahorrar para compras importantes: casa, vehículo, educación o negocio propio. Cada peso cuenta hacia tu objetivo.',
   },
   {
     value: 'experiencias',
     label: 'Experiencias y estilo de vida',
     icon: Plane,
-    description: 'Viajes, cultura y vivir el presente',
+    description: 'Disfrutar viajes, cultura y momentos únicos sin descuidar tus finanzas. Vivir bien hoy sin hipotecar el mañana.',
   },
 ];
 
@@ -47,7 +47,7 @@ interface GoalCardProps {
   onPress: () => void;
 }
 
-function GoalCard({ label, icon: IconComponent, description, isSelected, onPress }: GoalCardProps) {
+function GoalCard({ label, icon: IconComponent, isSelected, onPress }: Omit<GoalCardProps, 'description'>) {
   return (
     <Pressable
       onPress={onPress}
@@ -59,37 +59,27 @@ function GoalCard({ label, icon: IconComponent, description, isSelected, onPress
         borderColor: isSelected ? '#006341' : '#e5e7eb',
         backgroundColor: isSelected ? '#E6F2EC' : '#ffffff',
         alignItems: 'center',
-        minHeight: 130,
+        minHeight: 110,
         justifyContent: 'center',
         gap: 8,
       }}
     >
-      <IconComponent size={28} color={isSelected ? '#000' : '#6B7280'} strokeWidth={1.5} />
+      <IconComponent size={28} color={isSelected ? '#006341' : '#6B7280'} strokeWidth={1.5} />
       <Text
         style={{
           fontSize: 13,
           fontWeight: isSelected ? '700' : '600',
-          color: '#111',
+          color: isSelected ? '#006341' : '#111',
           textAlign: 'center',
         }}
       >
         {label}
       </Text>
-      <Text
-        style={{
-          fontSize: 11,
-          color: '#6B7280',
-          textAlign: 'center',
-          lineHeight: 15,
-        }}
-      >
-        {description}
-      </Text>
     </Pressable>
   );
 }
 
-export function RegisterStep5({ form }: RegisterStepProps) {
+export function RegisterStep6({ form }: RegisterStepProps) {
   const {
     control,
     formState: { errors },
@@ -98,7 +88,7 @@ export function RegisterStep5({ form }: RegisterStepProps) {
   return (
     <VStack space="lg">
       <Text className="text-sm text-typography-500">
-        Elige las metas que mejor te representan. Puedes seleccionar una o varias.
+        Elige la meta que mejor te representa. Esto guiará cómo el sistema te ayudará.
       </Text>
 
       <FormControl isInvalid={!!errors.financialGoals}>
@@ -107,17 +97,14 @@ export function RegisterStep5({ form }: RegisterStepProps) {
           name="financialGoals"
           rules={{
             validate: (val) =>
-              (val && val.length > 0) || 'Selecciona al menos una meta',
+              (val && val.length > 0) || 'Selecciona una meta',
           }}
           render={({ field: { onChange, value } }) => {
             const selected: string[] = value ?? [];
+            const selectedGoal = GOALS.find((g) => g.value === selected[0]);
 
-            const toggle = (goalValue: string) => {
-              if (selected.includes(goalValue)) {
-                onChange(selected.filter((v) => v !== goalValue));
-              } else {
-                onChange([...selected, goalValue]);
-              }
+            const pick = (goalValue: string) => {
+              onChange([goalValue]);
             };
 
             return (
@@ -129,9 +116,8 @@ export function RegisterStep5({ form }: RegisterStepProps) {
                       key={goal.value}
                       label={goal.label}
                       icon={goal.icon}
-                      description={goal.description}
-                      isSelected={selected.includes(goal.value)}
-                      onPress={() => toggle(goal.value)}
+                      isSelected={selected[0] === goal.value}
+                      onPress={() => pick(goal.value)}
                     />
                   ))}
                 </View>
@@ -142,12 +128,32 @@ export function RegisterStep5({ form }: RegisterStepProps) {
                       key={goal.value}
                       label={goal.label}
                       icon={goal.icon}
-                      description={goal.description}
-                      isSelected={selected.includes(goal.value)}
-                      onPress={() => toggle(goal.value)}
+                      isSelected={selected[0] === goal.value}
+                      onPress={() => pick(goal.value)}
                     />
                   ))}
                 </View>
+
+                {/* Description panel */}
+                {selectedGoal && (
+                  <View
+                    style={{
+                      borderRadius: 14,
+                      backgroundColor: '#E6F2EC',
+                      borderWidth: 1,
+                      borderColor: '#b6d8c6',
+                      padding: 16,
+                      gap: 4,
+                    }}
+                  >
+                    <Text style={{ fontSize: 13, fontWeight: '700', color: '#006341' }}>
+                      {selectedGoal.label}
+                    </Text>
+                    <Text style={{ fontSize: 13, color: '#374151', lineHeight: 20 }}>
+                      {selectedGoal.description}
+                    </Text>
+                  </View>
+                )}
               </View>
             );
           }}

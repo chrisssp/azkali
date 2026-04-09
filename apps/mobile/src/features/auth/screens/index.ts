@@ -6,3 +6,4 @@ export { RegisterStep2 } from './RegisterStep2';
 export { RegisterStep3 } from './RegisterStep3';
 export { RegisterStep4 } from './RegisterStep4';
 export { RegisterStep5 } from './RegisterStep5';
+export { RegisterStep6 } from './RegisterStep6';

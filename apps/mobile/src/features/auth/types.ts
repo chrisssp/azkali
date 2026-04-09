@@ -34,9 +34,11 @@ export interface RegisterFormData {
   // Step 3 – Personal Data
   birthDate: string;
   sex: string;
-  // Step 4 – Economic Data
+  // Step 4 – Personalízame
+  profileType: string;
+  personality: string[];
+  interests: string[];
   monthlyIncome: string;
-  occupation: string;
   // Step 5 – Financial Goals
   financialGoals: string[];
 }
