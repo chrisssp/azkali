@@ -14,9 +14,9 @@ Azkali se reserva el derecho de modificar estos términos en cualquier momento. 
 
 • Análisis de impulsividad financiera en tiempo real.
 • Asistencia conversacional con inteligencia artificial (Kali).
-• Sistemas de gamificación y rachas de disciplina.
-• Retos grupales de ahorro.
-• Tokens de Disciplina canjeables por recompensas.
+• Sistemas de gamificación y lealtad transaccional.
+• Escáner de Impulsividad.
+• Tokens de Resiliencia canjeables por recompensas.
 
 Azkali no es una institución financiera, ni ofrece servicios bancarios, de inversión o de crédito directamente. Las funciones relacionadas con Banco Azteca están sujetas a los términos y condiciones propios de dicha institución.`,
   },
@@ -43,13 +43,13 @@ Azkali puede suspender o cancelar tu cuenta si detecta información falsa, uso f
   },
   {
     title: "Propiedad intelectual",
-    content: `Todo el contenido de Azkali — incluyendo pero no limitado a: nombre, logotipo, diseño de interfaz, código fuente, textos, gráficos, la mascota Kali y el sistema de Tokens de Disciplina — es propiedad exclusiva de Azkali o sus licenciantes y está protegido por las leyes de propiedad intelectual vigentes en México.
+    content: `Todo el contenido de Azkali — incluyendo pero no limitado a: nombre, logotipo, diseño de interfaz, código fuente, textos, gráficos, la mascota Kali y el sistema de Tokens de Resiliencia — es propiedad exclusiva de Azkali o sus licenciantes y está protegido por las leyes de propiedad intelectual vigentes en México.
 
 Se te otorga una licencia limitada, no exclusiva, intransferible y revocable para usar la Aplicación exclusivamente para los fines descritos en estos términos.`,
   },
   {
-    title: "Tokens de Disciplina y recompensas",
-    content: `Los Tokens de Disciplina son un sistema de incentivos dentro de la Aplicación. Debes tener en cuenta que:
+    title: "Tokens de Resiliencia y recompensas",
+    content: `Los Tokens de Resiliencia son un sistema de incentivos dentro de la Aplicación. Debes tener en cuenta que:
 
 • No tienen valor monetario ni pueden convertirse en dinero en efectivo.
 • Su disponibilidad y las recompensas canjeables pueden cambiar sin previo aviso.

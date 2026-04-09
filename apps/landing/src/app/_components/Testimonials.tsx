@@ -38,10 +38,10 @@ const testimonials = [
     avatarBg: "bg-amber-500",
     stars: 5,
     quote:
-      "Mi racha va en 45 días. Mi cuenta también va para arriba. Nunca pensé que una app de finanzas podría darme el mismo rush que un videojuego.",
-    tag: "45 días de racha 🔥",
+      "Ya llevo 240 tokens acumulados. Migré mi Guardadito a una TAZ y ahora gano el doble de recompensas. Nunca pensé que una app financiera podría engancharme así.",
+    tag: "240 tokens acumulados",
     tagStyle: "bg-amber-50 border-amber-100 text-amber-700",
-    stat: { value: "45 días", label: "de racha" },
+    stat: { value: "240 T", label: "acumulados" },
   },
 ];
 

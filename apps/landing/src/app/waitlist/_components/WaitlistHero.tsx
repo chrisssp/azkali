@@ -24,7 +24,7 @@ const perks = [
     iconBg: "bg-emerald-50 border border-emerald-100",
     iconColor: "text-[#006341]",
     title: "500 Tokens de bienvenida",
-    body: "Arrancas con 500 Tokens de Disciplina listos para canjear desde el primer día.",
+    body: "Arrancas con 500 Tokens de Resiliencia listos para canjear desde el primer día.",
   },
   {
     icon: Bell,
@@ -103,7 +103,7 @@ export function WaitlistHero() {
                 className="text-white/55 text-lg font-light leading-relaxed mb-10 max-w-md"
               >
                 Únete a la lista de espera y obtén acceso anticipado, badge de Fundador
-                y 500 Tokens de Disciplina desde el día uno.
+                y 500 Tokens de Resiliencia desde el día uno.
               </motion.p>
 
               {/* Counter */}
@@ -130,7 +130,7 @@ export function WaitlistHero() {
                   ))}
                 </div>
                 <p className="text-white/50 text-sm font-light">
-                  <span className="text-white font-semibold">+2,400 personas</span> ya en la lista
+                  <span className="text-white font-semibold">Únete</span> a la lista de espera
                 </p>
               </motion.div>
 

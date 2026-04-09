@@ -12,7 +12,7 @@ const sections = [
 
 • Datos de identificación: nombre, correo electrónico, número de teléfono.
 • Datos financieros: historial de decisiones de compra, patrones de gasto, metas de ahorro. Estos datos son generados por tu uso de la app y nunca incluyen datos bancarios directos.
-• Datos de uso: interacciones con la aplicación, rachas de disciplina, tokens acumulados.
+• Datos de uso: interacciones con la aplicación, hábitos financieros, tokens acumulados.
 • Datos de dispositivo: tipo de dispositivo, sistema operativo, identificadores de sesión.
 
 No recabamos datos sensibles como información médica, religiosa o biométrica.`,
@@ -24,7 +24,7 @@ No recabamos datos sensibles como información médica, religiosa o biométrica.
 Finalidades primarias (necesarias para el servicio):
 • Proveer y personalizar los servicios de Azkali.
 • Generar el análisis conductual de impulsividad financiera.
-• Administrar tu cuenta, rachas y tokens de disciplina.
+• Administrar tu cuenta y tokens de resiliencia.
 • Enviarte notificaciones relevantes sobre tu actividad.
 
 Finalidades secundarias (puedes oponerte):

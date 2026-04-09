@@ -16,7 +16,7 @@ const features = [
     details: [
       { heading: "Preguntas reflexivas personalizadas", body: "Justo antes del checkout, Kali genera 3 preguntas calibradas a tu historial — no genéricas, sino diseñadas para romper tu piloto automático." },
       { heading: "Traducción a métricas de vida real", body: "Kali convierte el monto en unidades que duelen: horas trabajadas, semanas de comida, o meses de streaming." },
-      { heading: "Notificaciones conductuales", body: "Si tu racha está en riesgo, Kali aparece — no con spam, sino con un recordatorio contextual que usa tu propia data." },
+      { heading: "Notificaciones conductuales", body: "Cuando detecta un patrón de gasto impulsivo, Kali aparece — no con spam, sino con un recordatorio contextual que usa tu propia data financiera." },
       { heading: "Sin tecnicismos", body: "Kali habla como tu amiga que estudió economía: directa, sin condescendencia, en el lenguaje de la Generación Z mexicana." },
     ],
     mockup: (

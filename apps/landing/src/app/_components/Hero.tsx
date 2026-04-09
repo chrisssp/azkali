@@ -1,6 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
-import { ArrowRight, Zap } from "lucide-react";
+import { ArrowRight, Award } from "lucide-react";
 
 function PhoneMockup() {
   return (
@@ -32,9 +32,9 @@ function PhoneMockup() {
             </div>
             <div className="flex items-center gap-1.5">
               <div className="w-6 h-6 rounded-full bg-amber-100 flex items-center justify-center">
-                <Zap size={11} className="text-amber-500" />
+                <Award size={11} className="text-amber-500" />
               </div>
-              <span className="text-xs font-bold text-amber-500">45🔥</span>
+              <span className="text-xs font-bold text-amber-500">240 T</span>
             </div>
           </div>
 
@@ -92,10 +92,10 @@ function PhoneMockup() {
             {/* CTA row */}
             <div className="flex gap-2 pb-1">
               <button className="flex-1 bg-[#006341] text-white text-[10px] py-2.5 rounded-xl font-semibold">
-                Pausar decisión
+                Congelar en la nevera
               </button>
               <button className="flex-1 bg-zinc-100 text-zinc-400 text-[10px] py-2.5 rounded-xl font-medium">
-                Comprar igual
+                Ignorar
               </button>
             </div>
           </div>
@@ -109,8 +109,8 @@ function PhoneMockup() {
         transition={{ delay: 0.9, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
         className="absolute -right-10 top-16 bg-white border border-gray-100 shadow-lg rounded-2xl px-3.5 py-2.5"
       >
-        <p className="text-[9px] text-zinc-400 font-semibold uppercase tracking-widest">Racha activa</p>
-        <p className="text-sm font-heading font-bold text-zinc-900 mt-0.5">🔥 45 días</p>
+        <p className="text-[9px] text-zinc-400 font-semibold uppercase tracking-widest">Tokens ganados</p>
+        <p className="text-sm font-heading font-bold text-amber-500 mt-0.5">+12 esta semana</p>
       </motion.div>
 
       <motion.div
@@ -119,7 +119,7 @@ function PhoneMockup() {
         transition={{ delay: 1.1, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
         className="absolute -left-10 bottom-24 bg-white border border-gray-100 shadow-lg rounded-2xl px-3.5 py-2.5"
       >
-        <p className="text-[9px] text-zinc-400 font-semibold uppercase tracking-widest">Ahorrado</p>
+        <p className="text-[9px] text-zinc-400 font-semibold uppercase tracking-widest">Compra frenada</p>
         <p className="text-sm font-heading font-bold text-[#006341] mt-0.5">$2,799 MXN</p>
       </motion.div>
     </div>

@@ -169,7 +169,7 @@ export function FinalCTA() {
                 </div>
               ))}
             </div>
-            <span className="text-white/60 text-sm font-light">+2,400 ya en la lista</span>
+            <span className="text-white/60 text-sm font-light">Para jóvenes mexicanos</span>
           </div>
 
           <div className="inline-flex items-center gap-2 bg-white/[0.06] border border-white/[0.10] rounded-full px-5 py-2.5">

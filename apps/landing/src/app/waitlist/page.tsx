@@ -6,7 +6,7 @@ import { WaitlistHero } from "./_components/WaitlistHero";
 export const metadata: Metadata = {
   title: "Lista de espera — Azkali",
   description:
-    "Únete a la lista de espera de Azkali y sé el primero en usarla. Acceso anticipado, badge de Fundador y 500 Tokens de Disciplina desde el día uno.",
+    "Únete a la lista de espera de Azkali y sé el primero en usarla. Acceso anticipado, badge de Fundador y 500 Tokens de Resiliencia desde el día uno.",
 };
 
 export default function WaitlistPage() {

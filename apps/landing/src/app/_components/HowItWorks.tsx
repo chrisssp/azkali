@@ -9,7 +9,7 @@ const steps = [
     icon: ShoppingCart,
     title: "El impulso",
     description: "Estás a un clic de comprar algo que no necesitas.",
-    detail: "Azkali detecta la compra en tiempo real — ya sea en una tienda en línea o cuando escaneas un código QR.",
+    detail: "Abres el Escáner de Impulsividad en Azkali e ingresas lo que deseas comprar. Kali comienza a hacerte preguntas de contexto.",
     iconBg: "bg-orange-50",
     iconColor: "text-orange-500",
     badgeBg: "bg-[#006341]",
@@ -52,8 +52,8 @@ function MockupImpulso() {
           <ShoppingCart size={15} className="text-orange-500" />
         </div>
         <div className="min-w-0">
-          <p className="text-[13px] font-semibold text-gray-900 leading-tight">Compra detectada</p>
-          <p className="text-[10px] text-gray-400 uppercase tracking-widest mt-0.5 truncate">ZARA.com · hace 2 seg</p>
+          <p className="text-[13px] font-semibold text-gray-900 leading-tight">Escáner activo</p>
+          <p className="text-[10px] text-gray-400 uppercase tracking-widest mt-0.5 truncate">Ingresado por ti</p>
         </div>
         <span className="ml-auto flex-shrink-0 w-2 h-2 rounded-full bg-orange-400 animate-pulse" />
       </div>
@@ -153,7 +153,7 @@ function MockupResultado() {
 
       {/* CTA row */}
       <button className="w-full bg-gradient-to-r from-[#006341] to-emerald-500 text-white rounded-2xl py-3 text-[13px] font-semibold hover:from-emerald-600 hover:to-emerald-400 transition-all shadow-sm flex items-center justify-center gap-2">
-        Guardar para después
+        Congelar en la nevera
       </button>
     </div>
   );

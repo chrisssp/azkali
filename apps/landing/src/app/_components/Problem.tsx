@@ -29,11 +29,11 @@ const stats = [
   },
   {
     icon: Clock,
-    number: "Meses",
-    stat: "De trabajo en intereses por una compra de $2,799 a MSI",
+    number: "82%",
+    stat: "Tasa de interés anual que los jóvenes ignoran al usar su tarjeta",
     context:
-      "Una compra de $2,799 MXN en 18 meses sin intereses puede costarte más de $4,000 en total.",
-    source: "Estimación con TIIE + comisiones",
+      "Una compra impulsiva de $2,799 MXN puede costarte meses enteros de vida laboral regalados al banco en puros intereses.",
+    source: "Banxico / CONDUSEF",
     iconBg: "bg-amber-50 border border-amber-100",
     iconColor: "text-amber-500",
     numberColor: "text-[#006341]",
