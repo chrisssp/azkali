@@ -1,4 +1,4 @@
-import type { RedeemedReward } from './types';
+import type { RedeemedReward, Reward } from './types';
 
 export const fetchRedeemedRewards = async (): Promise<{ items: RedeemedReward[]; totalTokens: number }> => {
   try {
@@ -66,4 +66,46 @@ export const fetchRedeemedRewards = async (): Promise<{ items: RedeemedReward[];
     console.error('Error fetching redeemed rewards:', error);
     throw error;
   }
+};
+
+export const fetchAvailableRewards = async (): Promise<Reward[]> => {
+  const mockRewards: Reward[] = [
+    {
+      id: 'r1',
+      title: '5% Descuento en Elektra',
+      description: '¡Felicidades! 5% en tu próxima compra en la tienda Elektra. Válido por 30 días.',
+      category: 'shopping',
+      cost: 200,
+    },
+    {
+      id: 'r2',
+      title: '10% Cashback en Venta Online',
+      description: '¡Obtén 10% de cashback en tu próxima compra online. Se transferirá a tu cuenta en 24 horas.',
+      category: 'cashback',
+      cost: 500,
+    },
+    {
+      id: 'r3',
+      title: '500 Pesos en tu Cuenta',
+      description: 'Recibe $500 MXN directamente en tu cuenta Banco Azteca. Disponibles en menos de 24 horas.',
+      category: 'transfer',
+      cost: 1000,
+    },
+    {
+      id: 'r4',
+      title: 'Mes gratis en Totalplay',
+      description: 'Un mes sin costo en tu plan Totalplay contratado. Aplica en la siguiente facturación.',
+      category: 'discount',
+      cost: 750,
+    },
+    {
+      id: 'r5',
+      title: '15% de Descuento en Italika',
+      description: 'Obtén 15% de descuento en accesorios y refacciones Italika. Válido por 15 días.',
+      category: 'shopping',
+      cost: 350,
+    },
+  ];
+
+  return mockRewards;
 };

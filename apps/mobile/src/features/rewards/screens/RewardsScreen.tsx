@@ -1,49 +1,21 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { ActivityIndicator, ScrollView } from 'react-native';
-import { InfoIcon, CoinsIcon, XIcon } from 'lucide-react-native';
 import { VStack } from '@/components/ui/vstack';
-import { HStack } from '@/components/ui/hstack';
 import { Box } from '@/components/ui/box';
 import { Text } from '@/components/ui/text';
-import { Pressable } from '@/components/ui/pressable';
-import {
-    Modal,
-    ModalBackdrop,
-    ModalContent,
-    ModalHeader,
-    ModalBody,
-    ModalFooter,
-    ModalCloseButton,
-} from '@/components/ui/modal';
-import { Button, ButtonText } from '@/components/ui/button';
-import { Divider } from '@/components/ui/divider';
 import { ScreenWrapper } from '@/components/layout/ScreenWrapper';
-import { RedeemedRewardCard } from '../components';
-import { useRedeemedRewards } from '../hooks';
-import { CONVERSION_RATES } from '../types';
-
-const TERMS = [
-    'Los tokens no tienen valor monetario, no son canjeables por efectivo y son intransferibles entre cuentas.',
-    'Los tokens acumulados tienen una vigencia de 12 meses a partir de su fecha de emisión. Una vez vencidos no podrán ser recuperados.',
-    'Banco Azteca S.A. se reserva el derecho de modificar, suspender o cancelar las tasas de conversión y el programa de tokens en cualquier momento, sin previo aviso.',
-    'La acumulación de tokens aplica únicamente en establecimientos participantes del ecosistema Grupo Salinas: Elektra, Totalplay, Italika, TV Azteca y otros afiliados.',
-    'Los tokens se acreditan en un plazo máximo de 72 horas hábiles después de confirmada la transacción.',
-    'En caso de cancelación, devolución o contracargo de una compra, los tokens correspondientes serán revertidos automáticamente.',
-    'El programa de tokens no aplica en compras de divisas, pagos de tarjeta de crédito ni retiros de efectivo.',
-    'Banco Azteca no se hace responsable por fallas técnicas que impidan la acreditación de tokens fuera de su control.',
-    'Para los Términos y Condiciones completos consulta bancoazteca.com.mx o acude a tu sucursal más cercana.',
-];
+import { RewardCard } from '../components';
+import { useAvailableRewards } from '../hooks';
 
 export const RewardsScreen: React.FC = () => {
-    const { items, totalTokens, isLoading, error } = useRedeemedRewards();
-    const [showModal, setShowModal] = useState(false);
+    const { rewards, isLoading, error, claimingId, claimReward } = useAvailableRewards();
 
-    if (isLoading && !items.length) {
+    if (isLoading && !rewards.length) {
         return (
             <ScreenWrapper className="flex-1 bg-background-50">
                 <Box className="flex-1 justify-center items-center">
                     <ActivityIndicator size="large" color="#43B02A" />
-                    <Text className="mt-4 text-typography-500">Cargando historial...</Text>
+                    <Text className="mt-4 text-typography-500">Cargando recompensas...</Text>
                 </Box>
             </ScreenWrapper>
         );
@@ -61,140 +33,31 @@ export const RewardsScreen: React.FC = () => {
 
     return (
         <ScreenWrapper className="flex-1 bg-background-50">
-            <VStack className="flex-1">
-                {/* Header */}
-                <Text className="text-3xl font-extrablack text-primary-900 px-6 pt-4 pb-3">
-                    Recompensas
-                </Text>
-
-                {/* Token balance card */}
-                <Box className="mx-6 mb-4 bg-primary-900 rounded-2xl px-5 py-4">
-                    <Text className="text-xs font-semibold text-primary-200 uppercase tracking-widest mb-1">
-                        Tokens acumulados
+            <ScrollView showsVerticalScrollIndicator={false}>
+                <VStack className="px-6 pb-8" space="sm">
+                    <Text className="text-3xl font-extrablack text-primary-900 pt-4 pb-3">
+                        Recompensas
                     </Text>
-                    <HStack className="items-center" space="sm">
-                        <CoinsIcon size={26} color="#F59E0B" />
-                        <Text className="text-3xl font-extrabold text-white flex-1">
-                            {totalTokens.toFixed(2)}
-                        </Text>
-                        {/* Info button */}
-                        <Pressable
-                            onPress={() => setShowModal(true)}
-                            className="w-8 h-8 rounded-full bg-primary-700 items-center justify-center"
-                            accessibilityLabel="Ver cómo se calculan los tokens"
-                            accessibilityRole="button"
-                        >
-                            <InfoIcon size={16} color="#FFFFFF" />
-                        </Pressable>
-                    </HStack>
-                    <Text className="text-xs text-primary-300 mt-2">
-                        Se generan al pagar con tu tarjeta Banco Azteca en el ecosistema Grupo Salinas
-                    </Text>
-                </Box>
 
-                {/* Section label */}
-                <Text className="text-xs font-bold text-typography-400 uppercase tracking-widest px-6 mb-2">
-                    Historial de recompensas
-                </Text>
-
-                {/* List */}
-                <ScrollView className="flex-1">
-                    <VStack className="px-6 pb-8" space="sm">
-                        {items.length > 0 ? (
-                            items.map((item) => (
-                                <RedeemedRewardCard key={item.id} item={item} />
-                            ))
-                        ) : (
-                            <Box className="py-12 items-center">
-                                <Text className="text-center text-typography-400">
-                                    Aún no tienes recompensas acumuladas. ¡Empieza a pagar con tu tarjeta Banco Azteca!
-                                </Text>
-                            </Box>
-                        )}
-                    </VStack>
-                </ScrollView>
-            </VStack>
-
-            {/* Conversion info modal */}
-            <Modal isOpen={showModal} onClose={() => setShowModal(false)} size="lg">
-                <ModalBackdrop />
-                <ModalContent className="bg-white rounded-3xl mx-4">
-                    <ModalHeader className="px-5 pt-5 pb-3">
-                        <HStack className="flex-1 items-center" space="sm">
-                            <CoinsIcon size={20} color="#B45309" />
-                            <Text className="text-lg font-extrabold text-primary-900 flex-1">
-                                ¿Cómo se calculan los tokens?
+                    {rewards.length > 0 ? (
+                        rewards.map((reward) => (
+                            <RewardCard
+                                key={reward.id}
+                                reward={reward}
+                                onClaim={claimReward}
+                                isLoading={claimingId === reward.id}
+                            />
+                        ))
+                    ) : (
+                        <Box className="py-12 items-center">
+                            <Text className="text-center text-typography-400">
+                                No hay recompensas disponibles en este momento.
                             </Text>
-                        </HStack>
-                        <ModalCloseButton>
-                            <Box className="w-7 h-7 rounded-full bg-background-100 items-center justify-center">
-                                <XIcon size={14} color="#6B7280" />
-                            </Box>
-                        </ModalCloseButton>
-                    </ModalHeader>
-
-                    <ModalBody className="px-5">
-                        <ScrollView showsVerticalScrollIndicator={false}>
-                            <Text className="text-sm text-typography-600 mb-4 leading-5">
-                                Cada vez que pagas con tu tarjeta Banco Azteca en establecimientos participantes, obtienes tokens según la siguiente tabla:
-                            </Text>
-
-                            {/* Table header */}
-                            <Box className="bg-primary-900 rounded-t-xl px-3 py-2">
-                                <HStack>
-                                    <Text className="text-2xs font-bold text-white flex-1">Tipo de tarjeta</Text>
-                                    <Text className="text-2xs font-bold text-white w-20 text-right">por $100</Text>
-                                    <Text className="text-2xs font-bold text-white w-20 text-right">por $1,000</Text>
-                                </HStack>
-                            </Box>
-
-                            {/* Table rows */}
-                            {CONVERSION_RATES.map((rate, index) => (
-                                <Box
-                                    key={rate.cardType}
-                                    className={`px-3 py-2.5 border-b border-outline-100 ${index % 2 === 0 ? 'bg-background-50' : 'bg-white'} ${index === CONVERSION_RATES.length - 1 ? 'rounded-b-xl border-0' : ''}`}
-                                >
-                                    <HStack className="items-center">
-                                        <Text className="text-xs font-semibold text-primary-900 flex-1">{rate.label}</Text>
-                                        <Text className="text-xs text-warning-700 font-bold w-20 text-right">{rate.per100} tkn</Text>
-                                        <Text className="text-xs text-warning-700 font-bold w-20 text-right">{rate.per1000} tkn</Text>
-                                    </HStack>
-                                </Box>
-                            ))}
-
-                            <Divider className="my-4" />
-
-                            {/* Legal small print */}
-                            <Text className="text-xs font-bold text-typography-500 uppercase tracking-wider mb-2">
-                                Términos y condiciones
-                            </Text>
-                            <VStack space="xs">
-                                {TERMS.map((term, i) => (
-                                    <HStack key={i} space="xs" className="items-start">
-                                        <Text className="text-2xs text-typography-400 mt-0.5">•</Text>
-                                        <Text className="text-2xs text-typography-400 flex-1 leading-4">{term}</Text>
-                                    </HStack>
-                                ))}
-                            </VStack>
-
-                            <Box className="mt-4 mb-2 bg-warning-50 rounded-xl p-3 border border-warning-200">
-                                <Text className="text-2xs text-warning-800 leading-4 text-center">
-                                    Programa regulado por Banco Azteca S.A. Institución de Banca Múltiple. CNBV Autorización No. 0248. Los tokens no constituyen un depósito bancario ni instrumento de inversión.
-                                </Text>
-                            </Box>
-                        </ScrollView>
-                    </ModalBody>
-
-                    <ModalFooter className="px-5 pb-5">
-                        <Button
-                            className="flex-1 bg-primary-900 rounded-xl"
-                            onPress={() => setShowModal(false)}
-                        >
-                            <ButtonText className="font-bold text-white">Entendido</ButtonText>
-                        </Button>
-                    </ModalFooter>
-                </ModalContent>
-            </Modal>
+                        </Box>
+                    )}
+                </VStack>
+            </ScrollView>
         </ScreenWrapper>
     );
 };
+
