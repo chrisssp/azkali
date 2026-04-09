@@ -4,6 +4,7 @@ import { Box } from '@/components/ui/box';
 import {
   MessageBubble,
   MessageInput,
+  PurchaseAnalysisFlow,
   QuickActions,
   TypingIndicator,
   WelcomeMessage,
@@ -93,6 +94,7 @@ export function ChatScreen() {
         {messages.length === 0 ? (
           <Box className="flex-1 bg-background-light">
             <WelcomeMessage userName={userContext.name} />
+            <PurchaseAnalysisFlow triggerClassName="self-center mt-1 mb-3" />
             <QuickActions actions={QUICK_ACTIONS} onActionPress={handleQuickAction} />
           </Box>
         ) : (
