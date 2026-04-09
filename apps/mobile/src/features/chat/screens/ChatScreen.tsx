@@ -1,6 +1,13 @@
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { FlatList, KeyboardAvoidingView, Platform } from 'react-native';
-import { Box } from '@/components/ui/box';
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
+import { FlatList, KeyboardAvoidingView, Platform } from "react-native";
+import { useRouter } from "expo-router";
+import { Box } from "@/components/ui/box";
 import {
   MessageBubble,
   MessageInput,
@@ -8,35 +15,41 @@ import {
   QuickActions,
   TypingIndicator,
   WelcomeMessage,
-} from '../components';
-import { QUICK_ACTIONS } from '../hooks/useChatMessages';
-import type { Message, QuickAction } from '../types';
-import { useKaliChat, type KaliShortcut } from '@/hooks/useKaliChat';
-import { useGlobalStore } from '@/src/store/useGlobalStore';
-import { GlobalHeader } from '@/components/layout';
+} from "../components";
+import { QUICK_ACTIONS } from "../hooks/useChatMessages";
+import type { Message, QuickAction } from "../types";
+import { useKaliChat, type KaliShortcut } from "@/hooks/useKaliChat";
+import { useGlobalStore } from "@/src/store/useGlobalStore";
+import { GlobalHeader, ScreenWrapper } from "@/components/layout";
 
 function quickActionIdToShortcut(id: string): KaliShortcut | null {
   switch (id) {
-    case '1': return 'reminder';
-    case '2': return 'document';
-    case '3': return 'followup';
-    case '4': return 'report';
-    default: return null;
+    case "1":
+      return "reminder";
+    case "2":
+      return "document";
+    case "3":
+      return "followup";
+    case "4":
+      return "report";
+    default:
+      return null;
   }
 }
 
 export function ChatScreen() {
+  const router = useRouter();
   const user = useGlobalStore((s) => s.user);
 
   const userContext = useMemo(
     () => ({
-      name: user?.name ?? 'Usuario',
+      name: user?.name ?? "Usuario",
       monthlyIncome: 0,
-      accountType: 'cuenta habitual',
+      accountType: "cuenta habitual",
       currentBalance: 0,
-      financialGoal: 'mejorar mis finanzas y evitar gastos impulsivos',
+      financialGoal: "mejorar mis finanzas y evitar gastos impulsivos",
     }),
-    [user?.name]
+    [user?.name],
   );
 
   const {
@@ -52,18 +65,21 @@ export function ChatScreen() {
       geminiMessages.map((m, i) => ({
         id: `${i}-${m.role}`,
         content: messagesDisplayText(m),
-        sender: m.role === 'user' ? ('user' as const) : ('kali' as const),
+        sender: m.role === "user" ? ("user" as const) : ("kali" as const),
         timestamp: new Date(),
       })),
-    [geminiMessages, messagesDisplayText]
+    [geminiMessages, messagesDisplayText],
   );
 
-  const [inputValue, setInputValue] = useState('');
+  const [inputValue, setInputValue] = useState("");
   const flatListRef = useRef<FlatList>(null);
 
   useEffect(() => {
     if (messages.length > 0 || isLoading) {
-      setTimeout(() => flatListRef.current?.scrollToEnd({ animated: true }), 100);
+      setTimeout(
+        () => flatListRef.current?.scrollToEnd({ animated: true }),
+        100,
+      );
     }
   }, [messages.length, isLoading]);
 
@@ -71,7 +87,7 @@ export function ChatScreen() {
     const text = inputValue.trim();
     if (!text) return;
     await sendMessage(text);
-    setInputValue('');
+    setInputValue("");
   }, [inputValue, sendMessage]);
 
   const handleQuickAction = useCallback(
@@ -79,23 +95,36 @@ export function ChatScreen() {
       const shortcut = quickActionIdToShortcut(action.id);
       if (shortcut) void runShortcut(shortcut);
     },
-    [runShortcut]
+    [runShortcut],
   );
 
-  return (
-    <Box className="flex-1 bg-background-light">
-      <GlobalHeader mode="tokens" />
+  const hasMessages = messages.length > 0;
+  const headerMode = hasMessages ? "back" : "tokens";
 
+  return (
+    <ScreenWrapper
+      header={
+        <GlobalHeader
+          mode={headerMode}
+          tokens={10}
+          title="Chat"
+          onBackPress={() => router.back()}
+        />
+      }
+    >
       <KeyboardAvoidingView
-        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-        keyboardVerticalOffset={Platform.OS === 'android' ? 0 : 0}
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
+        keyboardVerticalOffset={Platform.OS === "android" ? 0 : 0}
         className="flex-1 bg-background-light"
       >
         {messages.length === 0 ? (
           <Box className="flex-1 bg-background-light">
             <WelcomeMessage userName={userContext.name} />
             <PurchaseAnalysisFlow triggerClassName="self-center mt-1 mb-3" />
-            <QuickActions actions={QUICK_ACTIONS} onActionPress={handleQuickAction} />
+            <QuickActions
+              actions={QUICK_ACTIONS}
+              onActionPress={handleQuickAction}
+            />
           </Box>
         ) : (
           <FlatList
@@ -103,7 +132,10 @@ export function ChatScreen() {
             data={messages}
             renderItem={({ item }) => <MessageBubble message={item} />}
             keyExtractor={(item) => item.id}
-            contentContainerStyle={{ paddingHorizontal: 16, paddingVertical: 12 }}
+            contentContainerStyle={{
+              paddingHorizontal: 16,
+              paddingVertical: 12,
+            }}
             ListFooterComponent={isLoading ? <TypingIndicator /> : null}
           />
         )}
@@ -115,6 +147,6 @@ export function ChatScreen() {
           isLoading={isLoading}
         />
       </KeyboardAvoidingView>
-    </Box>
+    </ScreenWrapper>
   );
 }

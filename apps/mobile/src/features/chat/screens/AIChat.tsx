@@ -1,5 +1,6 @@
 import React, { useCallback, useMemo, useState } from 'react';
 import { FlatList, KeyboardAvoidingView, Platform } from 'react-native';
+import { useRouter } from 'expo-router';
 import { Box } from '@/components/ui/box';
 import {
   MessageBubble,
@@ -7,7 +8,7 @@ import {
   QuickActions,
   WelcomeMessage,
 } from '../components';
-import { GlobalHeader } from '@/components/layout';
+import { GlobalHeader, ScreenWrapper } from '@/components/layout';
 import { QUICK_ACTIONS } from '../hooks/useChatMessages';
 import type { Message, QuickAction } from '../types';
 import { useKaliChat, type KaliShortcut } from '@/hooks/useKaliChat';
@@ -30,6 +31,7 @@ function quickActionIdToShortcut(id: string): KaliShortcut | null {
 
 /** Pantalla principal del chat con Kali (atajos + Gemini). */
 export function AIChat() {
+  const router = useRouter();
   const user = useGlobalStore((s) => s.user);
 
   const userContext = useMemo(
@@ -79,10 +81,20 @@ export function AIChat() {
     [runShortcut]
   );
 
-  return (
-    <Box className="flex-1 bg-background-light">
-      <GlobalHeader mode="tokens" />
+  const hasMessages = messages.length > 0;
+  const headerMode = hasMessages ? 'back' : 'tokens';
 
+  return (
+    <ScreenWrapper
+      header={
+        <GlobalHeader
+          mode={headerMode}
+          tokens={10}
+          title="Chat"
+          onBackPress={() => router.back()}
+        />
+      }
+    >
       <KeyboardAvoidingView
         behavior={Platform.OS === 'ios' ? 'padding' : undefined}
         className="flex-1 bg-background-light"
@@ -109,6 +121,6 @@ export function AIChat() {
           isLoading={isLoading}
         />
       </KeyboardAvoidingView>
-    </Box>
+    </ScreenWrapper>
   );
 }
