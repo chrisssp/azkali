@@ -64,8 +64,7 @@ return `${m}:${s}`;
 };
 
 return (
-<ScreenWrapper header={<GlobalHeader mode="animated-verify" onBackPress={() => router.back()} />}>
-{/* ── White content area ── */}
+<ScreenWrapper header={<GlobalHeader mode="back" title="Verificar código" onBackPress={() => router.back()} />}>
 <KeyboardAvoidingView
 behavior={Platform.OS === "ios" ? "padding" : undefined}
 className="flex-1"

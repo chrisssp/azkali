@@ -3,63 +3,60 @@ import {
   KeyboardAvoidingView,
   Platform,
   ScrollView,
-  View,
 } from 'react-native';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Box } from '@/components/ui/box';
-import { Text } from '@/components/ui/text';
 import { Button, ButtonText } from '@/components/ui/button';
+import { Text } from '@/components/ui/text';
+import { VStack } from '@/components/ui/vstack';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { ScreenWrapper, GlobalHeader } from '@/components/layout';
-
-// ─── Layout ───────────────────────────────────────────────────────────────────
 
 interface RegisterLayoutProps {
   title: string;
-  currentStep: number;
-  totalSteps?: number;
+  subtitle?: string;
   onBack: () => void;
-  onContinue: () => void;
-  isContinueDisabled?: boolean;
+  onNext?: () => void;
+  onContinue?: () => Promise<void>;
+  nextButtonText?: string;
+  currentStep?: number;
+  totalSteps?: number;
   children: React.ReactNode;
 }
 
-export function RegisterLayout({
+export const RegisterLayout: React.FC<RegisterLayoutProps> = ({
   title,
-  currentStep,
-  totalSteps = 5,
+  subtitle,
   onBack,
+  onNext,
   onContinue,
-  isContinueDisabled = false,
+  nextButtonText = 'Siguiente',
   children,
-}: RegisterLayoutProps) {
+}) => {
   const insets = useSafeAreaInsets();
-  const isLastStep = currentStep === totalSteps;
-  const progress = currentStep / totalSteps;
+
+  const handlePress = async () => {
+    if (onContinue) {
+      await onContinue();
+    } else if (onNext) {
+      onNext();
+    }
+  };
 
   return (
-    <ScreenWrapper header={<GlobalHeader mode="animated-register" title={title} onBackPress={onBack} />}>
-      {/* ── White content area ── */}
+    <ScreenWrapper header={<GlobalHeader mode="back" title={title} subtitle={subtitle} onBackPress={onBack} />}>
       <KeyboardAvoidingView
         behavior={Platform.OS === 'ios' ? 'padding' : undefined}
         className="flex-1"
       >
-        {/* Progress bar — gray track + green fill, no circle, no label */}
-        <Box className="pt-5 pb-2">
-          <View className="h-2 bg-outline-100 rounded overflow-hidden">
-            <View 
-              className="h-full bg-success-600 rounded"
-              style={{ width: `${progress * 100}%` }} 
-            />
-          </View>
-        </Box>
-
         <ScrollView
           className="flex-1"
-          contentContainerStyle={{ paddingTop: 8, paddingBottom: 12 }}
+          contentContainerStyle={{ paddingBottom: 12 }}
           keyboardShouldPersistTaps="handled"
           showsVerticalScrollIndicator={false}
         >
-          {children}
+          <VStack space="md" className="flex-1 mt-6">
+            {children}
+          </VStack>
         </ScrollView>
 
         <Box
@@ -67,19 +64,16 @@ export function RegisterLayout({
           style={{ paddingBottom: Math.max(insets.bottom + 8, 24) }}
         >
           <Button
+            onPress={handlePress}
             className="w-full bg-primary-700 rounded-2xl"
             size="xl"
-            onPress={onContinue}
-            isDisabled={isContinueDisabled}
           >
-            <ButtonText className="text-white font-semibold text-base">
-              {isLastStep ? 'Guardar' : 'Continuar'}
+            <ButtonText className="text-white font-semibold">
+              {nextButtonText}
             </ButtonText>
           </Button>
         </Box>
       </KeyboardAvoidingView>
     </ScreenWrapper>
   );
-}
-
-
+};
