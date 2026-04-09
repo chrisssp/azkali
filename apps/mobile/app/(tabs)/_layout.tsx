@@ -1,6 +1,5 @@
 import { Tabs } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
-import { ChatHeader } from '@/src/features/chat';
 
 const tabBarColors = {
   background: '#006341',
@@ -31,13 +30,13 @@ export default function TabsLayout() {
         tabBarIconStyle: {
           marginTop: 2,
         },
+        headerShown: false,
       }}
     >
       <Tabs.Screen
         name="chat"
         options={{
           title: 'Chat',
-          headerShown: false,
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="chatbubble-outline" size={size} color={color} />
           ),
@@ -47,7 +46,6 @@ export default function TabsLayout() {
         name="rewards"
         options={{
           title: 'Recompensas',
-          header: () => <ChatHeader mode="main" userName="Christian" tokens={10} progress={50} />,
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="gift-outline" size={size} color={color} />
           ),
@@ -57,7 +55,6 @@ export default function TabsLayout() {
         name="claim-tokens"
         options={{
           title: 'Tokens',
-          header: () => <ChatHeader mode="main" userName="Christian" tokens={10} progress={50} />,
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="star-outline" size={size} color={color} />
           ),

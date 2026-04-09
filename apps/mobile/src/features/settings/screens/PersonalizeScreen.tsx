@@ -3,7 +3,6 @@ import {
   KeyboardAvoidingView,
   Platform,
   ScrollView,
-  View,
 } from 'react-native';
 import { useForm } from 'react-hook-form';
 import { useRouter } from 'expo-router';
@@ -13,7 +12,7 @@ import { Button, ButtonText } from '@/components/ui/button';
 import { Text } from '@/components/ui/text';
 import { RegisterStep5 as PersonalizeStep } from '@/src/features/auth/screens/RegisterStep4';
 import type { RegisterFormData } from '@/src/features/auth/types';
-import { SettingsHeader } from '../components/SettingsHeader';
+import { GlobalHeader, ScreenWrapper } from '@/components/layout';
 
 export function PersonalizeScreen() {
   const router = useRouter();
@@ -54,15 +53,14 @@ export function PersonalizeScreen() {
   };
 
   return (
-    <View style={{ flex: 1, backgroundColor: '#fff' }}>
-      <SettingsHeader title="Volver a personalizar" />
+    <ScreenWrapper header={<GlobalHeader mode="back" title="Volver a personalizar" />}>
       <KeyboardAvoidingView
         behavior={Platform.OS === 'ios' ? 'padding' : undefined}
         style={{ flex: 1 }}
       >
       <ScrollView
         className="flex-1"
-        contentContainerStyle={{ paddingHorizontal: 24, paddingTop: 16, paddingBottom: 12 }}
+        contentContainerStyle={{ paddingBottom: 12 }}
         keyboardShouldPersistTaps="handled"
         showsVerticalScrollIndicator={false}
       >
@@ -73,7 +71,7 @@ export function PersonalizeScreen() {
       </ScrollView>
 
       <Box
-        className="px-6 pt-3 bg-white border-t border-outline-100"
+        className="pt-3 bg-white border-t border-outline-100"
         style={{ paddingBottom: Math.max(insets.bottom + 8, 24) }}
       >
         <Button
@@ -85,6 +83,6 @@ export function PersonalizeScreen() {
         </Button>
       </Box>
       </KeyboardAvoidingView>
-    </View>
+    </ScreenWrapper>
   );
 }
