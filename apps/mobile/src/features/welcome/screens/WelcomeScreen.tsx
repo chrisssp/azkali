@@ -16,7 +16,7 @@ export function WelcomeScreen() {
       <AnimatedHero />
 
       <VStack className="flex-1 items-center justify-center px-6 gap-4">
-        <Text className="text-4xl font-bold text-primary-700 text-center mb-4">
+        <Text className="text-3xl font-bold text-primary-700 text-center mb-4">
           Frena el impulso, acelera tu futuro
         </Text>
 
