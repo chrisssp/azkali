@@ -1,13 +1,13 @@
 "use client";
 import { motion } from "framer-motion";
-import { Award, Users, Bot } from "lucide-react";
+import { Award, ScanSearch, Bot } from "lucide-react";
 
 const features = [
   {
     icon: Award,
-    title: "Tokens de Disciplina",
+    title: "Tokens de Resiliencia",
     description:
-      "Gana recompensas canjeables por cada buen hábito financiero. Cada decisión consciente suma puntos reales.",
+      "Acumula tokens automáticamente por cada transacción con tus productos de Banco Azteca. Más tokens entre mejor sea tu producto financiero.",
     tag: "Gamificación",
     iconBg: "bg-amber-50 border border-amber-100",
     iconColor: "text-amber-500",
@@ -19,46 +19,56 @@ const features = [
           <span className="text-[10px] text-zinc-400 uppercase tracking-widest font-semibold">Tus tokens</span>
           <span className="text-[10px] text-amber-500 font-bold">+12 esta semana</span>
         </div>
-        <div className="flex items-center gap-2">
-          {["🏆", "🎯", "💎", "⚡"].map((e, i) => (
-            <div key={i} className="flex-1 aspect-square rounded-xl bg-amber-50 border border-amber-100 flex items-center justify-center">
-              <span className="text-lg leading-none">{e}</span>
+        <div className="space-y-1.5">
+          {[
+            { card: "Guardadito", rate: "2.0/1k" },
+            { card: "TAZ", rate: "5.0/1k" },
+            { card: "Oro", rate: "12.0/1k" },
+          ].map((t) => (
+            <div key={t.card} className="flex items-center justify-between bg-amber-50 border border-amber-100 rounded-xl px-3 py-1.5">
+              <span className="text-[10px] font-medium text-zinc-600">{t.card}</span>
+              <span className="text-[10px] font-bold text-amber-500">{t.rate}</span>
             </div>
           ))}
         </div>
-        <p className="text-[10px] text-zinc-400 mt-3 text-center font-medium">240 tokens · Nivel Disciplinado</p>
+        <p className="text-[10px] text-zinc-400 mt-3 text-center font-medium">Tokens de Resiliencia</p>
       </div>
     ),
   },
   {
-    icon: Users,
-    title: "Retos Grupales",
+    icon: ScanSearch,
+    title: "Escáner de Impulsividad",
     description:
-      "Ahorra con tus amigos y gánale a la inflación juntos. Porque cuando hay competencia, hay motivación.",
-    tag: "Social",
-    iconBg: "bg-violet-50 border border-violet-100",
-    iconColor: "text-violet-500",
-    tagStyle: "bg-violet-50 border-violet-100 text-violet-600",
-    hoverBorder: "hover:border-violet-200",
+      "Antes de comprar, la IA cruza el costo contra tu perfil y te muestra el porcentaje de impulsividad y el costo de oportunidad real.",
+    tag: "Fricción cognitiva",
+    iconBg: "bg-red-50 border border-red-100",
+    iconColor: "text-red-500",
+    tagStyle: "bg-red-50 border-red-100 text-red-600",
+    hoverBorder: "hover:border-red-200",
     preview: (
       <div className="mt-6 rounded-2xl bg-zinc-50 border border-zinc-100 p-4">
         <div className="flex items-center justify-between mb-3">
-          <span className="text-[10px] text-zinc-400 uppercase tracking-widest font-semibold">Reto activo</span>
-          <span className="text-[10px] text-violet-500 font-bold">15 días</span>
+          <span className="text-[10px] text-zinc-400 uppercase tracking-widest font-semibold">Veredicto</span>
+          <span className="text-[10px] text-red-500 font-bold">89% Impulsiva</span>
         </div>
-        {[
-          { name: "Tú", pct: 78, color: "bg-[#006341]" },
-          { name: "Abigail", pct: 64, color: "bg-violet-400" },
-          { name: "Diego", pct: 51, color: "bg-amber-400" },
-        ].map((p) => (
-          <div key={p.name} className="flex items-center gap-2 mb-2">
-            <span className="text-[10px] text-zinc-400 w-12 shrink-0">{p.name}</span>
-            <div className="flex-1 h-1.5 bg-zinc-200 rounded-full overflow-hidden">
-              <div className={`h-full ${p.color} rounded-full`} style={{ width: `${p.pct}%` }} />
+        <div className="flex items-center gap-3 mb-2">
+          <div className="relative w-14 h-14">
+            <svg viewBox="0 0 56 56" className="w-full h-full -rotate-90">
+              <circle cx="28" cy="28" r="22" fill="none" stroke="#f3f4f6" strokeWidth="6" />
+              <circle cx="28" cy="28" r="22" fill="none" stroke="#8B1A1A" strokeWidth="6" strokeDasharray="138" strokeDashoffset="15" strokeLinecap="round" />
+            </svg>
+            <div className="absolute inset-0 flex items-center justify-center">
+              <span className="text-xs font-bold text-[#8B1A1A]">89%</span>
             </div>
-            <span className="text-[10px] text-zinc-400 w-6 text-right">{p.pct}%</span>
           </div>
-        ))}
+          <div className="flex-1 space-y-1">
+            <p className="text-[10px] text-zinc-600 font-medium">14.2 hrs de trabajo</p>
+            <p className="text-[10px] text-zinc-600 font-medium">3 días de ahorro</p>
+          </div>
+        </div>
+        <div className="bg-[#006341]/5 border border-[#006341]/10 rounded-xl px-3 py-2">
+          <p className="text-[10px] text-[#006341] font-medium">🐢 ¿Realmente los necesitas?</p>
+        </div>
       </div>
     ),
   },

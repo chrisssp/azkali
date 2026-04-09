@@ -163,9 +163,9 @@ export function Testimonials() {
           className="mt-16 lg:mt-20 bg-white rounded-[2rem] px-8 py-7 flex flex-col sm:flex-row items-center justify-center gap-8 sm:divide-x divide-zinc-100"
         >
           {[
-            { value: "4.8 / 5", label: "Calificación promedio" },
-            { value: "+10,000", label: "Usuarios activos" },
-            { value: "92%", label: "Recomiendan Azkali" },
+            { value: "+40%", label: "No totaleros en México" },
+            { value: "~50%", label: "Sin registro de gastos" },
+            { value: "$2,799", label: "Compra impulsiva promedio" },
           ].map((stat) => (
             <div key={stat.label} className="text-center sm:px-8">
               <p className="font-heading font-medium tracking-tighter text-3xl text-gray-900">{stat.value}</p>

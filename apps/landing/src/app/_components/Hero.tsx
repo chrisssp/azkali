@@ -200,9 +200,9 @@ export function Hero() {
               className="flex items-center gap-8 mt-12 pt-10 border-t border-zinc-100"
             >
               {[
-                { value: "87%", label: "se arrepiente de al menos una compra al mes" },
-                { value: "72%", label: "gasta más de lo planeado cuando compra en línea" },
-                { value: "3 de 4", label: "jóvenes sin hábitos financieros establecidos" },
+                { value: "+40%", label: "de tarjetahabientes solo pagan el mínimo" },
+                { value: "~50%", label: "de mexicanos no llevan registro de sus gastos" },
+                { value: "82%", label: "tasa de interés promedio que ignoran los jóvenes" },
               ].map((stat) => (
                 <div key={stat.label}>
                   <p className="font-heading font-medium tracking-tighter text-2xl text-zinc-900">{stat.value}</p>
