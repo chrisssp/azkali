@@ -9,43 +9,39 @@ import { VStack } from "@/components/ui/vstack";
 import { AnimatedHero } from "../components";
 
 export function WelcomeScreen() {
-	const router = useRouter();
+  const router = useRouter();
 
-	return (
-		<Box className="flex-1 bg-white">
-			<AnimatedHero />
+  return (
+    <Box className="flex-1 bg-white">
+      <AnimatedHero />
 
-			<VStack className="flex-1 items-center justify-center px-6 gap-4">
-				<Text className="text-4xl font-bold text-primary-700 text-center mb-4">
-					Toma el control
-				</Text>
+      <VStack className="flex-1 items-center justify-center px-6 gap-4">
+        <Text className="text-4xl font-bold text-primary-700 text-center mb-4">
+          Frena el impulso, acelera tu futuro
+        </Text>
 
-				<Button
-					size="xl"
-					variant="solid"
-					className="w-full bg-primary-700 rounded-2xl"
-					onPress={() => router.replace("/login")}
-				>
-					<ButtonText className="text-white font-semibold text-base">
-						Conectar con banco azteca
-					</ButtonText>
-				</Button>
+        <Button
+          size="xl"
+          variant="solid"
+          className="w-full bg-primary-700 rounded-2xl"
+          onPress={() => router.replace("/login")}
+        >
+          <ButtonText className="text-white font-semibold text-base">
+            Conectar con banco azteca
+          </ButtonText>
+        </Button>
 
-				<Button
-					size="xl"
-					variant="outline"
-					className="w-full border-primary-700 rounded-2xl bg-transparent"
-					onPress={() => router.push("/register")}
-				>
-					<ButtonText className="text-primary-700 font-semibold text-base">
-						Continuar sin conectarse
-					</ButtonText>
-				</Button>
-
-				<Button onPress={() => router.replace("/chat")}>
-					<ButtonText>[DEV] Ir al home</ButtonText>
-				</Button>
-			</VStack>
-		</Box>
-	);
+        <Button
+          size="xl"
+          variant="outline"
+          className="w-full border-primary-700 rounded-2xl bg-transparent"
+          onPress={() => router.push("/register")}
+        >
+          <ButtonText className="text-primary-700 font-semibold text-base">
+            Continuar sin conectarse
+          </ButtonText>
+        </Button>
+      </VStack>
+    </Box>
+  );
 }
