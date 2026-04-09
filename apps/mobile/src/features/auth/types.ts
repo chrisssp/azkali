@@ -39,7 +39,8 @@ export interface RegisterFormData {
   occupation: string;
   // Step 5 – Self-description
   profileType: string;
-  personality: string;
+  personality: string[];
+  interests: string[];
   // Step 6 – Financial Goals
   financialGoals: string[];
 }

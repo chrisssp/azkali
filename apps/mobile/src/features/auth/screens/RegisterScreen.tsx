@@ -14,7 +14,7 @@ const STEP_TITLES: Record<RegisterStep, string> = {
 	2: "Registrarse",
 	3: "Datos personales",
 	4: "Datos económicos",
-	5: "Descríbete",
+	5: "Personalízame",
 	6: "Meta financiera",
 };
 
@@ -24,7 +24,7 @@ const STEP_FIELDS: Record<RegisterStep, (keyof RegisterFormData)[]> = {
 	2: ["emailOrPhone", "password", "confirmPassword"],
 	3: ["birthDate", "sex"],
 	4: ["monthlyIncome", "occupation"],
-	5: ["profileType", "personality"],
+	5: ["profileType", "personality", "interests"],
 	6: ["financialGoals"],
 };
 
@@ -45,7 +45,8 @@ export function RegisterScreen() {
 			monthlyIncome: "",
 			occupation: "",
 			profileType: "",
-			personality: "",
+			personality: [],
+			interests: [],
 			financialGoals: [],
 		},
 		mode: "onTouched",
