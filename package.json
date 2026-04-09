@@ -10,8 +10,13 @@
 		"{apps,services/core-api}/**/*.{ts,tsx,js,jsx,json}": [
 			"npx @biomejs/biome check --write --no-errors-on-unformatted"
 		],
-		"services/ai-engine/**/*.py": ["ruff check --fix", "ruff format"],
-		"*.md": ["prettier --write"]
+		"services/ai-engine/**/*.py": [
+			"ruff check --fix",
+			"ruff format"
+		],
+		"*.md": [
+			"prettier --write"
+		]
 	},
 	"scripts": {
 		"prepare": "husky",
@@ -27,5 +32,8 @@
 			"react": "19.1.0",
 			"react-dom": "19.1.0"
 		}
+	},
+	"dependencies": {
+		"expo-image-picker": "^55.0.17"
 	}
 }
