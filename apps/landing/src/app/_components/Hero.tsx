@@ -1,6 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
-import { ArrowRight, Award } from "lucide-react";
+import { ArrowRight } from "lucide-react";
+import Image from "next/image";
 
 function PhoneMockup() {
   return (
@@ -9,100 +10,24 @@ function PhoneMockup() {
       <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 w-64 h-24 bg-[#006341]/20 blur-[50px] rounded-full pointer-events-none" />
 
       {/* Phone shell */}
-      <div className="relative w-64 sm:w-72 bg-white rounded-[2.8rem] shadow-[0_32px_72px_-12px_rgba(0,0,0,0.18),0_16px_32px_-8px_rgba(0,0,0,0.10)] border-[5px] border-zinc-800 overflow-hidden">
-        {/* Status bar */}
-        <div className="bg-zinc-900 h-11 flex items-center justify-between px-5">
-          <span className="text-zinc-300 text-xs font-medium tabular-nums">9:41</span>
-          <div className="w-[88px] h-5 bg-black rounded-full mx-auto absolute left-1/2 -translate-x-1/2" />
-          <div className="flex items-center gap-1">
-            <div className="w-3.5 h-2.5 border border-zinc-400 rounded-[3px] relative">
-              <div className="absolute inset-[2px] bg-zinc-400 rounded-[1px]" />
-            </div>
-          </div>
-        </div>
+      <div className="relative w-64 sm:w-72 rounded-[2.8rem] shadow-[0_32px_72px_-12px_rgba(0,0,0,0.18),0_16px_32px_-8px_rgba(0,0,0,0.10)] border-[5px] border-zinc-800 overflow-hidden bg-black">
+        {/* Dynamic island */}
+        <div className="absolute top-3 left-1/2 -translate-x-1/2 w-[88px] h-5 bg-black rounded-full z-10" />
 
-        <div className="bg-zinc-50 pb-4">
-          {/* App header */}
-          <div className="bg-white px-4 py-3 flex items-center justify-between border-b border-zinc-100">
-            <div className="flex items-center gap-2">
-              <div className="w-7 h-7 rounded-lg bg-[#006341] flex items-center justify-center">
-                <span className="text-white font-bold text-xs">A</span>
-              </div>
-              <span className="font-heading font-semibold text-zinc-900 text-sm tracking-tight">Azkali</span>
-            </div>
-            <div className="flex items-center gap-1.5">
-              <div className="w-6 h-6 rounded-full bg-amber-100 flex items-center justify-center">
-                <Award size={11} className="text-amber-500" />
-              </div>
-              <span className="text-xs font-bold text-amber-500">240 T</span>
-            </div>
-          </div>
-
-          <div className="px-4 pt-4 space-y-3">
-            {/* Decision banner */}
-            <div className="bg-amber-50 border border-amber-100 rounded-2xl px-3.5 py-3 flex items-center gap-3">
-              <div className="w-8 h-8 rounded-xl bg-amber-100 flex items-center justify-center flex-shrink-0">
-                <span className="text-base leading-none">🛒</span>
-              </div>
-              <div className="min-w-0">
-                <p className="text-[10px] text-amber-600 font-semibold uppercase tracking-widest leading-none mb-0.5">Compra detectada</p>
-                <p className="text-xs font-semibold text-zinc-800 truncate">Nike Air Max 270 · $2,799</p>
-              </div>
-              <div className="ml-auto w-2 h-2 rounded-full bg-amber-400 animate-pulse flex-shrink-0" />
-            </div>
-
-            {/* Verdict gauge */}
-            <div className="bg-white rounded-2xl p-4 border border-zinc-100 shadow-sm">
-              <div className="flex items-center justify-between mb-3">
-                <p className="text-[10px] text-zinc-400 font-semibold uppercase tracking-widest">Veredicto Kali</p>
-                <span className="text-[9px] bg-red-50 border border-red-100 text-red-500 px-2 py-0.5 rounded-full font-bold uppercase tracking-wider">89% Impulsiva</span>
-              </div>
-              <div className="flex justify-center mb-3">
-                <div className="relative w-20 h-20">
-                  <svg viewBox="0 0 80 80" className="w-full h-full -rotate-90">
-                    <circle cx="40" cy="40" r="32" fill="none" stroke="#f3f4f6" strokeWidth="8" />
-                    <circle cx="40" cy="40" r="32" fill="none" stroke="#8B1A1A" strokeWidth="8"
-                      strokeDasharray="201" strokeDashoffset="22" strokeLinecap="round" />
-                  </svg>
-                  <div className="absolute inset-0 flex flex-col items-center justify-center">
-                    <span className="font-heading font-bold text-lg text-[#8B1A1A] leading-none">89%</span>
-                    <span className="text-[8px] text-[#8B1A1A] font-semibold mt-0.5">Impulsiva</span>
-                  </div>
-                </div>
-              </div>
-              <div className="grid grid-cols-2 gap-2">
-                {[
-                  { label: "Hrs trabajadas", val: "14.2 hrs" },
-                  { label: "Días ahorro", val: "3 días" },
-                ].map((m) => (
-                  <div key={m.label} className="bg-zinc-50 rounded-xl p-2 text-center">
-                    <p className="text-sm font-heading font-bold text-[#006341]">{m.val}</p>
-                    <p className="text-[9px] text-zinc-400 mt-0.5 font-medium">{m.label}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Kali insight */}
-            <div className="bg-[#006341]/6 border border-[#006341]/15 rounded-2xl px-3.5 py-2.5 flex items-start gap-2">
-              <span className="text-sm leading-none flex-shrink-0 mt-0.5">🐢</span>
-              <p className="text-[10px] text-[#006341] font-medium leading-tight">¿Realmente los necesitas o solo los viste en el feed?</p>
-            </div>
-
-            {/* CTA row */}
-            <div className="flex gap-2 pb-1">
-              <button className="flex-1 bg-[#006341] text-white text-[10px] py-2.5 rounded-xl font-semibold">
-                Ver análisis completo
-              </button>
-              <button className="flex-1 bg-zinc-100 text-zinc-400 text-[10px] py-2.5 rounded-xl font-medium">
-                Cerrar
-              </button>
-            </div>
-          </div>
+        {/* Real app screenshot */}
+        <div className="relative w-full" style={{ aspectRatio: "9/19.5" }}>
+          <Image
+            src="/home.jpg"
+            alt="Pantalla principal de Azkali"
+            fill
+            sizes="288px"
+            className="object-cover object-top"
+            priority
+          />
         </div>
       </div>
 
-      {/* Floating badges */}
+      {/* Floating badge — tokens */}
       <motion.div
         initial={{ opacity: 0, x: 24, y: -8 }}
         animate={{ opacity: 1, x: 0, y: 0 }}
@@ -113,6 +38,7 @@ function PhoneMockup() {
         <p className="text-sm font-heading font-bold text-amber-500 mt-0.5">+12 esta semana</p>
       </motion.div>
 
+      {/* Floating badge — compra frenada */}
       <motion.div
         initial={{ opacity: 0, x: -24, y: 8 }}
         animate={{ opacity: 1, x: 0, y: 0 }}
