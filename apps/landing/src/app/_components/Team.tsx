@@ -287,7 +287,7 @@ function HackathonCarousel() {
       transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
       className="mt-28 md:mt-36 max-w-5xl mx-auto"
     >
-      <div className="relative aspect-[16/9] md:aspect-[21/9] rounded-[2.5rem] overflow-hidden shadow-[0_32px_80px_-20px_rgba(0,0,0,0.15)] border border-zinc-100 group">
+      <div className="relative aspect-[4/5] md:aspect-[21/9] rounded-[2rem] md:rounded-[2.5rem] overflow-hidden shadow-[0_32px_80px_-20px_rgba(0,0,0,0.15)] border border-zinc-100 group">
         <AnimatePresence initial={false}>
           <motion.div
             key={index}
@@ -309,13 +309,13 @@ function HackathonCarousel() {
         
         {/* Robust Vignette & Gradient Overlay for perfect legibility */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-black/10 opacity-80 group-hover:opacity-100 transition-opacity duration-700" />
-        <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors duration-700" /> {/* Overall subtle dimming */}
+        <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors duration-700" />
 
         {/* Floating content with legibility protection */}
-        <div className="absolute inset-0 flex flex-col justify-end p-8 md:p-12">
-          {/* Gradual blur mask behind text area to avoid hard cuts */}
+        <div className="absolute inset-0 flex flex-col justify-end p-6 md:p-12">
+          {/* Gradual blur mask behind text area - taller on mobile */}
           <div 
-            className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black/60 via-black/20 to-transparent backdrop-blur-[4px] pointer-events-none" 
+            className="absolute inset-x-0 bottom-0 h-3/4 md:h-2/3 bg-gradient-to-t from-black/60 via-black/20 to-transparent backdrop-blur-[4px] pointer-events-none" 
             style={{
               maskImage: 'linear-gradient(to top, black 30%, transparent 100%)',
               WebkitMaskImage: 'linear-gradient(to top, black 30%, transparent 100%)'
@@ -330,10 +330,10 @@ function HackathonCarousel() {
                   {hackathonImages[index].label}
                 </span>
               </div>
-              <h3 className="font-heading font-medium text-2xl md:text-3xl text-white tracking-tight leading-tight">
+              <h3 className="font-heading font-medium text-xl md:text-3xl text-white tracking-tight leading-tight">
                 Donde Azkali tomó forma.
               </h3>
-              <p className="mt-3 text-zinc-300 text-sm md:text-base font-light leading-relaxed">
+              <p className="mt-3 text-zinc-300 text-xs md:text-base font-light leading-relaxed">
                 Participamos en el <span className="text-white font-medium italic">Talent Hackathon</span> de <span className="text-white font-medium">Genius Arena</span> durante <span className="text-white font-medium">Talent Land 2026</span> en CDMX. Un fin de semana de innovación pura que definió nuestro MVP como producto.
               </p>
             </div>
@@ -353,16 +353,16 @@ function HackathonCarousel() {
           </div>
         </div>
 
-        {/* Manual Nav Arrows - only visible on hover */}
+        {/* Manual Nav Arrows - hidden on mobile for cleaner touch experience */}
         <button 
           onClick={() => setIndex((prev) => (prev - 1 + hackathonImages.length) % hackathonImages.length)}
-          className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-white hover:text-black"
+          className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white hidden md:flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-white hover:text-black"
         >
           <ChevronLeft size={20} />
         </button>
         <button 
           onClick={() => setIndex((prev) => (prev + 1) % hackathonImages.length)}
-          className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-white hover:text-black"
+          className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white hidden md:flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-white hover:text-black"
         >
           <ChevronRight size={20} />
         </button>
