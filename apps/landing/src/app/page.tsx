@@ -6,6 +6,7 @@ import { HowItWorks } from "./_components/HowItWorks";
 import { Features } from "./_components/Features";
 import { DemoVideo } from "./_components/DemoVideo";
 import { Testimonials } from "./_components/Testimonials";
+import { Team } from "./_components/Team";
 import { FinalCTA } from "./_components/FinalCTA";
 
 export default function Home() {
@@ -19,6 +20,7 @@ export default function Home() {
         <Features />
         <DemoVideo />
         <Testimonials />
+        <Team />
         <FinalCTA />
       </main>
       <Footer />
