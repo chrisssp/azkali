@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Github } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import Image from "next/image";
 
 const links = [
@@ -11,6 +11,23 @@ const links = [
   { href: "/#descargar", label: "Descargar" },
   { href: "https://github.com/chrisssp/azkali", label: "GitHub", isExternal: true },
 ];
+
+function GithubIcon({ size = 16 }: { size?: number }) {
+  return (
+    <svg 
+      width={size} 
+      height={size} 
+      viewBox="0 0 24 24" 
+      fill="none" 
+      stroke="currentColor" 
+      strokeWidth="2" 
+      strokeLinecap="round" 
+      strokeLinejoin="round"
+    >
+      <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A3.37 3.37 0 0 0 20.47 7.66 3.37 3.37 0 0 0 20.47 5S18.73 4.5 14.39 7.5a11.02 11.02 0 0 0-5.78 0C4.23 4.5 2.5 5 2.5 5a3.37 3.37 0 0 0-.04 2.66 3.37 3.37 0 0 0-.94 2.61c0 5.46 3.3 6.65 6.44 7a3.37 3.37 0 0 0-.94 2.61V22" />
+    </svg>
+  );
+}
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -63,7 +80,7 @@ export function Navbar() {
               rel={link.isExternal ? "noopener noreferrer" : undefined}
               className="px-3.5 py-2 text-sm font-medium text-zinc-500 hover:text-zinc-900 transition-colors duration-200 rounded-lg hover:bg-zinc-50 flex items-center gap-1.5"
             >
-              {link.label === "GitHub" && <Github size={14} />}
+              {link.label === "GitHub" && <GithubIcon size={14} />}
               {link.label}
             </a>
           ))}
@@ -110,7 +127,7 @@ export function Navbar() {
                   onClick={() => setMobileOpen(false)}
                   className="px-3 py-2.5 text-sm font-medium text-zinc-500 hover:text-zinc-900 hover:bg-zinc-50 rounded-xl transition-colors flex items-center gap-2"
                 >
-                  {link.label === "GitHub" && <Github size={16} />}
+                  {link.label === "GitHub" && <GithubIcon size={16} />}
                   {link.label}
                 </a>
               ))}
