@@ -74,7 +74,7 @@ export function Footer() {
             {/* Banco Azteca partnership */}
             <div className="pt-2">
               <p className="text-[10px] text-zinc-600 uppercase tracking-widest font-medium mb-3">
-                En alianza con
+                Desarrollado para el reto de
               </p>
               <Image
                 src="/banco_azteca_logo.png"
@@ -141,7 +141,7 @@ export function Footer() {
           {/* Grupo Salinas */}
           <div className="flex items-center gap-2.5">
             <p className="text-[10px] text-zinc-700 uppercase tracking-widest font-medium whitespace-nowrap">
-              Parte de
+              Presentado en
             </p>
             <Image
               src="/grupo_salinas_logo.png"
