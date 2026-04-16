@@ -1,8 +1,184 @@
-\"use client\";
-import { useRef } from \"react\";
-import { motion } from \"framer-motion\";
-import { Star } from \"lucide-react\";
+"use client";
+import { useRef } from "react";
+import { motion } from "framer-motion";
+import { Star } from "lucide-react";
 
 const testimonials = [
   {
-    name: \"Mateo\",\n    age: 21,\n    city: \"CDMX\",\n    initials: \"MA\",\n    avatarBg: \"bg-[#006341]\",\n    stars: 5,\n    quote:\n      \"Iba a comprar unos tenis a MSI. Kali me mostró que eran 87 horas de trabajo. Decidí esperar. Una semana después ya ni los quería.\",\n    tag: \"Frenó $2,799 MXN\",\n    tagStyle: \"bg-emerald-50 border-emerald-100 text-emerald-700\",\n    stat: { value: \"$2,799\", label: \"frenado\" },\n  },\n  {\n    name: \"Abigail\",\n    age: 22,\n    city: \"Monterrey\",\n    initials: \"AB\",\n    avatarBg: \"bg-violet-500\",\n    stars: 5,\n    quote:\n      \"Soy freelancer y el banco me ignoraba. Azkali me ayudó a demostrar que sí puedo manejar mi dinero. Ahora tengo más claro a dónde va cada peso.\",\n    tag: \"Independencia financiera\",\n    tagStyle: \"bg-violet-50 border-violet-100 text-violet-700\",\n    stat: { value: \"3 meses\", label: \"de hábito\" },\n  },\n  {\n    name: \"Diego\",\n    age: 23,\n    city: \"Guadalajara\",\n    initials: \"DI\",\n    avatarBg: \"bg-amber-500\",\n    stars: 5,\n    quote:\n      \"Ya llevo 240 tokens acumulados. Migré mi cuenta de ahorro a una preferente y ahora gano el doble de recompensas. Nunca pensé que una app financiera podría engancharme así.\",\n    tag: \"240 tokens acumulados\",\n    tagStyle: \"bg-amber-50 border-amber-100 text-amber-700\",\n    stat: { value: \"240 T\", label: \"acumulados\" },\n  },\n];\n\nfunction TestimonialCard({ t, delay }: { t: (typeof testimonials)[0]; delay: number }) {\n  return (\n    <motion.div\n      initial={{ opacity: 0, y: 28 }}\n      whileInView={{ opacity: 1, y: 0 }}\n      viewport={{ once: true, margin: \"-50px\" }}\n      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay }}\n      className=\"group bg-white rounded-[2rem] transition-all duration-500 p-7 flex flex-col h-full\"\n    >\n      {/* Stars */}\n      <div className=\"flex gap-0.5 mb-5\">\n        {Array.from({ length: t.stars }).map((_, i) => (\n          <Star key={i} size={13} className=\"fill-amber-400 text-amber-400\" />\n        ))}\n      </div>\n\n      {/* Quote */}\n      <blockquote className=\"text-zinc-700 text-base leading-relaxed flex-1 mb-6 tracking-tight font-light\">\n        &ldquo;{t.quote}&rdquo;\n      </blockquote>\n\n      {/* Stat pill */}\n      <div className=\"mb-5\">\n        <span className={`inline-flex items-center px-3 py-1 rounded-full border text-xs font-semibold tracking-wide ${t.tagStyle}`}>\n          {t.tag}\n        </span>\n      </div>\n\n      {/* Author */}\n      <div className=\"flex items-center gap-3 pt-5 border-t border-gray-100\">\n        <div className={`w-10 h-10 rounded-full ${t.avatarBg} flex items-center justify-center flex-shrink-0 shadow-sm`}>\n          <span className=\"text-white font-heading font-bold text-sm\">{t.initials}</span>\n        </div>\n        <div className=\"flex-1 min-w-0\">\n          <p className=\"font-semibold text-zinc-900 text-sm tracking-tight\">{t.name}, {t.age}</p>\n          <p className=\"text-zinc-400 text-xs\">{t.city}</p>\n        </div>\n        <div className=\"text-right flex-shrink-0\">\n          <p className=\"font-heading font-bold text-[#006341] text-sm tracking-tight\">{t.stat.value}</p>\n          <p className=\"text-zinc-400 text-[10px]\">{t.stat.label}</p>\n        </div>\n      </div>\n    </motion.div>\n  );\n}\n\nexport function Testimonials() {\n  const dragRef = useRef<HTMLDivElement>(null);\n\n  return (\n    <section\n      id=\"testimonios\"\n      className=\"relative py-24 sm:py-32 bg-zinc-100 overflow-hidden\"\n      aria-label=\"Testimonios\"\n    >\n      {/* Dot pattern */}\n      <div className=\"absolute inset-0 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:24px_24px] opacity-60 pointer-events-none\" />\n\n      <div className=\"relative max-w-7xl mx-auto px-6 lg:px-8\">\n        {/* Header */}\n        <motion.div\n          initial={{ opacity: 0, y: 20 }}\n          whileInView={{ opacity: 1, y: 0 }}\n          viewport={{ once: true, margin: \"-100px\" }}\n          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}\n          className=\"text-center mb-20 md:mb-28\"\n        >\n          <p className=\"text-xs font-bold tracking-[0.2em] uppercase text-zinc-400 mb-8\">\n            — Comunidad Azkali —\n          </p>\n          <h2 className=\"font-heading font-medium tracking-tighter text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-gray-900 leading-[1.1]\">\n            Lo que dicen los que ya\n            <br className=\"hidden sm:block\" />\n            <span className=\"bg-gradient-to-r from-[#006341] to-emerald-500 bg-clip-text text-transparent\">\n              {\" \"}frenaron el impulso.\n            </span>\n          </h2>\n          <p className=\"mt-8 text-gray-500 text-lg md:text-xl max-w-3xl mx-auto tracking-tight font-light leading-relaxed\">\n            Gente real. Decisiones reales. Dinero que ahora sí está donde debe estar.\n          </p>\n        </motion.div>\n\n        {/* Desktop grid */}\n        <div className=\"hidden md:grid md:grid-cols-3 gap-5 lg:gap-6\">\n          {testimonials.map((t, i) => (\n            <TestimonialCard key={t.name} t={t} delay={i * 0.12} />\n          ))}\n        </div>\n\n        {/* Mobile carousel */}\n        <div className=\"md:hidden overflow-hidden\" ref={dragRef}>\n          <motion.div\n            drag=\"x\"\n            dragConstraints={dragRef}\n            dragElastic={0.08}\n            className=\"flex gap-4 cursor-grab active:cursor-grabbing pb-2\"\n            style={{ width: `${testimonials.length * 87}vw` }}\n          >\n            {testimonials.map((t, i) => (\n              <div key={t.name} className=\"flex-shrink-0\" style={{ width: \"82vw\" }}>\n                <TestimonialCard t={t} delay={i * 0.1} />\n              </div>\n            ))}\n          </motion.div>\n          <p className=\"text-center text-xs text-gray-400 mt-5 font-medium tracking-wide\">\n            Desliza para ver más →\n          </p>\n        </div>\n\n        {/* Bottom stats bar */}\n        <motion.div\n          initial={{ opacity: 0, y: 20 }}\n          whileInView={{ opacity: 1, y: 0 }}\n          viewport={{ once: true }}\n          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}\n          className=\"mt-16 lg:mt-20 bg-white rounded-[2rem] px-8 py-7 flex flex-col sm:flex-row items-center justify-center gap-8 sm:divide-x divide-zinc-100\"\n        >\n          {[\n            { value: \"+40%\", label: \"No totaleros en México\" },\n            { value: \"~50%\", label: \"Sin registro de gastos\" },\n            { value: \"$2,799\", label: \"Compra impulsiva promedio\" },\n          ].map((stat) => (\n            <div key={stat.label} className=\"text-center sm:px-8\">\n              <p className=\"font-heading font-medium tracking-tighter text-3xl text-gray-900\">{stat.value}</p>\n              <p className=\"text-gray-500 text-sm mt-1 font-light\">{stat.label}</p>\n            </div>\n          ))}\n        </motion.div>\n\n        {/* Disclaimer */}\n        <p className=\"mt-8 text-center text-zinc-400 text-[11px] font-light tracking-wide\">\n          * Testimonios ficticios elaborados a partir de las user personas del proyecto, con fines ilustrativos.\n        </p>\n      </div>\n    </section>\n  );\n}\n
+    name: "Mateo",
+    age: 21,
+    city: "CDMX",
+    initials: "MA",
+    avatarBg: "bg-[#006341]",
+    stars: 5,
+    quote:
+      "Iba a comprar unos tenis a MSI. Kali me mostró que eran 87 horas de trabajo. Decidí esperar. Una semana después ya ni los quería.",
+    tag: "Frenó $2,799 MXN",
+    tagStyle: "bg-emerald-50 border-emerald-100 text-emerald-700",
+    stat: { value: "$2,799", label: "frenado" },
+  },
+  {
+    name: "Abigail",
+    age: 22,
+    city: "Monterrey",
+    initials: "AB",
+    avatarBg: "bg-violet-500",
+    stars: 5,
+    quote:
+      "Soy freelancer y el banco me ignoraba. Azkali me ayudó a demostrar que sí puedo manejar mi dinero. Ahora tengo más claro a dónde va cada peso.",
+    tag: "Independencia financiera",
+    tagStyle: "bg-violet-100 border-violet-100 text-violet-700",
+    stat: { value: "3 meses", label: "de hábito" },
+  },
+  {
+    name: "Diego",
+    age: 23,
+    city: "Guadalajara",
+    initials: "DI",
+    avatarBg: "bg-amber-500",
+    stars: 5,
+    quote:
+      "Ya llevo 240 tokens acumulados. Migré mi cuenta de ahorro a una preferente y ahora gano el doble de recompensas. Nunca pensé que una app financiera podría engancharme así.",
+    tag: "240 tokens acumulados",
+    tagStyle: "bg-amber-50 border-amber-100 text-amber-700",
+    stat: { value: "240 T", label: "acumulados" },
+  },
+];
+
+function TestimonialCard({ t, delay }: { t: (typeof testimonials)[0]; delay: number }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 28 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-50px" }}
+      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay }}
+      className="group bg-white rounded-[2rem] transition-all duration-500 p-7 flex flex-col h-full"
+    >
+      {/* Stars */}
+      <div className="flex gap-0.5 mb-5">
+        {Array.from({ length: t.stars }).map((_, i) => (
+          <Star key={i} size={13} className="fill-amber-400 text-amber-400" />
+        ))}
+      </div>
+
+      {/* Quote */}
+      <blockquote className="text-zinc-700 text-base leading-relaxed flex-1 mb-6 tracking-tight font-light">
+        &ldquo;{t.quote}&rdquo;
+      </blockquote>
+
+      {/* Stat pill */}
+      <div className="mb-5">
+        <span className={`inline-flex items-center px-3 py-1 rounded-full border text-xs font-semibold tracking-wide ${t.tagStyle}`}>
+          {t.tag}
+        </span>
+      </div>
+
+      {/* Author */}
+      <div className="flex items-center gap-3 pt-5 border-t border-gray-100">
+        <div className={`w-10 h-10 rounded-full ${t.avatarBg} flex items-center justify-center flex-shrink-0 shadow-sm`}>
+          <span className="text-white font-heading font-bold text-sm">{t.initials}</span>
+        </div>
+        <div className="flex-1 min-w-0">
+          <p className="font-semibold text-zinc-900 text-sm tracking-tight">{t.name}, {t.age}</p>
+          <p className="text-zinc-400 text-xs">{t.city}</p>
+        </div>
+        <div className="text-right flex-shrink-0">
+          <p className="font-heading font-bold text-[#006341] text-sm tracking-tight">{t.stat.value}</p>
+          <p className="text-zinc-400 text-[10px]">{t.stat.label}</p>
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+
+export function Testimonials() {
+  const dragRef = useRef<HTMLDivElement>(null);
+
+  return (
+    <section
+      id="testimonios"
+      className="relative py-24 sm:py-32 bg-zinc-100 overflow-hidden"
+      aria-label="Testimonios"
+    >
+      {/* Dot pattern */}
+      <div className="absolute inset-0 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:24px_24px] opacity-60 pointer-events-none" />
+
+      <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          className="text-center mb-20 md:mb-28"
+        >
+          <p className="text-xs font-bold tracking-[0.2em] uppercase text-zinc-400 mb-8">
+            — Comunidad Azkali —
+          </p>
+          <h2 className="font-heading font-medium tracking-tighter text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-gray-900 leading-[1.1]">
+            Lo que dicen los que ya
+            <br className="hidden sm:block" />
+            <span className="bg-gradient-to-r from-[#006341] to-emerald-500 bg-clip-text text-transparent">
+              {" "}frenaron el impulso.
+            </span>
+          </h2>
+          <p className="mt-8 text-gray-500 text-lg md:text-xl max-w-3xl mx-auto tracking-tight font-light leading-relaxed">
+            Gente real. Decisiones reales. Dinero que ahora sí está donde debe estar.
+          </p>
+        </motion.div>
+
+        {/* Desktop grid */}
+        <div className="hidden md:grid md:grid-cols-3 gap-5 lg:gap-6">
+          {testimonials.map((t, i) => (
+            <TestimonialCard key={t.name} t={t} delay={i * 0.12} />
+          ))}
+        </div>
+
+        {/* Mobile carousel */}
+        <div className="md:hidden overflow-hidden" ref={dragRef}>
+          <motion.div
+            drag="x"
+            dragConstraints={dragRef}
+            dragElastic={0.08}
+            className="flex gap-4 cursor-grab active:cursor-grabbing pb-2"
+            style={{ width: `${testimonials.length * 87}vw` }}
+          >
+            {testimonials.map((t, i) => (
+              <div key={t.name} className="flex-shrink-0" style={{ width: "82vw" }}>
+                <TestimonialCard t={t} delay={i * 0.1} />
+              </div>
+            ))}
+          </motion.div>
+          <p className="text-center text-xs text-gray-400 mt-5 font-medium tracking-wide">
+            Desliza para ver más →
+          </p>
+        </div>
+
+        {/* Bottom stats bar */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
+          className="mt-16 lg:mt-20 bg-white rounded-[2rem] px-8 py-7 flex flex-col sm:flex-row items-center justify-center gap-8 sm:divide-x divide-zinc-100"
+        >
+          {[
+            { value: "+40%", label: "No totaleros en México" },
+            { value: "~50%", label: "Sin registro de gastos" },
+            { value: "$2,799", label: "Compra impulsiva promedio" },
+          ].map((stat) => (
+            <div key={stat.label} className="text-center sm:px-8">
+              <p className="font-heading font-medium tracking-tighter text-3xl text-gray-900">{stat.value}</p>
+              <p className="text-gray-500 text-sm mt-1 font-light">{stat.label}</p>
+            </div>
+          ))}
+        </motion.div>
+
+        {/* Disclaimer */}
+        <p className="mt-8 text-center text-zinc-400 text-[11px] font-light tracking-wide">
+          * Testimonios ficticios elaborados a partir de las user personas del proyecto, con fines ilustrativos.
+        </p>
+      </div>
+    </section>
+  );
+}

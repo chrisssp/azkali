@@ -1,15 +1,130 @@
-\"use client\";
-import { useEffect, useState } from \"react\";
-import { usePathname } from \"next/navigation\";
-import { motion, AnimatePresence } from \"framer-motion\";
-import { Menu, X, Github } from \"lucide-react\";
-import Image from \"next/image\";
+"use client";
+import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
+import { motion, AnimatePresence } from "framer-motion";
+import { Menu, X, Github } from "lucide-react";
+import Image from "next/image";
 
 const links = [
-  { href: \"/#como-funciona\", label: \"Cómo funciona\" },
-  { href: \"/features\", label: \"Features\" },
-  { href: \"/#descargar\", label: \"Descargar\" },
-  { href: \"https://github.com/chrisssp/azkali\", label: \"GitHub\", isExternal: true },
+  { href: "/#como-funciona", label: "Cómo funciona" },
+  { href: "/features", label: "Features" },
+  { href: "/#descargar", label: "Descargar" },
+  { href: "https://github.com/chrisssp/azkali", label: "GitHub", isExternal: true },
 ];
 
-export function Navbar() {\n  const [scrolled, setScrolled] = useState(false);\n  const [mobileOpen, setMobileOpen] = useState(false);\n  const pathname = usePathname();\n  const forceLight = pathname === \"/waitlist\";\n\n  useEffect(() => {\n    const onScroll = () => setScrolled(window.scrollY > 24);\n    window.addEventListener(\"scroll\", onScroll, { passive: true });\n    return () => window.removeEventListener(\"scroll\", onScroll);\n  }, []);\n\n  return (\n    <header\n      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${\n        scrolled || forceLight\n          ? \"bg-white/90 backdrop-blur-xl shadow-[0_1px_24px_rgba(0,0,0,0.06)]\"\n          : \"bg-transparent\"\n      }`}\n      role=\"banner\"\n    >\n      <nav\n        className=\"max-w-7xl mx-auto px-6 lg:px-8 flex items-center justify-between h-16\"\n        aria-label=\"Navegación principal\"\n      >\n        {/* Logo */}\n        <a href=\"/\" className=\"flex items-center gap-2.5\">\n          <Image\n            src=\"/azkali_logo.png\"\n            alt=\"Azkali\"\n            width={240}\n            height={72}\n            quality={100}\n            className=\"h-8 w-auto object-contain\"\n            priority\n          />\n          <span className=\"font-heading font-semibold text-lg text-zinc-900 tracking-tight\">\n            Azkali\n          </span>\n        </a>\n\n        {/* Desktop nav */}\n        <div className=\"hidden md:flex items-center gap-1\">\n          {links.map((link) => (\n            <a\n              key={link.href}\n              href={link.href}\n              target={link.isExternal ? \"_blank\" : undefined}\n              rel={link.isExternal ? \"noopener noreferrer\" : undefined}\n              className=\"px-3.5 py-2 text-sm font-medium text-zinc-500 hover:text-zinc-900 transition-colors duration-200 rounded-lg hover:bg-zinc-50 flex items-center gap-1.5\"\n            >\n              {link.label === \"GitHub\" && <Github size={14} />}\n              {link.label}\n            </a>\n          ))}\n        </div>\n\n        {/* CTA */}\n        <div className=\"hidden md:flex items-center gap-3\">\n          <a\n            href=\"/waitlist\"\n            className=\"inline-flex items-center gap-2 bg-zinc-900 text-white px-4 py-2 rounded-full text-sm font-semibold hover:bg-zinc-800 transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] shadow-sm\"\n          >\n            Descargar gratis\n          </a>\n        </div>\n\n        {/* Mobile button */}\n        <button\n          className=\"md:hidden p-2 rounded-lg text-zinc-500 hover:text-zinc-900 hover:bg-zinc-50 transition-colors\"\n          onClick={() => setMobileOpen(!mobileOpen)}\n          aria-label={mobileOpen ? \"Cerrar menú\" : \"Abrir menú\"}\n        >\n          {mobileOpen ? <X size={18} strokeWidth={1.5} /> : <Menu size={18} strokeWidth={1.5} />}\n        </button>\n      </nav>\n\n      {/* Mobile menu */}\n      <AnimatePresence>\n        {mobileOpen && (\n          <motion.div\n            key=\"mobile-menu\"\n            initial={{ opacity: 0, y: -8 }}\n            animate={{ opacity: 1, y: 0 }}\n            exit={{ opacity: 0, y: -8 }}\n            transition={{ duration: 0.2, ease: \"easeOut\" }}\n            className=\"md:hidden bg-white/95 backdrop-blur-xl border-b border-zinc-100 px-6 pb-5\"\n          >\n            <div className=\"flex flex-col gap-1 pt-2\">\n              {links.map((link) => (\n                <a\n                  key={link.href}\n                  href={link.href}\n                  target={link.isExternal ? \"_blank\" : undefined}\n                  rel={link.isExternal ? \"noopener noreferrer\" : undefined}\n                  onClick={() => setMobileOpen(false)}\n                  className=\"px-3 py-2.5 text-sm font-medium text-zinc-500 hover:text-zinc-900 hover:bg-zinc-50 rounded-xl transition-colors flex items-center gap-2\"\n                >\n                  {link.label === \"GitHub\" && <Github size={16} />}\n                  {link.label}\n                </a>\n              ))}\n              <a\n                href=\"/waitlist\"\n                onClick={() => setMobileOpen(false)}\n                className=\"mt-3 flex items-center justify-center bg-zinc-900 text-white py-3 rounded-full text-sm font-semibold\"\n              >\n                Descargar gratis\n              </a>\n            </div>\n          </motion.div>\n        )}\n      </AnimatePresence>\n    </header>\n  );\n}\n
+export function Navbar() {
+  const [scrolled, setScrolled] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const pathname = usePathname();
+  const forceLight = pathname === "/waitlist";
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  return (
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        scrolled || forceLight
+          ? "bg-white/90 backdrop-blur-xl shadow-[0_1px_24px_rgba(0,0,0,0.06)]"
+          : "bg-transparent"
+      }`}
+      role="banner"
+    >
+      <nav
+        className="max-w-7xl mx-auto px-6 lg:px-8 flex items-center justify-between h-16"
+        aria-label="Navegación principal"
+      >
+        {/* Logo */}
+        <a href="/" className="flex items-center gap-2.5">
+          <Image
+            src="/azkali_logo.png"
+            alt="Azkali"
+            width={240}
+            height={72}
+            quality={100}
+            className="h-8 w-auto object-contain"
+            priority
+          />
+          <span className="font-heading font-semibold text-lg text-zinc-900 tracking-tight">
+            Azkali
+          </span>
+        </a>
+
+        {/* Desktop nav */}
+        <div className="hidden md:flex items-center gap-1">
+          {links.map((link) => (
+            <a
+              key={link.href}
+              href={link.href}
+              target={link.isExternal ? "_blank" : undefined}
+              rel={link.isExternal ? "noopener noreferrer" : undefined}
+              className="px-3.5 py-2 text-sm font-medium text-zinc-500 hover:text-zinc-900 transition-colors duration-200 rounded-lg hover:bg-zinc-50 flex items-center gap-1.5"
+            >
+              {link.label === "GitHub" && <Github size={14} />}
+              {link.label}
+            </a>
+          ))}
+        </div>
+
+        {/* CTA */}
+        <div className="hidden md:flex items-center gap-3">
+          <a
+            href="/waitlist"
+            className="inline-flex items-center gap-2 bg-zinc-900 text-white px-4 py-2 rounded-full text-sm font-semibold hover:bg-zinc-800 transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] shadow-sm"
+          >
+            Descargar gratis
+          </a>
+        </div>
+
+        {/* Mobile button */}
+        <button
+          className="md:hidden p-2 rounded-lg text-zinc-500 hover:text-zinc-900 hover:bg-zinc-50 transition-colors"
+          onClick={() => setMobileOpen(!mobileOpen)}
+          aria-label={mobileOpen ? "Cerrar menú" : "Abrir menú"}
+        >
+          {mobileOpen ? <X size={18} strokeWidth={1.5} /> : <Menu size={18} strokeWidth={1.5} />}
+        </button>
+      </nav>
+
+      {/* Mobile menu */}
+      <AnimatePresence>
+        {mobileOpen && (
+          <motion.div
+            key="mobile-menu"
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.2, ease: "easeOut" }}
+            className="md:hidden bg-white/95 backdrop-blur-xl border-b border-zinc-100 px-6 pb-5"
+          >
+            <div className="flex flex-col gap-1 pt-2">
+              {links.map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  target={link.isExternal ? "_blank" : undefined}
+                  rel={link.isExternal ? "noopener noreferrer" : undefined}
+                  onClick={() => setMobileOpen(false)}
+                  className="px-3 py-2.5 text-sm font-medium text-zinc-500 hover:text-zinc-900 hover:bg-zinc-50 rounded-xl transition-colors flex items-center gap-2"
+                >
+                  {link.label === "GitHub" && <Github size={16} />}
+                  {link.label}
+                </a>
+              ))}
+              <a
+                href="/waitlist"
+                onClick={() => setMobileOpen(false)}
+                className="mt-3 flex items-center justify-center bg-zinc-900 text-white py-3 rounded-full text-sm font-semibold"
+              >
+                Descargar gratis
+              </a>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </header>
+  );
+}
